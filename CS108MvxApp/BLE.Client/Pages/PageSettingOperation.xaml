@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                     xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                     xmlns:viewModels="clr-namespace:BLE.Client.ViewModels;assembly=BLE.Client"
+                      x:Class="BLE.Client.Pages.PageSettingOperation"
+                      Title="Operation">
+
+  <ScrollView>
+    <StackLayout Padding="10, 10, 10, 0">
+
+      <StackLayout Orientation="Horizontal">
+        <Label Text="Regulatory Region" WidthRequest="85" VerticalOptions="Center" />
+        <Button x:Name="buttonRegion" HorizontalOptions="FillAndExpand" BorderWidth ="1" Clicked="buttonRegionClicked" />
+      </StackLayout>
+
+			<StackLayout Orientation="Horizontal">
+        <Label Text="Frequency Order" WidthRequest="85" VerticalOptions="Center" />
+        <Button x:Name="buttonFrequencyOrder" HorizontalOptions="FillAndExpand" BorderWidth ="1" Clicked="buttonFrequencyOrderClicked" />
+      </StackLayout>
+
+      <StackLayout Orientation="Horizontal">
+        <Label Text="Fixed Channel" WidthRequest="85" VerticalOptions="Center" />
+        <Button x:Name="buttonFixedChannel" HorizontalOptions="FillAndExpand" BorderWidth ="1" Clicked="buttonFixedChannelClicked" />
+      </StackLayout>
+
+			<StackLayout x:Name="stackLayoutPower"  Orientation="Horizontal">
+                <Label Text="Power (0-300)" WidthRequest="100" VerticalOptions="Center" />
+                <Entry x:Name="entryPower" Unfocused="entryPowerCompleted" HorizontalOptions="FillAndExpand" />
+            </StackLayout>
+
+      <StackLayout Orientation="Horizontal">
+        <Label Text="Tag population (1-8192)" WidthRequest="100" VerticalOptions="Center" />
+        <Entry x:Name="entryTagPopulation" Unfocused="entryTagPopulationCompleted" HorizontalOptions="FillAndExpand" />
+      </StackLayout>
+
+      <StackLayout Orientation="Horizontal">
+        <Label Text="Q Override (0-15)" WidthRequest="100" VerticalOptions="Center" />
+        <Entry x:Name="entryQOverride" Completed="entryQOverrideCompiled" WidthRequest="110" HorizontalOptions="FillAndExpand" />
+        <Button x:Name="buttonQOverride" Text="Override" Clicked="buttonQOverrideClicked" HorizontalOptions="FillAndExpand" BorderWidth ="1" />
+      </StackLayout>
+
+			<StackLayout Orientation="Horizontal">
+				<Label Text="Tag Delay Time (0-15)" WidthRequest="100"  VerticalOptions="Center" />
+				<Entry x:Name="entryTagDelay" Unfocused="entryTagDelayCompleted" HorizontalOptions="FillAndExpand" Keyboard="Text" WidthRequest="90" />
+			</StackLayout>
+
+			<StackLayout x:Name="stackLayoutInventoryDuration" Orientation="Horizontal">
+				<Label Text="Inventory Cycle Dwell Time (0-3000)" WidthRequest="100"  VerticalOptions="Center" />
+				<Entry x:Name="entryInventoryDuration" Unfocused="entryInventoryDurationCompleted" HorizontalOptions="FillAndExpand" Keyboard="Text" WidthRequest="90" />
+			</StackLayout>
+
+			<StackLayout Orientation="Horizontal">
+				<Label Text="TagFocus" WidthRequest="100" VerticalOptions="Center" />
+				<Label Text="Off" VerticalOptions="Center" />
+				<Switch x:Name="switchFocus"  PropertyChanged="switchFocusPropertyChanged" />
+				<Label Text="On" VerticalOptions="Center" />
+			</StackLayout>
+
+			<StackLayout Orientation="Horizontal">
+                <Label Text="Session" WidthRequest="85" VerticalOptions="Center"	/>
+                <Button x:Name="buttonSession" HorizontalOptions="FillAndExpand" BorderWidth ="1" Clicked="buttonSessionClicked" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Target" WidthRequest="85" VerticalOptions="Center" />
+                <Button x:Name="buttonTarget" HorizontalOptions="FillAndExpand" BorderWidth ="1" Clicked="buttonTargetClicked" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Query Algorithm" WidthRequest="85" VerticalOptions="Center" />
+                <Button x:Name="buttonAlgorithm" HorizontalOptions="FillAndExpand" BorderWidth ="1" Clicked="buttonAlgorithmClicked" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="ReaderMode /LinkProfile" FontSize="Small" WidthRequest="85" VerticalOptions="Center" />
+                <Button x:Name="buttonProfile" HorizontalOptions="FillAndExpand" BorderWidth ="1" Clicked="buttonProfileClicked" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+				<Label Text="RF LNA compression mode" FontSize="Small" WidthRequest="85" VerticalOptions="Center" />
+				<Button x:Name="buttonRFLNAcompression" HorizontalOptions="FillAndExpand" BorderWidth ="1" Clicked="buttonRFLNAcompressionClicked" />
+			</StackLayout>
+
+			<StackLayout Orientation="Horizontal">
+				<Label Text="RF LNA Gain" FontSize="Small" WidthRequest="85" VerticalOptions="Center" />
+				<Button x:Name="buttonRFLNAGain" HorizontalOptions="FillAndExpand" BorderWidth ="1" Clicked="buttonRFLNAGainClicked" />
+			</StackLayout>
+
+			<StackLayout Orientation="Horizontal">
+				<Label Text="IF LNA Gain" FontSize="Small" WidthRequest="85" VerticalOptions="Center" />
+				<Button x:Name="buttonIFLNAGain" HorizontalOptions="FillAndExpand" BorderWidth ="1" Clicked="buttonIFLNAGainClicked" />
+			</StackLayout>
+		
+			<StackLayout Orientation="Horizontal">
+				<Label Text="AGC Gain" FontSize="Small" WidthRequest="85" VerticalOptions="Center" />
+				<Button x:Name="buttonAGCGain" HorizontalOptions="FillAndExpand" BorderWidth ="1" Clicked="buttonAGCGainClicked" />
+			</StackLayout>
+
+		<Button Text="SAVE" Font="Large" HorizontalOptions="FillAndExpand" BackgroundColor="#C3C3C3" Clicked="btnOKClicked" TextColor="Black" />
+
+	  </StackLayout>
+  </ScrollView>
+</views:MvxContentPage>
+    

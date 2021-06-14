@@ -1,0 +1,172 @@
+{
+  "version": 3,
+  "targets": {
+    "Xamarin.iOS,Version=v1.0": {
+      "MvvmCross/7.1.2": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "OpenTK-1.0",
+          "System.Drawing.Common.dll"
+        ],
+        "compile": {
+          "lib/xamarinios10/MvvmCross.dll": {}
+        },
+        "runtime": {
+          "lib/xamarinios10/MvvmCross.dll": {}
+        }
+      },
+      "MvvmCross.Plugins.BLE/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "MvvmCross": "7.1.2",
+          "Plugin.BLE.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/MvvmCross.Plugins.BLE.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MvvmCross.Plugins.BLE.dll": {}
+        }
+      },
+      "Plugin.BLE.Abstractions/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/Plugin.BLE.Abstractions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Plugin.BLE.Abstractions.dll": {}
+        }
+      },
+      "Plugin.BLE.iOS/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Plugin.BLE.iOS.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Plugin.BLE.iOS.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MvvmCross/7.1.2": {
+      "sha512": "1tYkYslR8c7Dp/3itlx8+djBp+cim/ieS1Xp+d/waL0Yrl3H4HGmqxSm89yz/Ts+H9pmrS5DeKpOb+HUOzaERQ==",
+      "type": "package",
+      "path": "mvvmcross/7.1.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "icon.png",
+        "lib/monoandroid10.0/MvvmCross.dll",
+        "lib/monoandroid10.0/MvvmCross.pdb",
+        "lib/monoandroid10.0/MvvmCross.xml",
+        "lib/net461/MvvmCross.dll",
+        "lib/net461/MvvmCross.pdb",
+        "lib/net461/MvvmCross.xml",
+        "lib/netcoreapp3.1/MvvmCross.dll",
+        "lib/netcoreapp3.1/MvvmCross.pdb",
+        "lib/netcoreapp3.1/MvvmCross.xml",
+        "lib/netstandard2.0/MvvmCross.dll",
+        "lib/netstandard2.0/MvvmCross.pdb",
+        "lib/netstandard2.0/MvvmCross.xml",
+        "lib/tizen40/MvvmCross.dll",
+        "lib/tizen40/MvvmCross.pdb",
+        "lib/tizen40/MvvmCross.xml",
+        "lib/uap10.0.16299/MvvmCross.dll",
+        "lib/uap10.0.16299/MvvmCross.pdb",
+        "lib/uap10.0.16299/MvvmCross.pri",
+        "lib/uap10.0.16299/MvvmCross.xml",
+        "lib/xamarinios10/MvvmCross.dll",
+        "lib/xamarinios10/MvvmCross.pdb",
+        "lib/xamarinios10/MvvmCross.xml",
+        "lib/xamarinmac20/MvvmCross.dll",
+        "lib/xamarinmac20/MvvmCross.pdb",
+        "lib/xamarinmac20/MvvmCross.xml",
+        "lib/xamarintvos10/MvvmCross.dll",
+        "lib/xamarintvos10/MvvmCross.pdb",
+        "lib/xamarintvos10/MvvmCross.xml",
+        "lib/xamarinwatchos10/MvvmCross.dll",
+        "lib/xamarinwatchos10/MvvmCross.pdb",
+        "lib/xamarinwatchos10/MvvmCross.xml",
+        "mvvmcross.7.1.2.nupkg.sha512",
+        "mvvmcross.nuspec",
+        "readme.txt"
+      ]
+    },
+    "MvvmCross.Plugins.BLE/1.0.0": {
+      "type": "project",
+      "path": "../MvvmCross.Plugins.BLE/MvvmCross.Plugins.BLE.csproj",
+      "msbuildProject": "../MvvmCross.Plugins.BLE/MvvmCross.Plugins.BLE.csproj"
+    },
+    "Plugin.BLE.Abstractions/1.0.0": {
+      "type": "project",
+      "path": "../Plugin.BLE.Abstractions/Plugin.BLE.Abstractions.csproj",
+      "msbuildProject": "../Plugin.BLE.Abstractions/Plugin.BLE.Abstractions.csproj"
+    },
+    "Plugin.BLE.iOS/1.0.0": {
+      "type": "project",
+      "path": "../Plugin.BLE.iOS/Plugin.BLE.iOS.csproj",
+      "msbuildProject": "../Plugin.BLE.iOS/Plugin.BLE.iOS.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "Xamarin.iOS,Version=v1.0": [
+      "MvvmCross >= 7.1.2",
+      "MvvmCross.Plugins.BLE >= 1.0.0",
+      "Plugin.BLE.Abstractions >= 1.0.0",
+      "Plugin.BLE.iOS >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "/Users/TurtleMac01/.nuget/packages/": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/MvvmCross.Plugins.BLE.iOS/MvvmCross.Plugins.BLE.iOS.csproj",
+      "projectName": "MvvmCross.Plugins.BLE.iOS",
+      "projectPath": "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/MvvmCross.Plugins.BLE.iOS/MvvmCross.Plugins.BLE.iOS.csproj",
+      "packagesPath": "/Users/TurtleMac01/.nuget/packages/",
+      "outputPath": "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/MvvmCross.Plugins.BLE.iOS/obj/",
+      "projectStyle": "PackageReference",
+      "skipContentFileWrite": true,
+      "configFilePaths": [
+        "/Users/TurtleMac01/.config/NuGet/NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "xamarinios10"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "xamarinios10": {
+          "projectReferences": {
+            "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/MvvmCross.Plugins.BLE/MvvmCross.Plugins.BLE.csproj": {
+              "projectPath": "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/MvvmCross.Plugins.BLE/MvvmCross.Plugins.BLE.csproj"
+            },
+            "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/Plugin.BLE.Abstractions/Plugin.BLE.Abstractions.csproj": {
+              "projectPath": "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/Plugin.BLE.Abstractions/Plugin.BLE.Abstractions.csproj"
+            },
+            "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/Plugin.BLE.iOS/Plugin.BLE.iOS.csproj": {
+              "projectPath": "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/Plugin.BLE.iOS/Plugin.BLE.iOS.csproj"
+            }
+          }
+        }
+      }
+    },
+    "frameworks": {
+      "xamarinios10": {
+        "dependencies": {
+          "MvvmCross": {
+            "target": "Package",
+            "version": "[7.1.2, )"
+          }
+        }
+      }
+    }
+  }
+}

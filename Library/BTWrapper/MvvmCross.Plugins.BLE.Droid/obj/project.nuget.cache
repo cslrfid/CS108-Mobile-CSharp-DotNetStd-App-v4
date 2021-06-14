@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "WrS3cJ8VYWFx06S+12lu/ixePd9uObymJJ+G/ljSKOwnBMzdkNnAnCCk4xN9Mh6TrwgFbObXK11AGqflzopdEQ==",
+  "success": true,
+  "projectFilePath": "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/MvvmCross.Plugins.BLE.Droid/MvvmCross.Plugins.BLE.Droid.csproj",
+  "expectedPackageFiles": [
+    "/Users/TurtleMac01/.nuget/packages/mvvmcross/7.1.2/mvvmcross.7.1.2.nupkg.sha512"
+  ],
+  "logs": []
+}

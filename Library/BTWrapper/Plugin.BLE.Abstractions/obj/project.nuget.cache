@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "5UEwIokIy8kbko4TAKnzG7mj2tq1PTml8N25ZisJ9CKD+H3Z2JP2FHn64un/F9MSZK2Hc32JGCOIPLDbIeMasg==",
+  "success": true,
+  "projectFilePath": "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/Plugin.BLE.Abstractions/Plugin.BLE.Abstractions.csproj",
+  "expectedPackageFiles": [
+    "/Users/TurtleMac01/.nuget/packages/microsoft.netcore.platforms/1.1.0/microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "/Users/TurtleMac01/.nuget/packages/netstandard.library/2.0.3/netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

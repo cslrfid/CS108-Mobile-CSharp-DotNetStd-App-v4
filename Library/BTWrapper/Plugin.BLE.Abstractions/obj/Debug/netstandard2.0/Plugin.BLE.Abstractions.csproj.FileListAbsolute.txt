@@ -1,0 +1,17 @@
+/Users/TurtleMac01/Documents/GitHub/xamarin-bluetooth-le/Source/Plugin.BLE.Abstractions/bin/Debug/netstandard2.0/Plugin.BLE.Abstractions.deps.json
+/Users/TurtleMac01/Documents/GitHub/xamarin-bluetooth-le/Source/Plugin.BLE.Abstractions/bin/Debug/netstandard2.0/Plugin.BLE.Abstractions.dll
+/Users/TurtleMac01/Documents/GitHub/xamarin-bluetooth-le/Source/Plugin.BLE.Abstractions/bin/Debug/netstandard2.0/Plugin.BLE.Abstractions.pdb
+/Users/TurtleMac01/Documents/GitHub/xamarin-bluetooth-le/Source/Plugin.BLE.Abstractions/obj/Debug/netstandard2.0/Plugin.BLE.Abstractions.AssemblyInfoInputs.cache
+/Users/TurtleMac01/Documents/GitHub/xamarin-bluetooth-le/Source/Plugin.BLE.Abstractions/obj/Debug/netstandard2.0/Plugin.BLE.Abstractions.AssemblyInfo.cs
+/Users/TurtleMac01/Documents/GitHub/xamarin-bluetooth-le/Source/Plugin.BLE.Abstractions/obj/Debug/netstandard2.0/Plugin.BLE.Abstractions.csproj.CoreCompileInputs.cache
+/Users/TurtleMac01/Documents/GitHub/xamarin-bluetooth-le/Source/Plugin.BLE.Abstractions/obj/Debug/netstandard2.0/Plugin.BLE.Abstractions.dll
+/Users/TurtleMac01/Documents/GitHub/xamarin-bluetooth-le/Source/Plugin.BLE.Abstractions/obj/Debug/netstandard2.0/Plugin.BLE.Abstractions.pdb
+/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/Plugin.BLE.Abstractions/bin/Debug/netstandard2.0/Plugin.BLE.Abstractions.deps.json
+/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/Plugin.BLE.Abstractions/bin/Debug/netstandard2.0/Plugin.BLE.Abstractions.dll
+/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/Plugin.BLE.Abstractions/bin/Debug/netstandard2.0/Plugin.BLE.Abstractions.pdb
+/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/Plugin.BLE.Abstractions/obj/Debug/netstandard2.0/Plugin.BLE.Abstractions.AssemblyInfoInputs.cache
+/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/Plugin.BLE.Abstractions/obj/Debug/netstandard2.0/Plugin.BLE.Abstractions.AssemblyInfo.cs
+/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/Plugin.BLE.Abstractions/obj/Debug/netstandard2.0/Plugin.BLE.Abstractions.csproj.CoreCompileInputs.cache
+/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/Plugin.BLE.Abstractions/obj/Debug/netstandard2.0/Plugin.BLE.Abstractions.dll
+/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/Plugin.BLE.Abstractions/obj/Debug/netstandard2.0/Plugin.BLE.Abstractions.pdb
+/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/Plugin.BLE.Abstractions/obj/Debug/netstandard2.0/Plugin.BLE.Abstractions.csprojAssemblyReference.cache
