@@ -27,6 +27,18 @@ namespace BLE.Clinet.Droid
             _player4 = MediaPlayer.Create(_applicationContext, BLE.Client.Droid.Resource.Raw.beep3s1khz);
         }
 
+        //CSLibraryv4: updated
+        static public void Initialization()
+        {
+            var context = global::Android.App.Application.Context;
+
+            _player2 = MediaPlayer.Create(context, BLE.Client.Droid.Resource.Raw.beeplow);
+            _player3 = MediaPlayer.Create(context, BLE.Client.Droid.Resource.Raw.beephigh);
+            _player4 = MediaPlayer.Create(context, BLE.Client.Droid.Resource.Raw.beep3s1khz);
+
+        }
+
+
         public void SystemSound(int id)
         {
             try

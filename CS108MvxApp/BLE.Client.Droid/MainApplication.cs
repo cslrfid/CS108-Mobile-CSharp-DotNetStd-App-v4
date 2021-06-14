@@ -21,6 +21,8 @@ namespace BLE.Client.Droid
             base.OnCreate();
             RegisterActivityLifecycleCallbacks(this);
             //A great place to initialize Xamarin.Insights and Dependency Services!
+
+            BLE.Clinet.Droid.SystemSound_Android.Initialization();
         }
 
         public override void OnTerminate()
