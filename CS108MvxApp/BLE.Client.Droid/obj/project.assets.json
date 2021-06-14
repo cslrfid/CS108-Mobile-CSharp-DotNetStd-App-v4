@@ -3658,11 +3658,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/TurtleMac01/Projects/CS108MvxDemo/CS108MvxApp/BLE.Client.Droid/BLE.Client.Droid.csproj",
+      "projectUniqueName": "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/CS108MvxApp/BLE.Client.Droid/BLE.Client.Droid.csproj",
       "projectName": "BLE.Client.Droid",
-      "projectPath": "/Users/TurtleMac01/Projects/CS108MvxDemo/CS108MvxApp/BLE.Client.Droid/BLE.Client.Droid.csproj",
+      "projectPath": "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/CS108MvxApp/BLE.Client.Droid/BLE.Client.Droid.csproj",
       "packagesPath": "/Users/TurtleMac01/.nuget/packages/",
-      "outputPath": "/Users/TurtleMac01/Projects/CS108MvxDemo/CS108MvxApp/BLE.Client.Droid/obj/",
+      "outputPath": "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/CS108MvxApp/BLE.Client.Droid/obj/",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "configFilePaths": [
@@ -3677,14 +3677,14 @@
       "frameworks": {
         "monoandroid10.0": {
           "projectReferences": {
-            "/Users/TurtleMac01/Projects/CS108MvxDemo/CS108MvxApp/BLE.Client/BLE.Client.csproj": {
-              "projectPath": "/Users/TurtleMac01/Projects/CS108MvxDemo/CS108MvxApp/BLE.Client/BLE.Client.csproj"
+            "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/CS108MvxApp/BLE.Client/BLE.Client.csproj": {
+              "projectPath": "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/CS108MvxApp/BLE.Client/BLE.Client.csproj"
             },
-            "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/MvvmCross.Plugins.BLE.Droid/MvvmCross.Plugins.BLE.Droid.csproj": {
-              "projectPath": "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/MvvmCross.Plugins.BLE.Droid/MvvmCross.Plugins.BLE.Droid.csproj"
+            "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/MvvmCross.Plugins.BLE.Droid/MvvmCross.Plugins.BLE.Droid.csproj": {
+              "projectPath": "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/MvvmCross.Plugins.BLE.Droid/MvvmCross.Plugins.BLE.Droid.csproj"
             },
-            "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/MvvmCross.Plugins.BLE/MvvmCross.Plugins.BLE.csproj": {
-              "projectPath": "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/MvvmCross.Plugins.BLE/MvvmCross.Plugins.BLE.csproj"
+            "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/MvvmCross.Plugins.BLE/MvvmCross.Plugins.BLE.csproj": {
+              "projectPath": "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/MvvmCross.Plugins.BLE/MvvmCross.Plugins.BLE.csproj"
             }
           }
         }

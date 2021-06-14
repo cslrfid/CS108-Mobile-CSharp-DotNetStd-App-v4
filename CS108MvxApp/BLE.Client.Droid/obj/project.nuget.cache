@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5xjPI6tFQPUKfb5E1ipNVEGDpsRW8dwseJDQr1hqzVfdbJpVnqmQQfFeHd1fsym+S63xil0uzkWgRKtxD79Zdw==",
+  "dgSpecHash": "elr2GY0XcSnAyJqIo20J+mI81r1stIIC16RdkYNC1zM7L4vL3VpMYxGIX51enzLYDekp0jLKQlhxrG1xmB9Xcg==",
   "success": true,
-  "projectFilePath": "/Users/TurtleMac01/Projects/CS108MvxDemo/CS108MvxApp/BLE.Client.Droid/BLE.Client.Droid.csproj",
+  "projectFilePath": "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/CS108MvxApp/BLE.Client.Droid/BLE.Client.Droid.csproj",
   "expectedPackageFiles": [
     "/Users/TurtleMac01/.nuget/packages/acr.support/2.1.0/acr.support.2.1.0.nupkg.sha512",
     "/Users/TurtleMac01/.nuget/packages/acr.userdialogs/6.5.1/acr.userdialogs.6.5.1.nupkg.sha512",

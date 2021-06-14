@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "JmD3d+OpYCvzd6zkjkZmKXxYQoDjvmJb2ztKxA3lJB9pC7ZswzPj3BdJij/SglvGi89uYxNVdC2NV0bU1Qm3oA==",
+  "dgSpecHash": "k9uhiYTYJaFW7eqzfrhbN+gIBK9oW3GEm8yFjAtKFicinatI7znnHU9sU6DKsAj9tGYe2nywjF4YPpy6d08W9A==",
   "success": true,
-  "projectFilePath": "/Users/TurtleMac01/Projects/CS108MvxDemo/CS108MvxApp/BLE.Client/BLE.Client.csproj",
+  "projectFilePath": "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/CS108MvxApp/BLE.Client/BLE.Client.csproj",
   "expectedPackageFiles": [
     "/Users/TurtleMac01/.nuget/packages/acr.userdialogs/6.5.1/acr.userdialogs.6.5.1.nupkg.sha512",
     "/Users/TurtleMac01/.nuget/packages/microsoft.bcl/1.1.6/microsoft.bcl.1.1.6.nupkg.sha512",

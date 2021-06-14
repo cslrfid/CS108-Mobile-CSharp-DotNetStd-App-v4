@@ -1275,11 +1275,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/TurtleMac01/Projects/CS108MvxDemo/CS108MvxApp/BLE.Client/BLE.Client.csproj",
+      "projectUniqueName": "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/CS108MvxApp/BLE.Client/BLE.Client.csproj",
       "projectName": "BLE.Client",
-      "projectPath": "/Users/TurtleMac01/Projects/CS108MvxDemo/CS108MvxApp/BLE.Client/BLE.Client.csproj",
+      "projectPath": "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/CS108MvxApp/BLE.Client/BLE.Client.csproj",
       "packagesPath": "/Users/TurtleMac01/.nuget/packages/",
-      "outputPath": "/Users/TurtleMac01/Projects/CS108MvxDemo/CS108MvxApp/BLE.Client/obj/",
+      "outputPath": "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/CS108MvxApp/BLE.Client/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
@@ -1297,14 +1297,14 @@
         "netstandard2.0": {
           "targetAlias": "netstandard2.0",
           "projectReferences": {
-            "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/MvvmCross.Plugins.BLE/MvvmCross.Plugins.BLE.csproj": {
-              "projectPath": "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/MvvmCross.Plugins.BLE/MvvmCross.Plugins.BLE.csproj"
+            "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/MvvmCross.Plugins.BLE/MvvmCross.Plugins.BLE.csproj": {
+              "projectPath": "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/MvvmCross.Plugins.BLE/MvvmCross.Plugins.BLE.csproj"
             },
-            "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/Plugin.BLE.Abstractions/Plugin.BLE.Abstractions.csproj": {
-              "projectPath": "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/Plugin.BLE.Abstractions/Plugin.BLE.Abstractions.csproj"
+            "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/Plugin.BLE.Abstractions/Plugin.BLE.Abstractions.csproj": {
+              "projectPath": "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/Plugin.BLE.Abstractions/Plugin.BLE.Abstractions.csproj"
             },
-            "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/CSLibrary/CSLibrary-NETStandard.csproj": {
-              "projectPath": "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/CSLibrary/CSLibrary-NETStandard.csproj"
+            "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/CSLibrary/CSLibrary-NETStandard.csproj": {
+              "projectPath": "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/CSLibrary/CSLibrary-NETStandard.csproj"
             }
           }
         }

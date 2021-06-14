@@ -201,11 +201,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/Plugin.BLE/Plugin.BLE.csproj",
+      "projectUniqueName": "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/Plugin.BLE/Plugin.BLE.csproj",
       "projectName": "Plugin.BLE",
-      "projectPath": "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/Plugin.BLE/Plugin.BLE.csproj",
+      "projectPath": "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/Plugin.BLE/Plugin.BLE.csproj",
       "packagesPath": "/Users/TurtleMac01/.nuget/packages/",
-      "outputPath": "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/Plugin.BLE/obj/",
+      "outputPath": "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/Plugin.BLE/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
@@ -223,8 +223,8 @@
         "netstandard2.0": {
           "targetAlias": "netstandard2.0",
           "projectReferences": {
-            "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/Plugin.BLE.Abstractions/Plugin.BLE.Abstractions.csproj": {
-              "projectPath": "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/Plugin.BLE.Abstractions/Plugin.BLE.Abstractions.csproj"
+            "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/Plugin.BLE.Abstractions/Plugin.BLE.Abstractions.csproj": {
+              "projectPath": "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/Plugin.BLE.Abstractions/Plugin.BLE.Abstractions.csproj"
             }
           }
         }

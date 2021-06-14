@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4xMrR1TAUCmQir2ynxCv1CWumL/XrOzkmhhurmKW+ji+8aimTgeznidvAZYRqUR13cXnBwrM5hKs2eXHqOoljw==",
+  "dgSpecHash": "5P8pXIpLL0zNOS2R+IqhnwUKsjiAZorxmgGO7z8Ka4H2OqoFp+6uP5PFq3btb4OBqJPFMnoO/G6mP7JiFjMJTA==",
   "success": true,
-  "projectFilePath": "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/Plugin.BLE/Plugin.BLE.csproj",
+  "projectFilePath": "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/Plugin.BLE/Plugin.BLE.csproj",
   "expectedPackageFiles": [
     "/Users/TurtleMac01/.nuget/packages/microsoft.netcore.platforms/1.1.0/microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "/Users/TurtleMac01/.nuget/packages/netstandard.library/2.0.3/netstandard.library.2.0.3.nupkg.sha512"

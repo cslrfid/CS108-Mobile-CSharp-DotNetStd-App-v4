@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "DF6uC+5RoCKC94cos3Z1RHIEE1fQPYBvsWjj8TWi5t4fW1YvSPoeUKOWjFEIol2ckt7rnqpTuzyJwo0uWR2cGA==",
+  "dgSpecHash": "f75PuEZPvU/jzjs2/ww+PdlNcoS1F8t5KJYQCcZLKNuZjDQKCwjgrn/Nnc5rqzbssR+vh1uDSeJ947BuQB0Slw==",
   "success": true,
-  "projectFilePath": "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/CSLibrary/CSLibrary-NETStandard.csproj",
+  "projectFilePath": "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/CSLibrary/CSLibrary-NETStandard.csproj",
   "expectedPackageFiles": [
     "/Users/TurtleMac01/.nuget/packages/microsoft.netcore.platforms/1.1.0/microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "/Users/TurtleMac01/.nuget/packages/netstandard.library/2.0.3/netstandard.library.2.0.3.nupkg.sha512"

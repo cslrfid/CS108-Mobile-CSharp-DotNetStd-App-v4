@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/MvvmCross.Plugins.BLE.iOS/MvvmCross.Plugins.BLE.iOS.csproj": {}
+    "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/MvvmCross.Plugins.BLE.iOS/MvvmCross.Plugins.BLE.iOS.csproj": {}
   },
   "projects": {
-    "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/MvvmCross.Plugins.BLE.iOS/MvvmCross.Plugins.BLE.iOS.csproj": {
+    "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/MvvmCross.Plugins.BLE.iOS/MvvmCross.Plugins.BLE.iOS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/MvvmCross.Plugins.BLE.iOS/MvvmCross.Plugins.BLE.iOS.csproj",
+        "projectUniqueName": "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/MvvmCross.Plugins.BLE.iOS/MvvmCross.Plugins.BLE.iOS.csproj",
         "projectName": "MvvmCross.Plugins.BLE.iOS",
-        "projectPath": "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/MvvmCross.Plugins.BLE.iOS/MvvmCross.Plugins.BLE.iOS.csproj",
+        "projectPath": "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/MvvmCross.Plugins.BLE.iOS/MvvmCross.Plugins.BLE.iOS.csproj",
         "packagesPath": "/Users/TurtleMac01/.nuget/packages/",
-        "outputPath": "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/MvvmCross.Plugins.BLE.iOS/obj/",
+        "outputPath": "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/MvvmCross.Plugins.BLE.iOS/obj/",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "configFilePaths": [
@@ -26,14 +26,14 @@
         "frameworks": {
           "xamarinios10": {
             "projectReferences": {
-              "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/MvvmCross.Plugins.BLE/MvvmCross.Plugins.BLE.csproj": {
-                "projectPath": "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/MvvmCross.Plugins.BLE/MvvmCross.Plugins.BLE.csproj"
+              "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/MvvmCross.Plugins.BLE/MvvmCross.Plugins.BLE.csproj": {
+                "projectPath": "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/MvvmCross.Plugins.BLE/MvvmCross.Plugins.BLE.csproj"
               },
-              "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/Plugin.BLE.Abstractions/Plugin.BLE.Abstractions.csproj": {
-                "projectPath": "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/Plugin.BLE.Abstractions/Plugin.BLE.Abstractions.csproj"
+              "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/Plugin.BLE.Abstractions/Plugin.BLE.Abstractions.csproj": {
+                "projectPath": "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/Plugin.BLE.Abstractions/Plugin.BLE.Abstractions.csproj"
               },
-              "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/Plugin.BLE.iOS/Plugin.BLE.iOS.csproj": {
-                "projectPath": "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/Plugin.BLE.iOS/Plugin.BLE.iOS.csproj"
+              "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/Plugin.BLE.iOS/Plugin.BLE.iOS.csproj": {
+                "projectPath": "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/Plugin.BLE.iOS/Plugin.BLE.iOS.csproj"
               }
             }
           }
@@ -50,14 +50,14 @@
         }
       }
     },
-    "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/MvvmCross.Plugins.BLE/MvvmCross.Plugins.BLE.csproj": {
+    "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/MvvmCross.Plugins.BLE/MvvmCross.Plugins.BLE.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/MvvmCross.Plugins.BLE/MvvmCross.Plugins.BLE.csproj",
+        "projectUniqueName": "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/MvvmCross.Plugins.BLE/MvvmCross.Plugins.BLE.csproj",
         "projectName": "MvvmCross.Plugins.BLE",
-        "projectPath": "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/MvvmCross.Plugins.BLE/MvvmCross.Plugins.BLE.csproj",
+        "projectPath": "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/MvvmCross.Plugins.BLE/MvvmCross.Plugins.BLE.csproj",
         "packagesPath": "/Users/TurtleMac01/.nuget/packages/",
-        "outputPath": "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/MvvmCross.Plugins.BLE/obj/",
+        "outputPath": "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/MvvmCross.Plugins.BLE/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
@@ -75,8 +75,8 @@
           "netstandard2.0": {
             "targetAlias": "netstandard2.0",
             "projectReferences": {
-              "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/Plugin.BLE.Abstractions/Plugin.BLE.Abstractions.csproj": {
-                "projectPath": "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/Plugin.BLE.Abstractions/Plugin.BLE.Abstractions.csproj"
+              "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/Plugin.BLE.Abstractions/Plugin.BLE.Abstractions.csproj": {
+                "projectPath": "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/Plugin.BLE.Abstractions/Plugin.BLE.Abstractions.csproj"
               }
             }
           }
@@ -116,14 +116,14 @@
         }
       }
     },
-    "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/Plugin.BLE.Abstractions/Plugin.BLE.Abstractions.csproj": {
+    "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/Plugin.BLE.Abstractions/Plugin.BLE.Abstractions.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/Plugin.BLE.Abstractions/Plugin.BLE.Abstractions.csproj",
+        "projectUniqueName": "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/Plugin.BLE.Abstractions/Plugin.BLE.Abstractions.csproj",
         "projectName": "Plugin.BLE.Abstractions",
-        "projectPath": "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/Plugin.BLE.Abstractions/Plugin.BLE.Abstractions.csproj",
+        "projectPath": "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/Plugin.BLE.Abstractions/Plugin.BLE.Abstractions.csproj",
         "packagesPath": "/Users/TurtleMac01/.nuget/packages/",
-        "outputPath": "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/Plugin.BLE.Abstractions/obj/",
+        "outputPath": "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/Plugin.BLE.Abstractions/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
@@ -174,11 +174,11 @@
         }
       }
     },
-    "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/Plugin.BLE.iOS/Plugin.BLE.iOS.csproj": {
+    "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/Plugin.BLE.iOS/Plugin.BLE.iOS.csproj": {
       "restore": {
-        "projectUniqueName": "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/Plugin.BLE.iOS/Plugin.BLE.iOS.csproj",
+        "projectUniqueName": "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/Plugin.BLE.iOS/Plugin.BLE.iOS.csproj",
         "projectName": "Plugin.BLE.iOS",
-        "projectPath": "/Users/TurtleMac01/Projects/CS108MvxDemo/Library/BTWrapper/Plugin.BLE.iOS/Plugin.BLE.iOS.csproj"
+        "projectPath": "/Users/TurtleMac01/Documents/GitHub/CS108-Mobile-CSharp-DotNetStd-App-v4/Library/BTWrapper/Plugin.BLE.iOS/Plugin.BLE.iOS.csproj"
       },
       "frameworks": {
         "xamarinios10": {}
