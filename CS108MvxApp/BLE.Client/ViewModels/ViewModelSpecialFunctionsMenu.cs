@@ -25,12 +25,15 @@ using System.Windows.Input;
 using Xamarin.Forms;
 
 using Plugin.BLE.Abstractions.Contracts;
+using MvvmCross.Navigation;
+using MvvmCross.ViewModels;
 
 namespace BLE.Client.ViewModels
 {
     public class ViewModelSpecialFunctionsMenu : BaseViewModel
     {
         private readonly IUserDialogs _userDialogs;
+        private readonly IMvxNavigationService _navigation;
 
         public ICommand OnMultiBankInventoryButtonCommand { protected set; get; }
         public ICommand OnPhaseChannelInventoryButtonCommand { protected set; get; }
@@ -47,14 +50,16 @@ namespace BLE.Client.ViewModels
         public ICommand OnEM4152ButtonCommand { protected set; get; }
         public ICommand OnFM13DT160ButtonCommand { protected set; get; }
         public ICommand OnSmartracThermologgerButtonCommand { protected set; get; }
-        
+        public ICommand OnWriteAnyEPCButtonCommand { protected set; get; }
+        public ICommand OnPerformanceTestButtonCommand { protected set; get; }
+        public ICommand OnMonza4QTButtonCommand { protected set; get; }
+        public ICommand OnMagnusS3withGPSforTabletButtonCommand { protected set; get; }
 
 
-
-
-        public ViewModelSpecialFunctionsMenu (IAdapter adapter, IUserDialogs userDialogs) : base(adapter)
+        public ViewModelSpecialFunctionsMenu (IAdapter adapter, IUserDialogs userDialogs, IMvxNavigationService navigation) : base(adapter)
         {
             _userDialogs = userDialogs;
+            _navigation = navigation;
 
             OnMultiBankInventoryButtonCommand = new Command(OnMultiBankInventoryButtonClicked);
             OnPhaseChannelInventoryButtonCommand = new Command(OnPhaseChannelInventoryButtonClicked);
@@ -71,6 +76,11 @@ namespace BLE.Client.ViewModels
             OnEM4152ButtonCommand = new Command(OnEM4152ButtonClicked);
             OnFM13DT160ButtonCommand = new Command(OnFM13DT160ButtonClicked);
             OnSmartracThermologgerButtonCommand = new Command(OnSmartracThermologgerButtonClicked);
+            OnWriteAnyEPCButtonCommand = new Command(OnWriteAnyEPCButtonClicked);
+            OnPerformanceTestButtonCommand = new Command(OnPerformanceTestButtonClicked);
+            OnMonza4QTButtonCommand = new Command(OnMonza4QTButtonClicked);
+            OnMagnusS3withGPSforTabletButtonCommand = new Command(OnMagnusS3withGPSforTabletButtonClicked);
+
         }
 
         public override void ViewAppearing()
@@ -155,5 +165,26 @@ namespace BLE.Client.ViewModels
             //ShowViewModel<ViewModelSmartracThermologgerInventory>(new MvxBundle());
         }
 
+        void OnWriteAnyEPCButtonClicked()
+        {
+            //ShowViewModel<ViewModelWriteAnyEPC>(new MvxBundle());
+        }
+
+        void OnPerformanceTestButtonClicked()
+        {
+            //ShowViewModel<ViewModelPerformanceTest>(new MvxBundle());
+        }
+
+        void OnMonza4QTButtonClicked()
+        {
+            //ShowViewModel<ViewModelQTInventorySlectionMenu>(new MvxBundle());
+            _navigation.Navigate<ViewModelQTInventorySlectionMenu>(new MvxBundle());
+        }
+
+        void OnMagnusS3withGPSforTabletButtonClicked()
+        {
+            //ShowViewModel<ViewModelTempGPSSetting>(new MvxBundle());
+            _navigation.Navigate<ViewModelTempGPSSetting>(new MvxBundle());
+        }
     }
 }

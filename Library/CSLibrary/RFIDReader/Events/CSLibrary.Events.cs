@@ -97,6 +97,32 @@ namespace CSLibrary.Events
     }
 
     /// <summary>
+    /// FM13DT Tag Access Completed Argument
+    /// </summary>
+    public class OnFM13DTAccessCompletedEventArgs : EventArgs
+    {
+        /// <summary>
+        /// Access Result
+        /// </summary>     
+        public readonly bool success = false;
+        /// <summary>
+        /// Access Type
+        /// </summary>
+        public readonly FM13DTAccess access = FM13DTAccess.UNKNOWN;
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="success">Access Result</param>
+        /// <param name="access">Access type</param>
+        //public OnAccessCompletedEventArgs(bool success, Bank bank, TagAccess access, IBANK data)
+        public OnFM13DTAccessCompletedEventArgs(FM13DTAccess access, bool success)
+        {
+            this.access = access;
+            this.success = success;
+        }
+    }
+
+    /// <summary>
     /// Reader Operation changed EventArgs
     /// </summary>
     public class OnStateChangedEventArgs : EventArgs

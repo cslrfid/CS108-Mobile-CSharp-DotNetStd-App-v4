@@ -31,7 +31,7 @@ namespace CSLibrary
     {
         UInt32[] _0000 = null;             // 0X0000~0X0002
         UInt32[] _0100 = null;              // 0x0100 ~ 0x010d
-        UInt32[] _010d = null;
+        UInt32[] _0117 = null;
         UInt32[] _0200 = null;
         UInt32[] _0300 = null;
         UInt32[] _0400 = null;
@@ -106,6 +106,7 @@ namespace CSLibrary
 
             _0000 = new UInt32[3];             // 0X0000~0X0002
             _0100 = new UInt32[14];             // 0x0100 ~ 0x010d
+            _0117 = new UInt32[8];              // 117 ~ 11e
             _0200 = new UInt32[4];
             _0300 = new UInt32[0];
 
@@ -295,6 +296,9 @@ namespace CSLibrary
                         break;
 
                     case 0x0100:
+                        if (addressoffset >= 0x0017 && addressoffset  <= 0x001e)
+                            return _0117[addressoffset - 0x17];
+
                         return _0100[addressoffset];
                         break;
 
@@ -427,7 +431,16 @@ namespace CSLibrary
                         break;
 
                     case 0x0100:
-                        if (data != _0100[addressoffset])
+                        if (addressoffset >= 0x0017 && addressoffset <= 0x001e)
+                        {
+                            int location = addressoffset - 0x17;
+                            if (data != _0117[location])
+                            {
+                                _0117[location] = data;
+                                _deviceHandler.SendAsync(0, 0, DOWNLINKCMD.RFIDCMD, PacketData(address, data), HighLevelInterface.BTWAITCOMMANDRESPONSETYPE.BTAPIRESPONSE);
+                            }
+                        }
+                        else if (data != _0100[addressoffset])
                         {
                             _0100[addressoffset] = data;
                             _deviceHandler.SendAsync(0, 0, DOWNLINKCMD.RFIDCMD, PacketData(address, data), HighLevelInterface.BTWAITCOMMANDRESPONSETYPE.BTAPIRESPONSE);

@@ -72,7 +72,7 @@ namespace CSLibrary
 
 		internal bool _SetRFIDToStandbyMode = true;
 
-		internal void SetToStandbyMode()
+/*		internal void SetToStandbyMode()
 		{
 			if (_SetRFIDToStandbyMode)
 			{
@@ -80,7 +80,8 @@ namespace CSLibrary
 				_deviceHandler.SendAsyncUrgent(0, 0, DOWNLINKCMD.RFIDCMD, PacketData(0xf000, (UInt32)HST_CMD.SETPWRMGMTCFG), HighLevelInterface.BTWAITCOMMANDRESPONSETYPE.WAIT_BTAPIRESPONSE_COMMANDENDRESPONSE);
 				_SetRFIDToStandbyMode = false;
 			}
-		}
+		}*/
+
 
 	}
 }

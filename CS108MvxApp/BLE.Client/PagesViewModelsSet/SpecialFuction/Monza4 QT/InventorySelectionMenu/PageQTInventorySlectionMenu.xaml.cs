@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 
 namespace BLE.Client.Pages
 {
-    public partial class PageSpecialFunctionsMenu : MvxContentPage<ViewModelSpecialFunctionsMenu>
+    public partial class PageQTInventorySlectionMenu : MvxContentPage<ViewModelQTInventorySlectionMenu>
     {
-        public PageSpecialFunctionsMenu()
+        public PageQTInventorySlectionMenu()
         {
             InitializeComponent();
         }
