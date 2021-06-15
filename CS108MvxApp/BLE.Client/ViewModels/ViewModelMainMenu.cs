@@ -350,6 +350,8 @@ namespace BLE.Client.ViewModels
             }
 
             //ShowViewModel<ViewModelReadWrite>(new MvxBundle());
+            var navigation = Mvx.IoCProvider.Resolve<IMvxNavigationService>();
+            navigation.Navigate<ViewModelReadWrite>(new MvxBundle());
         }
 
 		public ICommand OnRegisterTagButtonCommand { protected set; get; }
@@ -363,7 +365,9 @@ namespace BLE.Client.ViewModels
             }
 
             //ShowViewModel<ViewModelRegisterTag>(new MvxBundle());
-		}
+            var navigation = Mvx.IoCProvider.Resolve<IMvxNavigationService>();
+            navigation.Navigate<ViewModelRegisterTag>(new MvxBundle());
+        }
 
 		public ICommand OnSpecialFuncButtonCommand { protected set; get; }
 
@@ -376,7 +380,9 @@ namespace BLE.Client.ViewModels
             }
 
             //ShowViewModel<ViewModelSpecialFunctionsMenu>(new MvxBundle());
-		}
+            var navigation = Mvx.IoCProvider.Resolve<IMvxNavigationService>();
+            navigation.Navigate<ViewModelSpecialFunctionsMenu>(new MvxBundle());
+        }
 
 		public ICommand OnGeigerButtonCommand { protected set; get; }
 
@@ -389,7 +395,9 @@ namespace BLE.Client.ViewModels
             }
 
             //ShowViewModel<ViewModelGeiger>(new MvxBundle());
-		}
+            var navigation = Mvx.IoCProvider.Resolve<IMvxNavigationService>();
+            navigation.Navigate<ViewModelGeiger>(new MvxBundle());
+        }
 
 		public ICommand OnSettingButtonCommand { protected set; get; }
 
@@ -424,7 +432,9 @@ namespace BLE.Client.ViewModels
             }
 
             //ShowViewModel<ViewModelSecurity>(new MvxBundle());
-		}
+            var navigation = Mvx.IoCProvider.Resolve<IMvxNavigationService>();
+            navigation.Navigate<ViewModelSecurity>(new MvxBundle());
+        }
 
 		public ICommand OnFilterButtonCommand { protected set; get; }
 
@@ -437,7 +447,9 @@ namespace BLE.Client.ViewModels
             }
 
             //ShowViewModel<ViewModelFilter>(new MvxBundle());
-		}
+            var navigation = Mvx.IoCProvider.Resolve<IMvxNavigationService>();
+            navigation.Navigate<ViewModelFilter>(new MvxBundle());
+        }
 
         public ICommand OnConnectButtonCommand { protected set; get; }
 
