@@ -15,6 +15,7 @@ namespace BLE.Client.ViewModels
     public class ViewModelRFMicroSetting : BaseViewModel
     {
         private readonly IUserDialogs _userDialogs;
+        private readonly IMvxNavigationService _navigation;
 
         public string buttonPowerText { get; set; }
         public string buttonTargetText { get; set; }
@@ -26,9 +27,10 @@ namespace BLE.Client.ViewModels
         public ICommand OnOKButtonCommand { protected set; get; }
         public ICommand OnNicknameButtonCommand { protected set; get; }
 
-        public ViewModelRFMicroSetting(IAdapter adapter, IUserDialogs userDialogs) : base(adapter)
+        public ViewModelRFMicroSetting(IAdapter adapter, IUserDialogs userDialogs, IMvxNavigationService navigation) : base(adapter)
         {
             _userDialogs = userDialogs;
+            _navigation = navigation;
 
             OnOKButtonCommand = new Command(OnOKButtonClicked);
             OnNicknameButtonCommand = new Command(OnNicknameButtonClicked);
@@ -52,8 +54,7 @@ namespace BLE.Client.ViewModels
         void OnNicknameButtonClicked(object ind)
         {
             //ShowViewModel<ViewModelRFMicroNickname>(new MvxBundle());
-            var navigation = Mvx.IoCProvider.Resolve<IMvxNavigationService>();
-            navigation.Navigate<ViewModelRFMicroNickname>(new MvxBundle());
+            _navigation.Navigate<ViewModelRFMicroNickname>(new MvxBundle());
         }
 
         void OnOKButtonClicked(object ind)
@@ -61,17 +62,16 @@ namespace BLE.Client.ViewModels
             if (ind != null)
                 if ((int)ind == 1)
                 {
-                    var navigation = Mvx.IoCProvider.Resolve<IMvxNavigationService>();
                     switch (BleMvxApplication._rfMicro_TagType)
                     {
                         case 0: // S2
                             //ShowViewModel<ViewModelRFMicroS2Inventory>(new MvxBundle());
-                            navigation.Navigate<ViewModelRFMicroS2Inventory>(new MvxBundle());
+                            _navigation.Navigate<ViewModelRFMicroS2Inventory>(new MvxBundle());
                             break;
 
                         case 1: // S3
                             //ShowViewModel<ViewModelRFMicroS3Inventory>(new MvxBundle());
-                            navigation.Navigate<ViewModelRFMicroS3Inventory>(new MvxBundle());
+                            _navigation.Navigate<ViewModelRFMicroS3Inventory>(new MvxBundle());
                             break;
                     }
                 }

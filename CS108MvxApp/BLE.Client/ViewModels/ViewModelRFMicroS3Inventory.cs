@@ -60,6 +60,7 @@ namespace BLE.Client.ViewModels
         }
 
         private readonly IUserDialogs _userDialogs;
+        private readonly IMvxNavigationService _navigation;
 
         #region -------------- RFID inventory -----------------
 
@@ -129,9 +130,10 @@ namespace BLE.Client.ViewModels
 
         #endregion
 
-        public ViewModelRFMicroS3Inventory(IAdapter adapter, IUserDialogs userDialogs) : base(adapter)
+        public ViewModelRFMicroS3Inventory(IAdapter adapter, IUserDialogs userDialogs, IMvxNavigationService navigation) : base(adapter)
         {
             _userDialogs = userDialogs;
+            _navigation = navigation;
 
             RaisePropertyChanged(() => ListViewRowHeight);
             _DefaultRowHight = ListViewRowHeight;
@@ -214,8 +216,7 @@ namespace BLE.Client.ViewModels
                 {
                     BleMvxApplication._SELECT_EPC = value.EPC;
                     //ShowViewModel<ViewModelRFMicroReadTemp>(new MvxBundle());
-                    var navigation = Mvx.IoCProvider.Resolve<IMvxNavigationService>();
-                    navigation.Navigate<ViewModelRFMicroReadTemp>(new MvxBundle());
+                    _navigation.Navigate<ViewModelRFMicroReadTemp>(new MvxBundle());
                 }
             }
             get => null;

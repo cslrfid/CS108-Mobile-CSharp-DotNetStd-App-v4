@@ -124,21 +124,25 @@ namespace BLE.Client.ViewModels
         void OnXerxesButtonClicked()
         {
             //ShowViewModel<ViewModelAxzonSetting>(new MvxBundle());
+            _navigation.Navigate<ViewModelAxzonSetting>(new MvxBundle());
         }
 
         void OnBlockWriteButtonClicked()
         {
             //ShowViewModel<ViewModelBlockWrite>(new MvxBundle());
+            _navigation.Navigate<ViewModelBlockWrite>(new MvxBundle());
         }
 
         void OnReadButtonClicked()
         {
             //ShowViewModel<ViewModelRead>(new MvxBundle());
+            _navigation.Navigate<ViewModelRead>(new MvxBundle());
         }
 
         void OnCS83045ButtonClicked()
         {
             //ShowViewModel<ViewModelCS83045Setting>(new MvxBundle());
+            _navigation.Navigate<ViewModelCS83045Setting>(new MvxBundle());
         }
 
         void OnCS9010ButtonClicked()
