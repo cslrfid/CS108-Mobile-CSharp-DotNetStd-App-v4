@@ -27,6 +27,7 @@ using Xamarin.Forms;
 using Plugin.BLE.Abstractions.Contracts;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using MvvmCross;
 
 namespace BLE.Client.ViewModels
 {
@@ -93,26 +94,31 @@ namespace BLE.Client.ViewModels
         void OnMultiBankInventoryButtonClicked()
         {
             //ShowViewModel<ViewModelMultiBankInventorySetting>(new MvxBundle());
+            _navigation.Navigate<ViewModelMultiBankInventorySetting>(new MvxBundle());
         }
 
         void OnPhaseChannelInventoryButtonClicked()
         {
             //ShowViewModel<ViewModelPhaseChannelInventory>(new MvxBundle());
+            _navigation.Navigate<ViewModelPhaseChannelInventory>(new MvxBundle());
         }
 
         void OnPeriodicReadButtonClicked()
         {
             //ShowViewModel<ViewModelPeriodicRead>(new MvxBundle());
+            _navigation.Navigate<ViewModelPeriodicRead>(new MvxBundle());
         }
 
         void OnUCODEDNAButtonClicked()
         {
             //ShowViewModel<ViewModelUCODEDNA>(new MvxBundle());
+            _navigation.Navigate<ViewModelUCODEDNA>(new MvxBundle());
         }
 
         void OnRFMicroButtonClicked()
         {
             //ShowViewModel<ViewModelRFMicroSetting>(new MvxBundle());
+            _navigation.Navigate<ViewModelRFMicroSetting>(new MvxBundle());
         }
 
         void OnXerxesButtonClicked()
