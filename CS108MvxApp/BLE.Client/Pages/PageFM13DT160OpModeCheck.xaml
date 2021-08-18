@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                xmlns:viewModels="clr-namespace:BLE.Client.ViewModels;assembly=BLE.Client"
+                x:Class="BLE.Client.Pages.PageFM13DT160OpModeCheck"
+                Title="Op Mode Check">
+
+  
+    <ScrollView>
+        <StackLayout Padding="5, 3, 5, 0">
+
+			<StackLayout Orientation="Vertical">
+				<Label Text="Selected EPC"/>
+				<Entry Text="{ Binding entrySelectedEPCText, Mode=TwoWay }" HorizontalOptions="FillAndExpand" />
+			</StackLayout>
+
+			<StackLayout Orientation="Horizontal">
+				<Label Text="Access PWD" WidthRequest="70" />
+				<Entry Text="{ Binding entrySelectedPWDText, Mode=TwoWay }" HorizontalOptions="FillAndExpand" />
+			</StackLayout>
+
+			<Label Text = "" />
+
+			<StackLayout Orientation="Horizontal">
+				<Label Text="Disable" WidthRequest="70" />
+				<Switch IsToggled="{ Binding switchEnableIsToggled, Mode=TwoWay }"/>
+				<Label Text="Enable" WidthRequest="70" />
+			</StackLayout>
+
+			<Label Text = "" />
+
+			<StackLayout Orientation="Horizontal">
+				<Label Text="User Access Enable" WidthRequest="140" />
+				<Label Text="{ Binding labeluser_access_enText }"/>
+			</StackLayout>
+
+			<StackLayout Orientation="Horizontal">
+				<Label Text="RTC logging" WidthRequest="140" />
+				<Label Text="{ Binding labelRTCloggingText }" />
+			</StackLayout>
+
+			<StackLayout Orientation="Horizontal">
+				<Label Text="VDet process flag" WidthRequest="140" />
+				<Label Text="{ Binding labelvdet_process_flagText }" />
+			</StackLayout>
+
+			<StackLayout Orientation="Horizontal">
+				<Label Text="Light Chk flag" WidthRequest="140" />
+				<Label Text="{ Binding labellight_chk_flagText }" />
+			</StackLayout>
+
+			<StackLayout Orientation="Horizontal">
+				<Label Text="VBAT pwr flag" WidthRequest="140" />
+				<Label Text="{ Binding labelvbat_pwr_flagText }" />
+			</StackLayout>
+
+			<StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+				<Button x:Name="buttonRead" Text="Set Op Mode Check" Font="Large" BackgroundColor="#C3C3C3" Command="{Binding OnReadButtonCommand}" HorizontalOptions="Center" />
+            </StackLayout>
+
+		</StackLayout>
+	</ScrollView>
+</views:MvxContentPage>

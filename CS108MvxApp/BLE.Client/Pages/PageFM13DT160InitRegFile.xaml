@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                xmlns:viewModels="clr-namespace:BLE.Client.ViewModels;assembly=BLE.Client"
+                x:Class="BLE.Client.Pages.PageFM13DT160InitRegFile"
+                Title="Init RegFile">
+
+  
+    <ScrollView>
+        <StackLayout Padding="5, 3, 5, 0">
+
+			<StackLayout Orientation="Vertical">
+				<Label Text="Selected EPC"/>
+				<Entry Text="{ Binding entrySelectedEPCText, Mode=TwoWay }" HorizontalOptions="FillAndExpand" />
+			</StackLayout>
+
+			<StackLayout Orientation="Horizontal">
+				<Label Text="Access PWD" WidthRequest="70" />
+				<Entry Text="{ Binding entrySelectedPWDText, Mode=TwoWay }" HorizontalOptions="FillAndExpand" />
+			</StackLayout>
+
+			<Label Text = "" />
+
+			<StackLayout Orientation="Horizontal">
+				<Label Text="Disable" WidthRequest="70" />
+				<Switch IsToggled="{ Binding switchEnableIsToggled, Mode=TwoWay }"/>
+				<Label Text="Enable" WidthRequest="70" />
+			</StackLayout>
+
+			<Label Text = "" />
+
+			<StackLayout Orientation="Horizontal">
+				<Label Text="Current LED Status " WidthRequest="140" />
+				<Label Text="{ Binding labeluser_access_enText }"/>
+			</StackLayout>
+
+			<StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+				<Button x:Name="buttonRead" Text="Set LED" Font="Large" BackgroundColor="#C3C3C3" Command="{Binding OnReadButtonCommand}" HorizontalOptions="Center" />
+            </StackLayout>
+
+		</StackLayout>
+	</ScrollView>
+</views:MvxContentPage>
