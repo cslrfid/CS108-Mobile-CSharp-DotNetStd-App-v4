@@ -1,4 +1,5 @@
-﻿using MvvmCross.Forms.Views;
+﻿using BLE.Client.ViewModels;
+using MvvmCross.Forms.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ using Xamarin.Forms.Xaml;
 
 namespace BLE.Client.Pages
 {
-	public partial class PageRead : MvxContentPage
+	public partial class PageRead : MvxContentPage<ViewModelRead>
 	{
         string[] _bankOptions = new string[] { "Bank0 (Reserved)", "Bank1 (EPC)", "Bank2 (TID)", "Bank3 (User)" };
         //string[] _bankOptions = new string []{ "Bank3 (User Bank)", "Bank1 (EPC Bank)" };

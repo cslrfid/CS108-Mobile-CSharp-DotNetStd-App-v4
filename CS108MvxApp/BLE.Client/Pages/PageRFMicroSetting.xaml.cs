@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BLE.Client.ViewModels;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace BLE.Client.Pages
 {
-    public partial class PageRFMicroSetting : MvxContentPage
+    public partial class PageRFMicroSetting : MvxContentPage<ViewModelRFMicroSetting>
     {
         string[] _tagTypeOptions = { "Magnus S2", "Magnus S3" };
         string[] _powerOptions = { "Low (16dBm)", "Mid (23dBm)", "High (30dBm)", "Cycle Power by Trigger Button", "Follow system Setting" };

@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BLE.Client.ViewModels;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace BLE.Client.Pages
 {
-	public partial class PageEM4152SensorDataStored : MvxContentPage
+	public partial class PageEM4152SensorDataStored : MvxContentPage<ViewModelEM4152SensorDataStored>
     {
         public PageEM4152SensorDataStored()
 		{

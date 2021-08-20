@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using BLE.Client.ViewModels;
 using MvvmCross.Forms.Views;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ using Xamarin.Forms.Xaml;
 
 namespace BLE.Client.Pages
 {
-	public partial class PageFM13DT160ReadWriteMemory : MvxContentPage
+	public partial class PageFM13DT160ReadWriteMemory : MvxContentPage<ViewModelFM13DT160ReadWriteMemory>
     {
         public PageFM13DT160ReadWriteMemory()
 		{

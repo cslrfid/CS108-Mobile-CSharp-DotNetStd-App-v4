@@ -1,4 +1,5 @@
-﻿using MvvmCross.Forms.Views;
+﻿using BLE.Client.ViewModels;
+using MvvmCross.Forms.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ using Xamarin.Forms.Xaml;
 
 namespace BLE.Client.Pages
 {
-	public partial class PageXerxesConfiguration : MvxContentPage
+	public partial class PageXerxesConfiguration : MvxContentPage<ViewModelXerxesConfiguration>
     {
         public PageXerxesConfiguration()
 		{

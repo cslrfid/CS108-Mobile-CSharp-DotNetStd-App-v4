@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BLE.Client.ViewModels;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace BLE.Client.Pages
 {
-    public partial class PageMultiBankInventorySetting : MvxContentPage
+    public partial class PageMultiBankInventorySetting : MvxContentPage<ViewModelMultiBankInventorySetting>
     {
         static public string[] _bankSelectionItems = new string[] { "TID (Bank 2)", "User (Bank 3)", "Security (Bank 0)", "EPC (Bank 1)" };
 

@@ -17,6 +17,7 @@ namespace BLE.Client.ViewModels
     public class ViewModelMultiBankInventorySetting : BaseViewModel
     {
         private readonly IUserDialogs _userDialogs;
+        private readonly IMvxNavigationService _navigation;
 
         public ICommand OnOKButtonCommand { protected set; get; }
 
@@ -65,9 +66,10 @@ namespace BLE.Client.ViewModels
             }
         }
 
-        public ViewModelMultiBankInventorySetting(IAdapter adapter, IUserDialogs userDialogs) : base(adapter)
+        public ViewModelMultiBankInventorySetting(IAdapter adapter, IUserDialogs userDialogs, IMvxNavigationService navigation) : base(adapter)
         {
             _userDialogs = userDialogs;
+            _navigation = navigation;
 
             OnOKButtonCommand = new Command(OnOKButtonClicked);
 
@@ -98,8 +100,7 @@ namespace BLE.Client.ViewModels
             BleMvxApplication.SaveConfig();
 
             //ShowViewModel<ViewModelMultiBankInventory>(new MvxBundle());
-            var navigation = Mvx.IoCProvider.Resolve<IMvxNavigationService>();
-            navigation.Navigate<ViewModelMultiBankInventory>(new MvxBundle());
+            _navigation.Navigate<ViewModelMultiBankInventory>(new MvxBundle());
         }
     }
 }

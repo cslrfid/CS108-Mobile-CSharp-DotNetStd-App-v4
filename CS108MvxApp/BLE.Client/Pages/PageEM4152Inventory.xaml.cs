@@ -24,12 +24,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BLE.Client.ViewModels;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 
 namespace BLE.Client.Pages
 {
-    public partial class PageEM4152Inventory : MvxContentPage
+    public partial class PageEM4152Inventory : MvxContentPage<ViewModelEM4152Inventory>
 	{
 		public PageEM4152Inventory()
 		{

@@ -9,10 +9,11 @@ using Xamarin.Forms.Xaml;
 
 using PCLStorage;
 using MvvmCross.Forms.Views;
+using BLE.Client.ViewModels;
 
 namespace BLE.Client.Pages
 {
-    public partial class PagePeriodicRead : MvxContentPage
+    public partial class PagePeriodicRead : MvxContentPage<ViewModelPeriodicRead>
     {
         bool _started = false;
         uint _tagCount = 0;

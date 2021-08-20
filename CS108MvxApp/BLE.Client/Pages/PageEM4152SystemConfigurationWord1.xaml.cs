@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using BLE.Client.ViewModels;
 using MvvmCross.Forms.Views;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ using Xamarin.Forms.Xaml;
 
 namespace BLE.Client.Pages
 {
-	public partial class PageEM4152SystemConfigurationWord1 : MvxContentPage
+	public partial class PageEM4152SystemConfigurationWord1 : MvxContentPage<ViewModelEM4152SystemConfigurationWord1>
     {
         string [] _padModeOptionList = new string [] {"Disable", "Tamper Loop (open)", "Package Test", "Tamper Loop (closed)" };
         string [] _legacyPCEnable = new string[] {"New PC Word", "Old PC Word" };
