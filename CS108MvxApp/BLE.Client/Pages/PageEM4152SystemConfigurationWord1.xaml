@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage x:TypeArguments="viewModels:ViewModelEM4152SystemConfigurationWord1"
+					  xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                xmlns:viewModels="clr-namespace:BLE.Client.ViewModels;assembly=BLE.Client"
+                x:Class="BLE.Client.Pages.PageEM4152SystemConfigurationWord1"
+                Title="System Configuration Word 1">
+
+  
+    <ScrollView>
+        <StackLayout Padding="5, 3, 5, 0">
+
+			<StackLayout Orientation="Vertical">
+				<Label Text="Selected EPC"/>
+				<Entry Text="{ Binding entrySelectedEPCText, Mode=TwoWay }" HorizontalOptions="FillAndExpand" />
+			</StackLayout>
+
+			<StackLayout Orientation="Horizontal">
+				<Label Text="Access PWD" WidthRequest="70" />
+				<Entry Text="{ Binding entrySelectedPWDText, Mode=TwoWay }" HorizontalOptions="FillAndExpand" />
+			</StackLayout>
+
+			<Label Text = "" />
+
+			<StackLayout Orientation="Vertical">
+				<Label Text="Pad Mode" WidthRequest="500" />
+				<Button x:Name="buttonPadMode"  HorizontalOptions="FillAndExpand" BorderWidth ="1" Clicked="buttonPadModeClicked"/>
+			</StackLayout>
+
+			<Label Text = "" />
+
+			<StackLayout Orientation="Vertical">
+				<Label Text="Legacy PC enable" WidthRequest="500" />
+				<Button x:Name="buttonLegacyPCenable" HorizontalOptions="FillAndExpand" BorderWidth ="1" Clicked="buttonLegacyPCenableClicked"/>
+			</StackLayout>
+
+			<Label Text = "" />
+
+			<StackLayout Orientation="Vertical">
+				<Label Text="Tamper Function" WidthRequest="500" />
+				<Button x:Name="buttonTamperFunction" HorizontalOptions="FillAndExpand" BorderWidth ="1" Clicked="buttonTamperFunctionClicked"/>
+			</StackLayout>
+
+			<Label Text = "" />
+
+			<StackLayout Orientation="Vertical">
+				<Label Text="TN Reporting" WidthRequest="500" />
+				<Button x:Name="buttonTNReporting" HorizontalOptions="FillAndExpand" BorderWidth ="1" Clicked="buttonTNReportingClicked"/>
+			</StackLayout>
+
+			<Label Text = "" />
+
+			<StackLayout Orientation="Vertical">
+				<Label Text="Access Password Untraceable Privilege" WidthRequest="500" />
+				<Button x:Name="buttonAccessPasswordUntraceablePrivilege" HorizontalOptions="FillAndExpand" BorderWidth ="1" Clicked="buttonAccessPasswordUntraceablePrivilegeClicked"/>
+			</StackLayout>
+
+			<Label Text = "" />
+
+			<StackLayout Orientation="Vertical">
+				<Label Text="Access Password TN Privilege" WidthRequest="500" />
+				<Button x:Name="buttonAccessPasswordTNPrivilege" HorizontalOptions="FillAndExpand" BorderWidth ="1" Clicked="buttonAccessPasswordTNPrivilegeClicked"/>
+			</StackLayout>
+
+			<Label Text = "" />
+
+			<StackLayout Orientation="Vertical">
+				<Label Text="Configuration Lock"/>
+				<Button x:Name="buttonConfigurationLock" HorizontalOptions="FillAndExpand" BorderWidth ="1" Clicked="buttonConfigurationLockClicked"/>
+			</StackLayout>
+
+			<Label Text = "" />
+
+			<StackLayout Orientation="Vertical">
+				<Label Text="Backscatter configuration"/>
+				<Button x:Name="buttonBackscatterconfiguration" HorizontalOptions="FillAndExpand" BorderWidth ="1" Clicked="buttonBackscatterconfigurationClicked"/>
+			</StackLayout>
+
+			<StackLayout Orientation="Vertical" IsVisible="true">
+				<Label Text="System Configuration Word 1 Value"/>
+				<Label x:Name="labelSystemConfigurationWord1" Text="{Binding labelSystemConfigurationWord1Text, Mode=TwoWay}" HorizontalOptions="FillAndExpand" PropertyChanged="labelConfigurationWord1PropertyChanged" />
+			</StackLayout>
+
+			<Label Text = "" />
+
+			<StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
+				<Button x:Name="buttonRead" Text="Read" Font="Large" BackgroundColor="#C3C3C3" Command="{Binding ButtonReadCommand}"/>
+            </StackLayout>
+
+			<StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
+				<Button x:Name="buttonWrite" Text="Write" Font="Large" BackgroundColor="#C3C3C3" Clicked="ButtonWriteClicked" />
+			</StackLayout>
+
+		</StackLayout>
+	</ScrollView>
+</views:MvxContentPage>

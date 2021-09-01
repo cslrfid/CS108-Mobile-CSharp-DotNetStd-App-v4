@@ -27,6 +27,7 @@ using Xamarin.Forms;
 using Plugin.BLE.Abstractions.Contracts;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using MvvmCross;
 
 namespace BLE.Client.ViewModels
 {
@@ -93,86 +94,104 @@ namespace BLE.Client.ViewModels
         void OnMultiBankInventoryButtonClicked()
         {
             //ShowViewModel<ViewModelMultiBankInventorySetting>(new MvxBundle());
+            _navigation.Navigate<ViewModelMultiBankInventorySetting>(new MvxBundle());
         }
 
         void OnPhaseChannelInventoryButtonClicked()
         {
             //ShowViewModel<ViewModelPhaseChannelInventory>(new MvxBundle());
+            _navigation.Navigate<ViewModelPhaseChannelInventory>(new MvxBundle());
         }
 
         void OnPeriodicReadButtonClicked()
         {
             //ShowViewModel<ViewModelPeriodicRead>(new MvxBundle());
+            _navigation.Navigate<ViewModelPeriodicRead>(new MvxBundle());
         }
 
         void OnUCODEDNAButtonClicked()
         {
             //ShowViewModel<ViewModelUCODEDNA>(new MvxBundle());
+            _navigation.Navigate<ViewModelUCODEDNA>(new MvxBundle());
         }
 
         void OnRFMicroButtonClicked()
         {
             //ShowViewModel<ViewModelRFMicroSetting>(new MvxBundle());
+            _navigation.Navigate<ViewModelRFMicroSetting>(new MvxBundle());
         }
 
         void OnXerxesButtonClicked()
         {
             //ShowViewModel<ViewModelAxzonSetting>(new MvxBundle());
+            _navigation.Navigate<ViewModelAxzonSetting>(new MvxBundle());
         }
 
         void OnBlockWriteButtonClicked()
         {
             //ShowViewModel<ViewModelBlockWrite>(new MvxBundle());
+            _navigation.Navigate<ViewModelBlockWrite>(new MvxBundle());
         }
 
         void OnReadButtonClicked()
         {
             //ShowViewModel<ViewModelRead>(new MvxBundle());
+            _navigation.Navigate<ViewModelRead>(new MvxBundle());
         }
 
         void OnCS83045ButtonClicked()
         {
             //ShowViewModel<ViewModelCS83045Setting>(new MvxBundle());
+            _navigation.Navigate<ViewModelCS83045Setting>(new MvxBundle());
         }
 
         void OnCS9010ButtonClicked()
         {
             //ShowViewModel<ViewModelCS9010Inventory>(new MvxBundle());
+            _navigation.Navigate<ViewModelCS9010Inventory>(new MvxBundle());
         }
 
         void OnTagFocusandFastIDButtonClicked()
         {
             //ShowViewModel<ViewModelFocusandFastIDSetting>(new MvxBundle());
+            _navigation.Navigate<ViewModelFocusandFastIDSetting>(new MvxBundle());
         }
 
         void OnCTESIUSTempButtonClicked()
         {
             //ShowViewModel< ViewModelCTESIUSTempInventory>(new MvxBundle());
+            _navigation.Navigate<ViewModelCTESIUSTempInventory>(new MvxBundle());
         }
 
         void OnEM4152ButtonClicked()
         {
             //ShowViewModel<ViewModelEM4152Inventory>(new MvxBundle());
+            _navigation.Navigate<ViewModelEM4152Inventory>(new MvxBundle());
         }
 
         void OnFM13DT160ButtonClicked()
         {
             //ShowViewModel<ViewModelFM13DT160Inventory>(new MvxBundle());
+            _navigation.Navigate<ViewModelFM13DT160Inventory>(new MvxBundle());
+
         }
 
         void OnSmartracThermologgerButtonClicked ()
         {
             //ShowViewModel<ViewModelSmartracThermologgerInventory>(new MvxBundle());
+            _navigation.Navigate<ViewModelSmartracThermologgerInventory>(new MvxBundle());
         }
 
         void OnWriteAnyEPCButtonClicked()
         {
             //ShowViewModel<ViewModelWriteAnyEPC>(new MvxBundle());
+            _navigation.Navigate<ViewModelWriteAnyEPC>(new MvxBundle());
         }
 
         void OnPerformanceTestButtonClicked()
         {
             //ShowViewModel<ViewModelPerformanceTest>(new MvxBundle());
+            _navigation.Navigate<ViewModelPerformanceTest>(new MvxBundle());
         }
 
         void OnMonza4QTButtonClicked()

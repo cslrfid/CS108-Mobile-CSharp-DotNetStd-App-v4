@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage x:TypeArguments="viewModels:ViewModelEM4152SensorCalibrationWord"
+					  xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                xmlns:viewModels="clr-namespace:BLE.Client.ViewModels;assembly=BLE.Client"
+                x:Class="BLE.Client.Pages.PageEM4152SensorCalibrationWord"
+                Title="Sensor Calibration Word">
+
+  
+    <ScrollView>
+    
+        <StackLayout Padding="5, 3, 5, 0">
+
+			<StackLayout Orientation="Vertical">
+				<Label Text="Selected EPC"/>
+				<Entry Text="{ Binding entrySelectedEPCText, Mode=TwoWay }" HorizontalOptions="FillAndExpand" />
+			</StackLayout>
+
+			<StackLayout Orientation="Horizontal">
+				<Label Text="Access PWD" WidthRequest="70" />
+				<Entry Text="{ Binding entrySelectedPWDText, Mode=TwoWay }" HorizontalOptions="FillAndExpand" />
+			</StackLayout>
+
+			<Label Text = "" />
+
+			<StackLayout Orientation="Vertical">
+				<Label Text="Calibration Lock"/>
+				<Button x:Name="buttonCalibrationLock"  HorizontalOptions="FillAndExpand" BorderWidth ="1" Clicked="buttonCalibrationLockClicked"/>
+			</StackLayout>
+
+			<StackLayout Orientation="Vertical">
+				<Label Text="Valibration Margin"/>
+				<Button x:Name="buttonValibrationMargin"  HorizontalOptions="FillAndExpand" BorderWidth ="1" Clicked="buttonValibrationMarginClicked"/>
+			</StackLayout>
+
+			<StackLayout Orientation="Vertical">
+				<Label Text="Calibration Data"/>
+				<Entry x:Name="extryCalibrationData" HorizontalOptions="FillAndExpand" />
+			</StackLayout>
+
+			<StackLayout Orientation="Vertical" IsVisible="true">
+				<Label Text="Sensor Calibration Word Value"/>
+				<Label x:Name="labelSensorCalibrationWord" Text="{Binding labelSensorCalibrationWordText, Mode=TwoWay}" HorizontalOptions="FillAndExpand" PropertyChanged="labelSensorCalibrationWordPropertyChanged" />
+			</StackLayout>
+
+			<Label Text = "" />
+
+			<StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
+				<Button x:Name="buttonRead" Text="Read" Font="Large" BackgroundColor="#C3C3C3" Command="{Binding ButtonReadCommand}"/>
+			</StackLayout>
+
+			<StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
+				<Button x:Name="buttonWrite" Text="Write" Font="Large" BackgroundColor="#C3C3C3" Clicked="ButtonWriteClicked" />
+			</StackLayout>
+
+		</StackLayout>
+
+	</ScrollView>
+</views:MvxContentPage>
+    

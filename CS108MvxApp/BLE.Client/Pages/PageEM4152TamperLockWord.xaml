@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage x:TypeArguments="viewModels:ViewModelEM4152TamperLockWord"
+                      xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                xmlns:viewModels="clr-namespace:BLE.Client.ViewModels;assembly=BLE.Client"
+                x:Class="BLE.Client.Pages.PageEM4152TamperLockWord"
+                Title="Tamper Lock Word">
+
+  
+    <ScrollView>
+    
+        <StackLayout Padding="5, 3, 5, 0">
+        
+			<StackLayout Orientation="Vertical">
+				<Label Text="Selected EPC"/>
+				<Entry Text="{ Binding entrySelectedEPC, Mode=TwoWay }" HorizontalOptions="FillAndExpand" />
+			</StackLayout>
+
+			<StackLayout Orientation="Horizontal">
+                <Label Text="Access PWD" WidthRequest="70" />
+                <Entry Text="{ Binding entrySelectedPWD, Mode=TwoWay }" HorizontalOptions="FillAndExpand" />
+            </StackLayout>
+
+            <Label Text="Once Set, device is logging Tamper Alam even into NVM" TextColor="Red" />
+			<Label Text="This Lock is permanent and cannot be unset" TextColor="Red" />
+
+			<StackLayout Orientation="Horizontal"  HorizontalOptions="FillAndExpand">
+            <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
+                <Button Text="Lock" Font="Large" BackgroundColor="#C3C3C3" Command="{Binding OnLockButtonCommand}" />
+            </StackLayout>
+      
+      </StackLayout>
+
+    </StackLayout>
+  </ScrollView>
+</views:MvxContentPage>
