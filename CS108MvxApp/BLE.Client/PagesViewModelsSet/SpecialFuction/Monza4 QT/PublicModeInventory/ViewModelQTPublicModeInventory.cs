@@ -1,44 +1,25 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-using System.Collections.Generic;
-using Acr.UserDialogs;
-
 using System.Windows.Input;
+using System.Collections.ObjectModel;
 using Xamarin.Forms;
-
-
+using MvvmCross.Navigation;
+using MvvmCross.ViewModels;
+using Prism.Mvvm;
+using Acr.UserDialogs;
 using Plugin.BLE.Abstractions.Contracts;
 
-using Plugin.BLE.Abstractions;
-using Plugin.BLE.Abstractions.Extensions;
-
-using Prism.Mvvm;
-
-using Plugin.Share;
-using Plugin.Share.Abstractions;
-using MvvmCross.ViewModels;
-using MvvmCross.Navigation;
 
 namespace BLE.Client.ViewModels
 {
     public class ViewModelQTPublicModeInventory : BaseViewModel
     {
-        public class ColdChainTagInfoViewModel : BindableBase
+        public class QTTagInfoViewModel : BindableBase
         {
             private string _EPC;
             public string EPC { get { return this._EPC; } set { this.SetProperty(ref this._EPC, value); } }
 
-            private string _LogStatus;
-            public string LogStatus { get { return this._LogStatus; } set { this.SetProperty(ref this._LogStatus, value); } }
-
-            private string _T1;
-            public string T1 { get { return this._T1; } set { this.SetProperty(ref this._T1, value); } }
-
-            private string _T2;
-            public string T2 { get { return this._T2; } set { this.SetProperty(ref this._T2, value); } }
-
-            private string _B;
-            public string B { get { return this._B; } set { this.SetProperty(ref this._B, value); } }
+            private string _RSSI;
+            public string RSSI { get { return this._RSSI; } set { this.SetProperty(ref this._RSSI, value); } }
         }
 
         private readonly IUserDialogs _userDialogs;
@@ -48,12 +29,14 @@ namespace BLE.Client.ViewModels
 
         public ICommand OnStartInventoryButtonCommand { protected set; get; }
         public ICommand OnClearButtonCommand { protected set; get; }
-        public ICommand OnStartLogButtonCommand { protected set; get; }
-        public ICommand OnStopLogButtonCommand { protected set; get; }
-        public ICommand OnGetLogButtonCommand { protected set; get; }
+        public ICommand OnReadWritePrivateModeDataButtonCommand { protected set; get; }
+        public ICommand OnChangetoPublicModeNormalRangeButtonCommand { protected set; get; }
+        public ICommand OnChangetoPublicModeReducesRangeButtonCommand { protected set; get; }
+        public ICommand OnChangetoPrivateModeNormalRangeButtonCommand { protected set; get; }
+        public ICommand OnChangetoPrivateModeReducesRangeButtonCommand { protected set; get; }
 
-        private ObservableCollection<ColdChainTagInfoViewModel> _TagInfoList = new ObservableCollection<ColdChainTagInfoViewModel>();
-        public ObservableCollection<ColdChainTagInfoViewModel> TagInfoList { get { return _TagInfoList; } set { SetProperty(ref _TagInfoList, value); } }
+        private ObservableCollection<QTTagInfoViewModel> _TagInfoList = new ObservableCollection<QTTagInfoViewModel>();
+        public ObservableCollection<QTTagInfoViewModel> TagInfoList { get { return _TagInfoList; } set { SetProperty(ref _TagInfoList, value); } }
 
         private string _startInventoryButtonText = "Start Inventory";
         public string startInventoryButtonText { get { return _startInventoryButtonText; } }
@@ -96,54 +79,51 @@ namespace BLE.Client.ViewModels
 
             OnStartInventoryButtonCommand = new Command(StartInventoryClick);
             OnClearButtonCommand = new Command(ClearClick);
-            OnStartLogButtonCommand = new Command(OnStartLogButtonClcked);
-            OnStopLogButtonCommand = new Command(OnStopLogButtonClcked);
-            OnGetLogButtonCommand = new Command(OnGetLogButtonClcked);
+            OnReadWritePrivateModeDataButtonCommand = new Command(ReadWritePrivateModeDataClick);
+            OnChangetoPublicModeNormalRangeButtonCommand = new Command(ChangetoPublicModeNormalRangeClick);
+            OnChangetoPublicModeReducesRangeButtonCommand = new Command(ChangetoPublicModeReducesRangeClick);
+            OnChangetoPrivateModeNormalRangeButtonCommand = new Command(ChangetoPrivateModeNormalRangeClick);
+            OnChangetoPrivateModeReducesRangeButtonCommand = new Command(ChangetoPrivateModeReducesRangeClick);
         }
 
-        ~ViewModelQTPublicModeInventory()
+    ~ViewModelQTPublicModeInventory()
         {
         }
 
         public override void ViewAppearing()
         {
             base.ViewAppearing();
-
-            // RFID event handler
-            BleMvxApplication._reader.rfid.OnStateChanged += new EventHandler<CSLibrary.Events.OnStateChangedEventArgs>(StateChangedEvent);
-            BleMvxApplication._reader.rfid.OnAsyncCallback += new EventHandler<CSLibrary.Events.OnAsyncCallbackEventArgs>(TagInventoryEvent);
-            BleMvxApplication._reader.rfid.OnAccessCompleted += new EventHandler<CSLibrary.Events.OnAccessCompletedEventArgs>(TagCompletedEvent);
-
-            // Key Button event handler
-            BleMvxApplication._reader.notification.OnKeyEvent += new EventHandler<CSLibrary.Notification.HotKeyEventArgs>(HotKeys_OnKeyEvent);
-            BleMvxApplication._reader.notification.OnVoltageEvent += new EventHandler<CSLibrary.Notification.VoltageEventArgs>(VoltageEvent);
-
+            SetEvent(true);
             InventorySetting();
         }
 
         public override void ViewDisappearing()
         {
-            BleMvxApplication._reader.rfid.CancelAllSelectCriteria();                // Confirm cancel all filter
-
-            BleMvxApplication._reader.rfid.StopOperation();
-            ClassBattery.SetBatteryMode(ClassBattery.BATTERYMODE.IDLE);
-            BleMvxApplication._reader.barcode.Stop();
-
-            // Cancel RFID event handler
-            BleMvxApplication._reader.rfid.OnStateChanged -= new EventHandler<CSLibrary.Events.OnStateChangedEventArgs>(StateChangedEvent);
-            BleMvxApplication._reader.rfid.OnAsyncCallback -= new EventHandler<CSLibrary.Events.OnAsyncCallbackEventArgs>(TagInventoryEvent);
-            BleMvxApplication._reader.rfid.OnAccessCompleted -= new EventHandler<CSLibrary.Events.OnAccessCompletedEventArgs>(TagCompletedEvent);
-
-            // Key Button event handler
-            BleMvxApplication._reader.notification.OnKeyEvent -= new EventHandler<CSLibrary.Notification.HotKeyEventArgs>(HotKeys_OnKeyEvent);
-            BleMvxApplication._reader.notification.OnVoltageEvent -= new EventHandler<CSLibrary.Notification.VoltageEventArgs>(VoltageEvent);
-
+            SetEvent(false);
             base.ViewDisappearing();
         }
 
         protected override void InitFromBundle(IMvxBundle parameters)
         {
             base.InitFromBundle(parameters);
+        }
+
+        private void SetEvent(bool enable)
+        {
+            // Cancel RFID event handler
+            BleMvxApplication._reader.rfid.ClearEventHandler();
+            BleMvxApplication._reader.notification.ClearEventHandler();
+
+            if (enable)
+            {
+                // RFID event handler
+                BleMvxApplication._reader.rfid.OnStateChanged += new EventHandler<CSLibrary.Events.OnStateChangedEventArgs>(StateChangedEvent);
+                BleMvxApplication._reader.rfid.OnAsyncCallback += new EventHandler<CSLibrary.Events.OnAsyncCallbackEventArgs>(TagInventoryEvent);
+
+                // Notification event handler
+                BleMvxApplication._reader.notification.OnKeyEvent += new EventHandler<CSLibrary.Notification.HotKeyEventArgs>(HotKeys_OnKeyEvent);
+                BleMvxApplication._reader.notification.OnVoltageEvent += new EventHandler<CSLibrary.Notification.VoltageEventArgs>(VoltageEvent);
+            }
         }
 
         private void ClearClick()
@@ -187,6 +167,8 @@ namespace BLE.Client.ViewModels
 
         void InventorySetting()
         {
+            BleMvxApplication._reader.rfid.CancelAllSelectCriteria();                // Cancel all Select Criteria
+
             switch (BleMvxApplication._config.RFID_FrequenceSwitch)
             {
                 case 0:
@@ -202,33 +184,36 @@ namespace BLE.Client.ViewModels
 
             BleMvxApplication._reader.rfid.Options.TagRanging.flags = CSLibrary.Constants.SelectFlags.ZERO;
 
-            // Setting 1
+            // Set Power
             SetConfigPower();
 
-            // Setting 3  // MUST SET for RFMicro
+            // Set Q
             BleMvxApplication._config.RFID_DynamicQParms.toggleTarget = BleMvxApplication._config.RFID_ToggleTarget ? 1U : 0;
             BleMvxApplication._reader.rfid.SetDynamicQParms(BleMvxApplication._config.RFID_DynamicQParms);
-
-            // Setting 4
             BleMvxApplication._config.RFID_FixedQParms.toggleTarget = BleMvxApplication._config.RFID_ToggleTarget ? 1U : 0;
             BleMvxApplication._reader.rfid.SetFixedQParms(BleMvxApplication._config.RFID_FixedQParms);
+            BleMvxApplication._reader.rfid.SetCurrentSingulationAlgorithm(BleMvxApplication._config.RFID_Algorithm);
 
-            // Setting 2
+            //
             BleMvxApplication._reader.rfid.SetOperationMode(BleMvxApplication._config.RFID_OperationMode);
             //BleMvxApplication._reader.rfid.SetTagGroup(CSLibrary.Constants.Selected.ASSERTED, CSLibrary.Constants.Session.S1, CSLibrary.Constants.SessionTarget.A);
-            BleMvxApplication._reader.rfid.SetCurrentSingulationAlgorithm(BleMvxApplication._config.RFID_Algorithm);
             BleMvxApplication._reader.rfid.SetCurrentLinkProfile(BleMvxApplication._config.RFID_Profile);
 
-            // Multi bank inventory
-            BleMvxApplication._reader.rfid.Options.TagRanging.multibanks = 2;
-            BleMvxApplication._reader.rfid.Options.TagRanging.bank1 = CSLibrary.Constants.MemoryBank.BANK3;
-            BleMvxApplication._reader.rfid.Options.TagRanging.offset1 = 188;
-            BleMvxApplication._reader.rfid.Options.TagRanging.count1 = 2;
-            BleMvxApplication._reader.rfid.Options.TagRanging.bank2 = CSLibrary.Constants.MemoryBank.BANK3;
-            BleMvxApplication._reader.rfid.Options.TagRanging.offset2 = 256;
-            BleMvxApplication._reader.rfid.Options.TagRanging.count2 = 9;
-            BleMvxApplication._reader.rfid.Options.TagRanging.compactmode = false;
+            //Set prefilter E2801105
+            {
+                BleMvxApplication._reader.rfid.Options.TagSelected.flags = CSLibrary.Constants.SelectMaskFlags.ENABLE_TOGGLE;
+                BleMvxApplication._reader.rfid.Options.TagSelected.bank = CSLibrary.Constants.MemoryBank.TID;
+                BleMvxApplication._reader.rfid.Options.TagSelected.Mask = new byte[] { 0xE2, 0x80, 0x11, 0x05 };
+                BleMvxApplication._reader.rfid.Options.TagSelected.MaskOffset = 0;
+                BleMvxApplication._reader.rfid.Options.TagSelected.MaskLength = 32;
+                BleMvxApplication._reader.rfid.StartOperation(CSLibrary.Constants.Operation.TAG_PREFILTER);
 
+                BleMvxApplication._reader.rfid.Options.TagRanging.flags |= CSLibrary.Constants.SelectFlags.SELECT;
+            }
+
+            BleMvxApplication._reader.rfid.Options.TagRanging.QTMode = false;
+            BleMvxApplication._reader.rfid.Options.TagRanging.multibanks = 0;
+            BleMvxApplication._reader.rfid.Options.TagRanging.compactmode = true;
             BleMvxApplication._reader.rfid.StartOperation(CSLibrary.Constants.Operation.TAG_PRERANGING);
         }
 
@@ -236,8 +221,6 @@ namespace BLE.Client.ViewModels
         {
             if (_startInventory == false)
                 return;
-
-            InventorySetting(); // reset inventory setting
 
             StartTagCount();
             {
@@ -312,14 +295,6 @@ namespace BLE.Client.ViewModels
             if (e.type != CSLibrary.Constants.CallbackType.TAG_RANGING)
                 return;
 
-            // data validation
-            if (e.info.Bank1Data.Length != 2 || e.info.Bank2Data.Length != 9)
-                return;
-
-            // Check Tag ID
-            if (e.info.Bank1Data[0] != 0x8304 && e.info.Bank1Data[0] != 0x8305)
-                return;
-
             InvokeOnMainThread(() =>
             {
                 _tagCountForAlert++;
@@ -377,40 +352,6 @@ namespace BLE.Client.ViewModels
             lock (TagInfoList)
             {
                 string EPC = info.epc.ToString();
-                string LogStatus = "";
-                string T1Status = "";
-                string T2Status = "";
-                string BStatus = "";
-
-                switch (info.Bank2Data[4] & 0x03)
-                {
-                    case 0:
-                    case 2:
-                        LogStatus = "Stop";
-                        break;
-                    case 1:
-                        LogStatus = "Recording";
-                        break;
-                    case 3:
-                        LogStatus = "Error";
-                        break;
-                }
-                    
-                //if ((tagdata[e.info.pc.EPCLength + 10] & 0x02) != 0)
-                if ((info.Bank2Data[8] & 0x02) != 0)
-                    T1Status = "Fail";
-                else
-                    T1Status = "OK";
-
-                if ((info.Bank2Data[8] & 0x04) != 0)
-                    T2Status = "Fail";
-                else
-                    T2Status = "OK";
-
-                if ((info.Bank2Data[0] & 0x8000) != 0)
-                    BStatus = "Fail";
-                else
-                    BStatus = "OK";
 
                 for (cnt = 0; cnt < TagInfoList.Count; cnt++)
                 {
@@ -423,408 +364,44 @@ namespace BLE.Client.ViewModels
 
                 if (found)
                 {
-                    TagInfoList[cnt].LogStatus = LogStatus;
-                    TagInfoList[cnt].T1 = T1Status;
-                    TagInfoList[cnt].T2 = T2Status;
-                    TagInfoList[cnt].B = BStatus;
+                    TagInfoList[cnt].RSSI = Math.Round(info.rssi).ToString();
                 }
                 else
                 {
-                    ColdChainTagInfoViewModel item = new ColdChainTagInfoViewModel();
+                    QTTagInfoViewModel item = new QTTagInfoViewModel();
 
                     item.EPC = EPC;
-                    item.LogStatus = LogStatus;
-                    item.T1 = T1Status;
-                    item.T2 = T2Status;
-                    item.B = BStatus;
+                    item.RSSI = Math.Round(info.rssi).ToString();
 
                     TagInfoList.Insert(0, item);
                 }
             }
         }
 
-        bool _EnableAllTagsLog = false;
-        bool _DisableAllTagsLog = false;
-        int _ProcessTagNumber = 0;
-        int _ProcessState = 0;
-        int _ProcessRetry = 10;
-
-        void TagCompletedEvent(object sender, CSLibrary.Events.OnAccessCompletedEventArgs e)
+        private void ReadWritePrivateModeDataClick()
         {
-            InvokeOnMainThread(() =>
-            {
-                if (_EnableAllTagsLog)
-                    StartLogResultProccess(e);
-                else if (_DisableAllTagsLog)
-                    StopLogResultProccess(e);
-                else
-                {
-                    _userDialogs.ShowSuccess("Process Error!", 2000);
-                    // Error
-                }
-            });
+            //ShowViewModel<ViewModelQTReadWritePrivateModeData>(new MvxBundle());
+            _navigation.Navigate<ViewModelQTReadWritePrivateModeData>(new MvxBundle());
         }
 
-        void OnStartLogButtonClcked()
+        private void ChangetoPublicModeNormalRangeClick()
         {
-            if (_EnableAllTagsLog || _DisableAllTagsLog)
-                return;
-
-            _EnableAllTagsLog = true;
-            _ProcessTagNumber = 0;
-            _ProcessState = 0;
-            _ProcessRetry = 10;
-
-            StartLog();
+            //ShowViewModel<ViewModelQTChangetoPublicModeNormalRange>(new MvxBundle());
         }
 
-        void OnStopLogButtonClcked()
+        private void ChangetoPublicModeReducesRangeClick()
         {
-            if (_EnableAllTagsLog || _DisableAllTagsLog)
-                return;
-
-            _DisableAllTagsLog = true;
-            _ProcessTagNumber = 0;
-            _ProcessState = 0;
-            _ProcessRetry = 10;
-
-            StopLog();
+            //ShowViewModel<ViewModelQTChangetoPublicModeReducesRange>(new MvxBundle());
         }
 
-        void OnGetLogButtonClcked ()
+        private void ChangetoPrivateModeNormalRangeClick()
         {
-            //ShowViewModel<ViewModelCS83045ViewLog>(new MvxBundle());
-            _navigation.Navigate<ViewModelCS83045ViewLog>(new MvxBundle());
+            //ShowViewModel<ViewModelQTChangetoPrivateModeNormalRange>(new MvxBundle());
         }
 
-        private void StartLogResultProccess(CSLibrary.Events.OnAccessCompletedEventArgs e)
+        private void ChangetoPrivateModeReducesRangeClick()
         {
-            if (!e.success)
-            {
-                // if process fail
-                if (_ProcessRetry == 0)
-                {
-                    // Start Log Fail
-                    TagInfoList[_ProcessTagNumber].LogStatus = "Error";
-                    _ProcessTagNumber++;
-                    _ProcessState = 0;
-                }
-                else
-                    _ProcessRetry--;
-
-                StartLog();
-            }
-            else
-            {
-                _ProcessState++;
-                _ProcessRetry = 10;
-
-                StartLog();
-            }
-        }
-
-        /// <summary>
-        /// return 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <returns></returns>
-        private void StartLog()
-        {
-            switch (_ProcessState)
-            {
-                case 0:
-                    {
-                        for (; _ProcessTagNumber < TagInfoList.Count; _ProcessTagNumber++)
-                        {
-                            if (TagInfoList[_ProcessTagNumber].LogStatus != "Recording")
-                                break;
-                        }
-
-                        if (_ProcessTagNumber >= TagInfoList.Count)
-                        {
-                            _userDialogs.ShowSuccess("Start Log Finish!", 2000);
-                            _EnableAllTagsLog = false;
-                            return;
-                        }
-
-                        BleMvxApplication._reader.rfid.Options.TagSelected.epcMask = new CSLibrary.Structures.S_MASK(TagInfoList[_ProcessTagNumber].EPC);
-                        BleMvxApplication._reader.rfid.Options.TagSelected.flags = CSLibrary.Constants.SelectMaskFlags.ENABLE_TOGGLE;
-                        BleMvxApplication._reader.rfid.Options.TagSelected.epcMaskOffset = 0;
-                        BleMvxApplication._reader.rfid.Options.TagSelected.epcMaskLength = (uint)BleMvxApplication._reader.rfid.Options.TagSelected.epcMask.Length * 8;
-                        BleMvxApplication._reader.rfid.StartOperation(CSLibrary.Constants.Operation.TAG_SELECTED);
-
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.accessPassword = 0x0;
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.offset = 240;
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.count = 1;
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.pData = new UInt16[1];
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.pData[0] = 0xa600;
-                        BleMvxApplication._reader.rfid.StartOperation(CSLibrary.Constants.Operation.TAG_WRITE_USER);
-                    }
-                    break;
-
-                case 1:
-                    {
-                        UInt32 uut = (UInt32)UnixTime(DateTime.Now);
-                        UInt16 Offset = (UInt16)(Math.Abs(BleMvxApplication._coldChain_TempOffset) * 4);
-
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.offset = 0;
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.count = 4;
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.pData = new UInt16[4];
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.pData[0] = (UInt16)(uut >> 16);
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.pData[1] = (UInt16)(uut & 0xffff);
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.pData[2] = (UInt16)BleMvxApplication._coldChain_LogInterval;
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.pData[3] = (UInt16)(Offset);
-                        BleMvxApplication._reader.rfid.StartOperation(CSLibrary.Constants.Operation.TAG_WRITE_USER);
-                    }
-                    break;
-
-                case 2:
-                    {
-                        //UInt16 OTemp1 = (UInt16)(double.Parse(textBox_OTH1.Text) * 4);
-                        //UInt16 UTemp1 = (UInt16)(double.Parse(textBox_UTH1.Text) * 4);
-                        //UInt16 Count = (UInt16)((UInt16.Parse(textBox_THC1.Text) << 3) | (UInt16.Parse(textBox_THC2.Text) << 9));
-                        UInt16 OTemp1 = (UInt16)(BleMvxApplication._coldChain_Temp1THOver * 4);
-                        UInt16 UTemp1 = (UInt16)(BleMvxApplication._coldChain_Temp1THUnder * 4);
-                        UInt16 Count = (UInt16)((BleMvxApplication._coldChain_Temp1THCount << 3) | (BleMvxApplication._coldChain_Temp2THCount << 9));
-
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.offset = 262;
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.count = 3;
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.pData = new UInt16[3];
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.pData[0] = (UInt16)(OTemp1);
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.pData[1] = (UInt16)(UTemp1);
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.pData[2] = Count;
-                        BleMvxApplication._reader.rfid.StartOperation(CSLibrary.Constants.Operation.TAG_WRITE_USER);
-                    }
-                    break;
-
-                case 3:
-                    {
-                        //UInt16 UTemp2 = (UInt16)(double.Parse(textBox_UTH2.Text) * 4);
-                        //UInt16 OTemp2 = (UInt16)(double.Parse(textBox_OTH2.Text) * 4);
-                        UInt16 UTemp2 = (UInt16)(BleMvxApplication._coldChain_Temp2THUnder * 4);
-                        UInt16 OTemp2 = (UInt16)(BleMvxApplication._coldChain_Temp2THOver * 4);
-
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.offset = 266;
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.count = 2;
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.pData = new UInt16[2];
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.pData[0] = (UInt16)(OTemp2);
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.pData[1] = (UInt16)(UTemp2);
-                        BleMvxApplication._reader.rfid.StartOperation(CSLibrary.Constants.Operation.TAG_WRITE_USER);
-                    }
-                    break;
-
-                case 4:
-                    {
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.offset = 260;
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.count = 1;
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.pData = new UInt16[1];
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.pData[0] = 0x0001;
-                        BleMvxApplication._reader.rfid.StartOperation(CSLibrary.Constants.Operation.TAG_WRITE_USER);
-                    }
-                    break;
-
-                case 5:
-                    {
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.offset = 240;
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.count = 1;
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.pData = new UInt16[1];
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.pData[0] = 0xa000;
-                        BleMvxApplication._reader.rfid.StartOperation(CSLibrary.Constants.Operation.TAG_WRITE_USER);
-                    }
-                    break;
-
-                case 6:
-                    {
-                        CSLibrary.Structures.S_DATA value = new CSLibrary.Structures.S_DATA("0000");
-                        ReadUserData(240, 1, ref value);
-                    }
-                    break;
-
-                case 7:
-                    {
-                        TagInfoList[_ProcessTagNumber].LogStatus = "Recording";
-                        TagInfoList[_ProcessTagNumber].T1 = "";
-                        TagInfoList[_ProcessTagNumber].T2 = "";
-
-                        _ProcessTagNumber++;
-                        _ProcessState = 0;
-                        StartLog();
-                    }
-                    break;
-            }
-        }
-
-        private void StopLogResultProccess(CSLibrary.Events.OnAccessCompletedEventArgs e)
-        {
-            if (!e.success)
-            {
-                // if process fail
-                if (_ProcessRetry == 0)
-                {
-                    // Start Log Fail
-                    TagInfoList[_ProcessTagNumber].LogStatus = "Error";
-                    _ProcessTagNumber++;
-                    _ProcessState = 0;
-                }
-                else
-                    _ProcessRetry--;
-
-                StopLog();
-            }
-            else
-            {
-                _ProcessState++;
-                _ProcessRetry = 10;
-
-                StopLog();
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        private void StopLog()
-        {
-            switch (_ProcessState)
-            {
-                case 0:
-                    {
-                        for (; _ProcessTagNumber < TagInfoList.Count; _ProcessTagNumber++)
-                        {
-                            if (TagInfoList[_ProcessTagNumber].LogStatus != "Stop")
-                                break;
-                        }
-
-                        if (_ProcessTagNumber >= TagInfoList.Count)
-                        {
-                            _userDialogs.ShowSuccess("Stop Log Finish!", 2000);
-                            _DisableAllTagsLog = false;
-                            return;
-                        }
-
-                        BleMvxApplication._reader.rfid.Options.TagSelected.epcMask = new CSLibrary.Structures.S_MASK(TagInfoList[_ProcessTagNumber].EPC);
-                        BleMvxApplication._reader.rfid.Options.TagSelected.flags = CSLibrary.Constants.SelectMaskFlags.ENABLE_TOGGLE;
-                        BleMvxApplication._reader.rfid.Options.TagSelected.epcMaskOffset = 0;
-                        BleMvxApplication._reader.rfid.Options.TagSelected.epcMaskLength = (uint)BleMvxApplication._reader.rfid.Options.TagSelected.epcMask.Length * 8;
-                        BleMvxApplication._reader.rfid.StartOperation(CSLibrary.Constants.Operation.TAG_SELECTED);
-
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.accessPassword = 0x0;
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.offset = 260;
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.count = 1;
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.pData = new UInt16[1];
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.pData[0] = 0x0002;
-                        BleMvxApplication._reader.rfid.StartOperation(CSLibrary.Constants.Operation.TAG_WRITE_USER);
-                    }
-                    break;
-
-                case 1:
-                    {
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.offset = 240;
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.count = 1;
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.pData = new UInt16[1];
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.pData[0] = 0xa600;
-                        BleMvxApplication._reader.rfid.StartOperation(CSLibrary.Constants.Operation.TAG_WRITE_USER);
-                    }
-                    break;
-
-                case 2:
-                    {
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.offset = 240;
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.count = 1;
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.pData = new UInt16[1];
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.pData[0] = 0xa600;
-                        BleMvxApplication._reader.rfid.StartOperation(CSLibrary.Constants.Operation.TAG_WRITE_USER);
-                    }
-                    break;
-
-                case 3:
-                    {
-                        BleMvxApplication._reader.rfid.Options.TagReadUser.offset = 264;
-                        BleMvxApplication._reader.rfid.Options.TagReadUser.count = 1;
-                        BleMvxApplication._reader.rfid.Options.TagReadUser.pData = new CSLibrary.Structures.S_DATA(new UInt16[1]);
-                        BleMvxApplication._reader.rfid.StartOperation(CSLibrary.Constants.Operation.TAG_READ_USER);
-                    }
-                    break;
-
-                case 4:
-                    {
-                        TagInfoList[_ProcessTagNumber].T1 = "OK";
-                        TagInfoList[_ProcessTagNumber].T2 = "OK";
-                        if ((BleMvxApplication._reader.rfid.Options.TagReadUser.pData.ToUshorts()[0] & 0x0006) != 0x0000)
-                        {
-                            if ((BleMvxApplication._reader.rfid.Options.TagReadUser.pData.ToUshorts()[0] & 0x0002) != 0x0000)
-                                TagInfoList[_ProcessTagNumber].T1 = "Fail";
-
-                            if ((BleMvxApplication._reader.rfid.Options.TagReadUser.pData.ToUshorts()[0] & 0x0004) != 0x0000)
-                                TagInfoList[_ProcessTagNumber].T2 = "Fail";
-
-                            // Show Temperature alarm on LED
-                            BleMvxApplication._reader.rfid.Options.TagWriteUser.offset = 264;
-                            BleMvxApplication._reader.rfid.Options.TagWriteUser.count = 1;
-                            BleMvxApplication._reader.rfid.Options.TagWriteUser.pData[0] = (UInt16)(BleMvxApplication._reader.rfid.Options.TagReadUser.pData.ToUshorts()[0] | 0x01);
-                            BleMvxApplication._reader.rfid.StartOperation(CSLibrary.Constants.Operation.TAG_WRITE_USER);
-                        }
-                        else
-                        {
-                            _ProcessState ++;
-                            StopLog();
-                        }
-                    }
-                    break;
-
-                case 5:
-                    {
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.offset = 240;
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.count = 1;
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.pData = new UInt16[1];
-                        BleMvxApplication._reader.rfid.Options.TagWriteUser.pData[0] = 0x0000;
-                        BleMvxApplication._reader.rfid.StartOperation(CSLibrary.Constants.Operation.TAG_WRITE_USER);
-                    }
-                    break;
-
-                case 6:
-                    {
-                        CSLibrary.Structures.S_DATA value = new CSLibrary.Structures.S_DATA("0000");
-                        ReadUserData(240, 1, ref value);
-                    }
-                    break;
-
-                case 7:
-                    {
-                        TagInfoList[_ProcessTagNumber].LogStatus = "Stop";
-                        TagInfoList[_ProcessTagNumber].B = "";
-
-                        _ProcessTagNumber++;
-                        _ProcessState = 0;
-
-                        StopLog();
-                    }
-                    break;
-            }
-        }
-
-        void ReadUserData(ushort Offset, ushort Count, ref CSLibrary.Structures.S_DATA data)
-        {
-            Console.Write("Read User Data Offset:{0} Count:{1}", Offset, Count);
-
-            BleMvxApplication._reader.rfid.Options.TagWriteUser.accessPassword = 0;
-            BleMvxApplication._reader.rfid.Options.TagReadUser.offset = Offset;
-            BleMvxApplication._reader.rfid.Options.TagReadUser.count = Count;
-            BleMvxApplication._reader.rfid.Options.TagReadUser.pData = data;
-            BleMvxApplication._reader.rfid.StartOperation(CSLibrary.Constants.Operation.TAG_READ_USER);
-        }
-
-        DateTime UnixTimeStampBase = new DateTime(1970, 1, 1, 00, 0, 0, 0);
-        DateTime UnixTime(double second)
-        {
-            return UnixTimeStampBase.AddSeconds(second);
-        }
-
-        double UnixTime(DateTime st)
-        {
-            return (st - UnixTimeStampBase).TotalSeconds;
+            //ShowViewModel<ViewModelQTChangetoPrivateModeReducesRange>(new MvxBundle());
         }
 
         void VoltageEvent(object sender, CSLibrary.Notification.VoltageEventArgs e)

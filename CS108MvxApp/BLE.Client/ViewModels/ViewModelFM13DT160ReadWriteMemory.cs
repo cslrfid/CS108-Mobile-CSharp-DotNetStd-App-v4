@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using Acr.UserDialogs;
+using MvvmCross.ViewModels;
 
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -10,7 +11,6 @@ using Plugin.BLE.Abstractions.Contracts;
 
 using Plugin.BLE.Abstractions;
 using Plugin.BLE.Abstractions.Extensions;
-using MvvmCross.ViewModels;
 
 namespace BLE.Client.ViewModels
 {
@@ -89,7 +89,7 @@ namespace BLE.Client.ViewModels
                         case CSLibrary.Constants.Bank.USER:
                             if (e.success)
                             {
-                                entryValueText = BleMvxApplication._reader.rfid.Options.FM13DTReadMemory.data.ToString("X04");
+                                entryValueText = CSLibrary.Tools.Hex.ToString(BleMvxApplication._reader.rfid.Options.FM13DTReadMemory.data);
                                 RaisePropertyChanged(() => entryValueText);
 
                                 _userDialogs.ShowSuccess("Read Sucess");
@@ -159,8 +159,7 @@ namespace BLE.Client.ViewModels
             TagSelected();
 
             BleMvxApplication._reader.rfid.Options.FM13DTWriteMemory.offset = uint.Parse(entryOffsetText);
-            BleMvxApplication._reader.rfid.Options.FM13DTWriteMemory.count = uint.Parse(entrySizeText);
-            BleMvxApplication._reader.rfid.Options.FM13DTWriteMemory.data = Convert.ToUInt16(entryValueText, 16);
+            //BleMvxApplication._reader.rfid.Options.FM13DTWriteMemory.data = Convert.ToUInt16(entryValueText, 16);
             BleMvxApplication._reader.rfid.StartOperation(CSLibrary.Constants.Operation.FM13DT_WRITEMEMORY);
         }
     }

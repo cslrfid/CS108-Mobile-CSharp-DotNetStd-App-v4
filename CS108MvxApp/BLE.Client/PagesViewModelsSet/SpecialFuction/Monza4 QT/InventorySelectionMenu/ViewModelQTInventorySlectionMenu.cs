@@ -19,9 +19,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-using System;
-using System.Collections.ObjectModel;
-using System.Collections.Generic;
 using Acr.UserDialogs;
 
 using System.Windows.Input;
@@ -50,13 +47,6 @@ namespace BLE.Client.ViewModels
 
             OnPublicModeInventoryButtonCommand = new Command(OnPublicModeInventoryButtonClicked);
             OnPrivateModeInventoryButtonCommand = new Command(OnPrivateModeInventoryButtonClicked);
-        }
-
-        public override void ViewAppearing()
-        {
-            base.ViewAppearing();
-
-            BleMvxApplication._reader.rfid.CancelAllSelectCriteria();
         }
 
         void OnPublicModeInventoryButtonClicked()

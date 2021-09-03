@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using Acr.UserDialogs;
+using MvvmCross.ViewModels;
 
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -10,7 +11,6 @@ using Plugin.BLE.Abstractions.Contracts;
 
 using Plugin.BLE.Abstractions;
 using Plugin.BLE.Abstractions.Extensions;
-using MvvmCross.ViewModels;
 
 namespace BLE.Client.ViewModels
 {
@@ -20,19 +20,21 @@ namespace BLE.Client.ViewModels
 
         public string entrySelectedEPCText { get; set; }
         public string entrySelectedPWDText { get; set; }
-        public Boolean switchEnableIsToggled { get; set; } = false;
-        public string labeluser_access_enText { get; set; } = "";
-        public string labelRTCloggingText { get; set; } = "";
-        public string labelvdet_process_flagText { get; set; } = "";
-        public string labellight_chk_flagText { get; set; } = "";
-        public string labelvbat_pwr_flagText { get; set; } = "";
-        public ICommand OnReadButtonCommand { protected set; get; }
+        public ICommand OnSetLedOnButtonCommand { protected set; get; }
+        public ICommand OnSetLedOffButtonCommand { protected set; get; }
+        public ICommand OnInitLedSettingButtonCommand { protected set; get; }
+        public ICommand OnDisableLedSettingButtonCommand { protected set; get; }
+
+        private bool EnableLedSetting = false;
 
         public ViewModelFM13DT160LedCtrl(IAdapter adapter, IUserDialogs userDialogs) : base(adapter)
         {
             _userDialogs = userDialogs;
 
-            OnReadButtonCommand = new Command(OnReadButtonButtonClick);
+            OnSetLedOnButtonCommand = new Command(OnSetLedOnButtonClick);
+            OnSetLedOffButtonCommand = new Command(OnSetLedOffButtonClick);
+            OnInitLedSettingButtonCommand = new Command(OnInitLedSettingButtonClick);
+            OnDisableLedSettingButtonCommand = new Command(OnDisableLedSettingButtonClick);
 
             SetEvent(true);
         }
@@ -58,10 +60,6 @@ namespace BLE.Client.ViewModels
 
             RaisePropertyChanged(() => entrySelectedEPCText);
             RaisePropertyChanged(() => entrySelectedPWDText);
-
-            switchEnableIsToggled = false;
-
-            RaisePropertyChanged(() => switchEnableIsToggled);
         }
 
         private void SetEvent (bool enable)
@@ -79,38 +77,64 @@ namespace BLE.Client.ViewModels
         {
             InvokeOnMainThread(() =>
             {
-                if (e.access ==  CSLibrary.Constants.FM13DTAccess.LEDCTRL)
+                switch (e.access)
                 {
-                    if (e.success)
-                    {
-                        labeluser_access_enText = BleMvxApplication._reader.rfid.Options.FM13DTOpModeChk.user_access_en ? " Yes" : "No";
-                        labelRTCloggingText = BleMvxApplication._reader.rfid.Options.FM13DTOpModeChk.RTC_logging ? " Yes" : "No";
-                        labelvdet_process_flagText = BleMvxApplication._reader.rfid.Options.FM13DTOpModeChk.vdet_process_flag ? " Yes" : "No";
-                        labellight_chk_flagText = BleMvxApplication._reader.rfid.Options.FM13DTOpModeChk.light_chk_flag ? " Yes" : "No";
-                        labelvbat_pwr_flagText = BleMvxApplication._reader.rfid.Options.FM13DTOpModeChk.vbat_pwr_flag ? " Yes" : "No";
+                    case CSLibrary.Constants.FM13DTAccess.LEDCTRL:
+                        if (e.success)
+                        {
+                        }
+                        else
+                        {
+                            _userDialogs.ShowError("Read Error !!!");
+                        }
+                        break;
 
-                        updateInfo();
-                    }
-                    else
-                    {
-                        _userDialogs.ShowError ("Read Error !!!");
-					}
+                    case CSLibrary.Constants.FM13DTAccess.READMEMORY:
+                        if (e.success)
+                        {
+                            WriteLedSetting();
+                        }
+                        else
+                        {
+                            _userDialogs.ShowError("Read Error !!!");
+                        }
+                        break;
+
+                    case CSLibrary.Constants.FM13DTAccess.WRITEMEMORY:
+                        if (e.success)
+                        {
+
+                        }
+                        else
+                        {
+                            _userDialogs.ShowError("Read Error !!!");
+                        }
+                        break;
                 }
             });
         }
 
-        void updateInfo ()
+        void TagSelected()
         {
-            RaisePropertyChanged(() => switchEnableIsToggled);
-            RaisePropertyChanged(() => labeluser_access_enText);
-            RaisePropertyChanged(() => labelRTCloggingText);
-            RaisePropertyChanged(() => labelvdet_process_flagText);
-            RaisePropertyChanged(() => labellight_chk_flagText);
-            RaisePropertyChanged(() => labelvbat_pwr_flagText);
+            BleMvxApplication._reader.rfid.Options.TagSelected.flags = CSLibrary.Constants.SelectMaskFlags.ENABLE_TOGGLE;
+            BleMvxApplication._reader.rfid.Options.TagSelected.bank = CSLibrary.Constants.MemoryBank.EPC;
+            BleMvxApplication._reader.rfid.Options.TagSelected.epcMask = new CSLibrary.Structures.S_MASK(BleMvxApplication._SELECT_EPC);
+            BleMvxApplication._reader.rfid.Options.TagSelected.epcMaskOffset = 0x00;
+            BleMvxApplication._reader.rfid.Options.TagSelected.epcMaskLength = (uint)(BleMvxApplication._SELECT_EPC.Length * 4);
+            BleMvxApplication._reader.rfid.StartOperation(CSLibrary.Constants.Operation.TAG_SELECTED);
         }
 
+        void OnSetLedOnButtonClick ()
+        {
+            SetLed(true);
+        }
 
-        void OnReadButtonButtonClick()
+        void OnSetLedOffButtonClick()
+        {
+            SetLed(false);        
+        }
+
+        void SetLed(bool enable)
         {
             Xamarin.Forms.DependencyService.Get<ISystemSound>().SystemSound(1);
 
@@ -120,22 +144,53 @@ namespace BLE.Client.ViewModels
                 return;
             }
 
-            labeluser_access_enText = "";
-            labelRTCloggingText = "";
-            labelvdet_process_flagText = "";
-            labellight_chk_flagText = "";
-            labelvbat_pwr_flagText = "";
-            updateInfo();
+            TagSelected();
 
-            BleMvxApplication._reader.rfid.Options.TagSelected.flags = CSLibrary.Constants.SelectMaskFlags.ENABLE_TOGGLE;
-            BleMvxApplication._reader.rfid.Options.TagSelected.bank = CSLibrary.Constants.MemoryBank.EPC;
-            BleMvxApplication._reader.rfid.Options.TagSelected.epcMask = new CSLibrary.Structures.S_MASK(BleMvxApplication._SELECT_EPC);
-            BleMvxApplication._reader.rfid.Options.TagSelected.epcMaskOffset = 0x00;
-            BleMvxApplication._reader.rfid.Options.TagSelected.epcMaskLength = (uint)(BleMvxApplication._SELECT_EPC.Length * 4);
-            BleMvxApplication._reader.rfid.StartOperation(CSLibrary.Constants.Operation.TAG_SELECTED);
-
-            BleMvxApplication._reader.rfid.Options.FM13DTLedCtrl.enable = switchEnableIsToggled;
+            BleMvxApplication._reader.rfid.Options.FM13DTLedCtrl.enable = enable;
             BleMvxApplication._reader.rfid.StartOperation(CSLibrary.Constants.Operation.FM13DT_LEDCTRL);
+        }
+
+        void OnInitLedSettingButtonClick ()
+        {
+            EnableLedSetting = true;
+            OnInitLedButtonButtonClick();
+        }
+
+        void OnDisableLedSettingButtonClick ()
+        {
+            EnableLedSetting = false;
+            OnInitLedButtonButtonClick();
+        }
+
+        void OnInitLedButtonButtonClick()
+        {
+            Xamarin.Forms.DependencyService.Get<ISystemSound>().SystemSound(1);
+
+            if (BleMvxApplication._reader.rfid.State != CSLibrary.Constants.RFState.IDLE)
+            {
+                //MessageBox.Show("Reader is busy now, please try later.");
+                return;
+            }
+
+            // Reader b040 ~ 0xb043 = 4D B2 29 D6
+            BleMvxApplication._reader.rfid.Options.FM13DTReadMemory.offset = 0xb040;
+            BleMvxApplication._reader.rfid.Options.FM13DTReadMemory.count = 4;
+            BleMvxApplication._reader.rfid.StartOperation(CSLibrary.Constants.Operation.FM13DT_READMEMORY);
+        }
+
+        void WriteLedSetting ()
+        {
+            byte [] paras = BleMvxApplication._reader.rfid.Options.FM13DTReadMemory.data;
+
+            paras[0] &= 0xfc; // ~0x03
+            if (EnableLedSetting)
+            {
+                paras[0] |= 0x01;
+                paras[1] = (byte)~paras[0];
+            }
+            BleMvxApplication._reader.rfid.Options.FM13DTWriteMemory.offset = 0xb040;
+            BleMvxApplication._reader.rfid.Options.FM13DTWriteMemory.data = paras;
+            //BleMvxApplication._reader.rfid.StartOperation(CSLibrary.Constants.Operation.FM13DT_WRITEMEMORY);
         }
 
         async void ShowDialog(string Msg)
