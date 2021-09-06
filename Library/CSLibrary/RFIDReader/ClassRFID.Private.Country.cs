@@ -140,6 +140,9 @@ namespace CSLibrary
                             case 0x20937846:
                                 m_save_country_list.Add(RegionCode.ZA);
                                 break;
+                            case 0x2A2A5347:
+                                m_save_country_list.Add(RegionCode.SG);
+                                break;
                         }
                     }
                     break;
