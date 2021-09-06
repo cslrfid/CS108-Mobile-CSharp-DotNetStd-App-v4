@@ -1,8 +1,9 @@
-﻿<views:MvxContentPage x:TypeArguments="viewModels:ViewModelQTPublicModeInventory"
-					  xmlns="http://xamarin.com/schemas/2014/forms"
-                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-                xmlns:viewModels="clr-namespace:BLE.Client.ViewModels;assembly=BLE.Client"
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage x:TypeArguments="viewModels:ViewModelQTPublicModeInventory"
+		      xmlns="http://xamarin.com/schemas/2014/forms"
+			xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+			xmlns:viewModels="clr-namespace:BLE.Client.ViewModels;assembly=BLE.Client"
              x:Class="BLE.Client.Pages.PageQTPublicModeInventory"
                 Title="Monza 4 QT Public Mode Inventory">
 
@@ -39,12 +40,22 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    
-        <StackLayout Orientation="Vertical" VerticalOptions="EndAndExpand" >
-            <Button Text= "{Binding startInventoryButtonText}" Font="Large" Command="{Binding OnStartInventoryButtonCommand}" />
-            <Button Text="Clear" Font="Large" Command="{Binding OnClearButtonCommand}" HorizontalOptions="CenterAndExpand" />
 
-            <StackLayout Orientation="Horizontal">
+
+		<ScrollView>
+			<StackLayout Orientation="Vertical" >
+				<Button Text= "{Binding startInventoryButtonText}" Font="Large" Command="{Binding OnStartInventoryButtonCommand}" />
+				<Button Text="Clear" Font="Large" Command="{Binding OnClearButtonCommand}" HorizontalOptions="CenterAndExpand" />
+				<Button Text= "Read/Write Private Mode Data" Font="Large" BackgroundColor="#C3C3C3" TextColor="Black" Command="{Binding OnReadWritePrivateModeDataButtonCommand}" />
+				<Button Text= "Change to Public Mode (Normal Range)" Font="Large" BackgroundColor="#C3C3C3" TextColor="Black" Command="{Binding OnChangetoPublicModeNormalRangeButtonCommand}" />
+				<Button Text= "Change to Public Mode (Reduces Range)" Font="Large" BackgroundColor="#C3C3C3" TextColor="Black" Command="{Binding OnChangetoPublicModeReducesRangeButtonCommand}" />
+				<Button Text= "Change to Private Mode (Normal Range)" Font="Large" BackgroundColor="#C3C3C3" TextColor="Black" Command="{Binding OnChangetoPrivateModeNormalRangeButtonCommand}" />
+				<Button Text= "Change to Private Mode (Reduces Range)" Font="Large" BackgroundColor="#C3C3C3" TextColor="Black" Command="{Binding OnChangetoPrivateModeReducesRangeButtonCommand}" />
+			</StackLayout>
+		</ScrollView>
+
+		<StackLayout Orientation="Vertical" VerticalOptions="EndAndExpand" >
+			<StackLayout Orientation="Horizontal">
                     <Label Text="{Binding currentPower}" Font="Small" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" />
                     <Label Text="{Binding InventoryTime}" Font="Small" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
             </StackLayout>

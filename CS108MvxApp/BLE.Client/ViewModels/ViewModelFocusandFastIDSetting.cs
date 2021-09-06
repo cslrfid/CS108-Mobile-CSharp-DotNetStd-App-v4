@@ -22,23 +22,14 @@ namespace BLE.Client.ViewModels
         public Boolean switchFocusIsToggled { get; set; }
         public Boolean switchFastIDIsToggled { get; set; }
 
-        public ViewModelFocusandFastIDSetting(IAdapter adapter, IUserDialogs userDialogs) : base(adapter)
+        public ViewModelFocusandFastIDSetting(IAdapter adapter, IUserDialogs userDialogs, IMvxNavigationService navigation) : base(adapter)
         {
             _userDialogs = userDialogs;
+            _navigation = navigation;
 
             switchFocusIsToggled = false;
             switchFastIDIsToggled = false;
             OnbuttonOKCommand = new Command(OnButtonOKClicked);
-        }
-
-        public override void ViewAppearing()
-        {
-            base.ViewAppearing();
-        }
-
-        public override void ViewDisappearing()
-        {
-            base.ViewDisappearing();
         }
 
         protected override void InitFromBundle(IMvxBundle parameters)

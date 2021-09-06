@@ -1,13 +1,14 @@
-﻿<views:MvxContentPage x:TypeArguments="viewModels:ViewModelQTPrivateModeInventory"
-					  xmlns="http://xamarin.com/schemas/2014/forms"
-                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-                xmlns:viewModels="clr-namespace:BLE.Client.ViewModels;assembly=BLE.Client"
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage x:TypeArguments="viewModels:ViewModelQTPrivateModeInventory"
+		      xmlns="http://xamarin.com/schemas/2014/forms"
+			xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+			xmlns:viewModels="clr-namespace:BLE.Client.ViewModels;assembly=BLE.Client"
              x:Class="BLE.Client.Pages.PageQTPrivateModeInventory"
-                Title="Monza4 QT Private Mode Inventory">
+                Title="Monza 4 QT Private Mode Inventory">
 
     <StackLayout>
-<!--
+
 		<ListView x:Name="liewViewTagData" ItemsSource="{Binding TagInfoList}" ItemSelected="OnItemSelected" >
             <ListView.Header>
                 <StackLayout BackgroundColor="#cccccc">
@@ -39,9 +40,8 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
--->
-
-		<StackLayout Orientation="Vertical" VerticalOptions="EndAndExpand" >
+    
+        <StackLayout Orientation="Vertical" VerticalOptions="EndAndExpand" >
             <Button Text= "{Binding startInventoryButtonText}" Font="Large" Command="{Binding OnStartInventoryButtonCommand}" />
             <Button Text="Clear" Font="Large" Command="{Binding OnClearButtonCommand}" HorizontalOptions="CenterAndExpand" />
 
@@ -56,5 +56,6 @@
                 <Label Text="{Binding tagPerSecondText}" Font="Small" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" />
             </StackLayout>
         </StackLayout>
+
     </StackLayout>
 </views:MvxContentPage>

@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms.Xaml;
+
 using BLE.Client.ViewModels;
+using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+
+
 
 namespace BLE.Client.Pages
 {
@@ -21,16 +25,6 @@ namespace BLE.Client.Pages
 
             BleMvxApplication._geiger_Bank = 1;
             buttonBank.Text = _bankSelectionItems[1];
-        }
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-        }
-
-        protected override void OnDisappearing()
-        {
-            base.OnDisappearing();
         }
 
         public async void buttonBankClicked(object sender, EventArgs e)

@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using Acr.UserDialogs;
+using MvvmCross.ViewModels;
 
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -12,7 +13,6 @@ using Plugin.BLE.Abstractions.Contracts;
 using Plugin.BLE.Abstractions;
 using Plugin.BLE.Abstractions.Extensions;
 using CSLibrary.Structures;
-using MvvmCross.ViewModels;
 
 namespace BLE.Client.ViewModels
 {
@@ -118,12 +118,11 @@ namespace BLE.Client.ViewModels
         public override void ViewAppearing()
         {
             base.ViewAppearing();
-            BleMvxApplication._reader.rfid.OnAccessCompleted += new EventHandler<CSLibrary.Events.OnAccessCompletedEventArgs>(TagCompletedEvent);
+            SetEvent(true);
         }
-
         public override void ViewDisappearing()
         {
-            BleMvxApplication._reader.rfid.OnAccessCompleted -= new EventHandler<CSLibrary.Events.OnAccessCompletedEventArgs>(TagCompletedEvent);
+            SetEvent(false);
             base.ViewDisappearing();
         }
 
@@ -157,6 +156,17 @@ namespace BLE.Client.ViewModels
             RaisePropertyChanged(() => labelMultiWord);
 
             RaisePropertyChanged(() => labelAccessBankText);
+        }
+
+        private void SetEvent(bool enable)
+        {
+            // Cancel RFID event handler
+            BleMvxApplication._reader.rfid.ClearEventHandler();
+
+            if (enable)
+            {
+                BleMvxApplication._reader.rfid.OnAccessCompleted += new EventHandler<CSLibrary.Events.OnAccessCompletedEventArgs>(TagCompletedEvent);
+            }
         }
 
         void TagCompletedEvent(object sender, CSLibrary.Events.OnAccessCompletedEventArgs e)

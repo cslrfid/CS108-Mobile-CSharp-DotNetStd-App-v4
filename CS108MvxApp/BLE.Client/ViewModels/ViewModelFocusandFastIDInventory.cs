@@ -93,17 +93,15 @@ namespace BLE.Client.ViewModels
 
         #endregion
 
-        public ViewModelFocusandFastIDInventory(IAdapter adapter, IUserDialogs userDialogs) : base(adapter)
+        public ViewModelFocusandFastIDInventory(IAdapter adapter, IUserDialogs userDialogs, IMvxNavigationService navigation) : base(adapter)
         {
             _userDialogs = userDialogs;
+            _navigation = navigation;
 
             RaisePropertyChanged(() => ListViewRowHeight);
 
             OnStartInventoryButtonCommand = new Command(StartInventoryClick);
             OnClearButtonCommand = new Command(ClearClick);
-
-            SetEvent(true);
-            InventorySetting(); // reset inventory setting
         }
 
         ~ViewModelFocusandFastIDInventory()

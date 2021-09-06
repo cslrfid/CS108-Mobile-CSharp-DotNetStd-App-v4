@@ -36,11 +36,12 @@ namespace CSLibrary
 			_deviceHandler.SendAsync(0, 0, DOWNLINKCMD.RFIDCMD, PacketData(0xf000, (UInt32)HST_CMD.CUSTOMMFM13DTREADMEMORY), HighLevelInterface.BTWAITCOMMANDRESPONSETYPE.WAIT_BTAPIRESPONSE_COMMANDENDRESPONSE, (uint)CSLibrary.Constants.Operation.FM13DT_READMEMORY);
 		}
 
-		void FM13DT160_WriteMemory(uint offset, uint size, uint data)
+		void FM13DT160_WriteMemory(uint offset, byte [] data)
 		{
+			UInt32 value = (UInt32)((data[0] << 24) | (data[1] << 16) | (data[2] << 8) | data[3]);
+
 			MacWriteRegister(MACREGISTER.FM13DT160_STARTADDRPAR, (uint)offset);
-			MacWriteRegister(MACREGISTER.FM13DT160_READWRITELENPAR, (uint)size);
-			MacWriteRegister(MACREGISTER.FM13DT160_DATAPAR, data);
+			MacWriteRegister(MACREGISTER.FM13DT160_DATAPAR, value);
 
 			_deviceHandler.SendAsync(0, 0, DOWNLINKCMD.RFIDCMD, PacketData(0xf000, (UInt32)HST_CMD.CUSTOMMFM13DTWRITEMEMORY), HighLevelInterface.BTWAITCOMMANDRESPONSETYPE.WAIT_BTAPIRESPONSE_COMMANDENDRESPONSE, (uint)CSLibrary.Constants.Operation.FM13DT_WRITEMEMORY);
 		}
@@ -115,12 +116,8 @@ namespace CSLibrary
 		{
 			uint value = 0;
 
-			MacReadRegister(MACREGISTER.FM13DT160_CMDCFGPAR, ref value);
-
 			if (enable)
-				value |= 0x01;
-			else
-				value &= ~(0x01U);
+				value = 0x01;
 
 			MacWriteRegister(MACREGISTER.FM13DT160_CMDCFGPAR, value);
 
@@ -136,35 +133,13 @@ namespace CSLibrary
 		{
 			uint value = 0;
 
-			MacReadRegister(MACREGISTER.FM13DT160_CMDCFGPAR, ref value);
-
 			if (enable)
-				value |= 0x02;
-			else
-				value &= ~(0x02U);
+				value = 0x02;
 
 			MacWriteRegister(MACREGISTER.FM13DT160_CMDCFGPAR, value);
 
 			_deviceHandler.SendAsync(0, 0, DOWNLINKCMD.RFIDCMD, PacketData(0xf000, (UInt32)HST_CMD.CUSTOMMFM13DTLEDCTRL), HighLevelInterface.BTWAITCOMMANDRESPONSETYPE.WAIT_BTAPIRESPONSE_DATA1, (uint)CSLibrary.Constants.Operation.FM13DT_LEDCTRL);
 		}
-
-#if temp
- * private void FireFM13DTAccessCompletedEvent(OnFM13DTAccessCompletedEventArgs args/*bool success, TagAccess access*/)
-		{
-			if (args != null)
-			{
-				try
-				{
-					OnFM13DTAccessCompleted(this, args);
-				}
-				catch (Exception ex)
-				{
-					//Console.WriteLine(ex);
-				}
-			}
-		}
-*/
-#endif
 
 		/// <summary>
 		/// 
@@ -176,15 +151,40 @@ namespace CSLibrary
 			switch (operation)
 			{
 				case CSLibrary.Constants.Operation.FM13DT_AUTH:
+					
 					break;
 
 				case CSLibrary.Constants.Operation.FM13DT_DEEPSLEEP:
 					break;
 
 				case CSLibrary.Constants.Operation.FM13DT_GETTEMP:
+					{
+						int returnvalue = (TagAccessPacket[TagAccessPacket.Length - 4] << 8) | TagAccessPacket[TagAccessPacket.Length - 3];
+
+						switch (returnvalue)
+						{
+							case 0x0f:
+								break;
+
+							case 0xfffa: // 场能量足够
+								return 1;
+
+							case 0xfff5: // 场能量不足
+								return 1;
+
+							case 0xfff0: // 未启动场能量检测
+								return 1;
+						}
+					}
 					break;
 
 				case CSLibrary.Constants.Operation.FM13DT_INITIALREGFILE:
+					{
+						var returnvalue = TagAccessPacket[TagAccessPacket.Length - 4];
+						if (TagAccessPacket[TagAccessPacket.Length - 4] != 00 || TagAccessPacket[TagAccessPacket.Length - 3] != 00)
+							break;
+					}
+					return 1;
 					break;
 
 				case CSLibrary.Constants.Operation.FM13DT_LEDCTRL:
@@ -220,6 +220,14 @@ namespace CSLibrary
 					break;
 
 				case CSLibrary.Constants.Operation.FM13DT_READMEMORY:
+					{
+						if (TagAccessPacket.Length != (m_rdr_opt_parms.FM13DTReadMemory.count + 20))
+							break;
+
+						m_rdr_opt_parms.FM13DTReadMemory.data = new byte[m_rdr_opt_parms.FM13DTReadMemory.count];
+						Buffer.BlockCopy(TagAccessPacket, 20, m_rdr_opt_parms.FM13DTReadMemory.data, 0, (int)(m_rdr_opt_parms.FM13DTReadMemory.count));
+					}
+					return 1;
 					break;
 
 				case CSLibrary.Constants.Operation.FM13DT_READREGISTER:

@@ -19,12 +19,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BLE.Client.ViewModels;
+using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 
@@ -46,6 +42,7 @@ namespace BLE.Client.Pages
 				BLE.Client.ViewModels.ViewModelFM13DT160Inventory.FM13DT160TagInfoViewModel Items = (BLE.Client.ViewModels.ViewModelFM13DT160Inventory.FM13DT160TagInfoViewModel)e.SelectedItem;
 
 				BleMvxApplication._SELECT_EPC = Items.EPC;
+				BleMvxApplication._SELECT_TID = Items.TID;
 			}
 		}
 	}

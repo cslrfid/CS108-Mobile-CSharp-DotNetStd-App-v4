@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BLE.Client.ViewModels;
+﻿using BLE.Client.ViewModels;
+using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 
@@ -23,10 +19,9 @@ namespace BLE.Client.Pages
             if (answer)
             {
                 //BLE.Client.ViewModels.ViewModelInventorynScan.TagInfo Items = (BLE.Client.ViewModels.ViewModelInventorynScan.TagInfo)e.SelectedItem;
-                BLE.Client.ViewModels.ViewModelCS83045Inventory.ColdChainTagInfoViewModel Items = (BLE.Client.ViewModels.ViewModelCS83045Inventory.ColdChainTagInfoViewModel)e.SelectedItem;
+                BLE.Client.ViewModels.ViewModelQTPrivateModeInventory.QTTagInfoViewModel Items = (BLE.Client.ViewModels.ViewModelQTPrivateModeInventory.QTTagInfoViewModel)e.SelectedItem;
 
                 BleMvxApplication._SELECT_EPC = Items.EPC;
-                //BleMvxApplication._SELECT_PC = Items.PC;
             }
         }
     }

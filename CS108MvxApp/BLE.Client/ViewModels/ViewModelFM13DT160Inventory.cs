@@ -20,25 +20,14 @@ SOFTWARE.
 */
 
 using System;
-using System.Collections.ObjectModel;
-using System.Collections.Generic;
-using Acr.UserDialogs;
-
 using System.Windows.Input;
+using System.Collections.ObjectModel;
 using Xamarin.Forms;
-
-
-using Plugin.BLE.Abstractions.Contracts;
-
-using Plugin.BLE.Abstractions;
-using Plugin.BLE.Abstractions.Extensions;
-
-using Prism.Mvvm;
-
-using Plugin.Share;
-using Plugin.Share.Abstractions;
-using MvvmCross.ViewModels;
 using MvvmCross.Navigation;
+using MvvmCross.ViewModels;
+using Prism.Mvvm;
+using Acr.UserDialogs;
+using Plugin.BLE.Abstractions.Contracts;
 
 namespace BLE.Client.ViewModels
 {
@@ -48,6 +37,8 @@ namespace BLE.Client.ViewModels
         {
             private string _EPC;
             public string EPC { get { return this._EPC; } set { this.SetProperty(ref this._EPC, value); } }
+            private string _TID;
+            public string TID { get { return this._TID; } set { this.SetProperty(ref this._TID, value); } }
             private string _RSSI;
             public string RSSI { get { return this._RSSI; } set { this.SetProperty(ref this._RSSI, value); } }
         }
@@ -57,6 +48,10 @@ namespace BLE.Client.ViewModels
 
         #region -------------- RFID inventory -----------------
 
+
+
+        public ICommand OnStartInventoryButtonCommand { protected set; get; }
+        public ICommand OnClearButtonCommand { protected set; get; }
         public ICommand OnInitialRegfileButtonCommand { protected set; get; }
         public ICommand OnGetTemperatureButtonCommand { protected set; get; }
         public ICommand OnLoggingButtonCommand { protected set; get; }
@@ -107,8 +102,10 @@ namespace BLE.Client.ViewModels
 
             RaisePropertyChanged(() => ListViewRowHeight);
 
-            OnInitialRegfileButtonCommand = new Command(OnSenseOnlyButtonClick);
-            OnGetTemperatureButtonCommand = new Command(OnSenseStoreButtonClick);
+            OnStartInventoryButtonCommand = new Command(StartInventoryClick);
+            OnClearButtonCommand = new Command(ClearClick);
+            OnInitialRegfileButtonCommand = new Command(OnInitialRegfileButtonClick);
+            OnGetTemperatureButtonCommand = new Command(OnGetTemperatureButtonClick);
             OnLoggingButtonCommand = new Command(OnSenseCalibrateButtonClick);
             OnReadWriteMemoryButtonCommand = new Command(OnSystemConfigurationWord1ButtonClick);
             OnReadWriteRegButtonCommand = new Command(OnTamperLockWordButtonClick);
@@ -123,7 +120,6 @@ namespace BLE.Client.ViewModels
         public override void ViewAppearing()
         {
             base.ViewAppearing();
-
             SetEvent(true);
             InventorySetting();
         }
@@ -134,7 +130,6 @@ namespace BLE.Client.ViewModels
             ClassBattery.SetBatteryMode(ClassBattery.BATTERYMODE.IDLE);
 
             SetEvent(false);
-
             base.ViewDisappearing();
         }
 
@@ -180,18 +175,22 @@ namespace BLE.Client.ViewModels
             });
         }
 
-        private void OnSenseOnlyButtonClick()
+        private void OnInitialRegfileButtonClick()
         {
-            
-            
-        }   
+            //ShowViewModel<ViewModelFM13DT160InitRegFile>(new MvxBundle());
+            _navigation.Navigate<ViewModelFM13DT160InitRegFile>(new MvxBundle());
+        }
 
-        private void OnSenseStoreButtonClick()
+        private void OnGetTemperatureButtonClick()
         {
+            //ShowViewModel<ViewModelFM13DT160GetTemperature>(new MvxBundle());
+            _navigation.Navigate<ViewModelFM13DT160GetTemperature>(new MvxBundle());
         }
 
         private void OnSenseCalibrateButtonClick()
         {
+            //ShowViewModel<ViewModelFM13DT160GetTemperature>(new MvxBundle());
+            //_navigation.Navigate<ViewModelFM13DT160GetTemperature>(new MvxBundle());
         }
 
         private void OnSystemConfigurationWord1ButtonClick()
@@ -295,8 +294,11 @@ namespace BLE.Client.ViewModels
                 BleMvxApplication._reader.rfid.Options.TagRanging.flags |= CSLibrary.Constants.SelectFlags.SELECT;
             }
 
-            BleMvxApplication._reader.rfid.Options.TagRanging.multibanks = 0;
-            BleMvxApplication._reader.rfid.Options.TagRanging.compactmode = true;
+            BleMvxApplication._reader.rfid.Options.TagRanging.compactmode = false;
+            BleMvxApplication._reader.rfid.Options.TagRanging.multibanks = 1;
+            BleMvxApplication._reader.rfid.Options.TagRanging.bank1 = CSLibrary.Constants.MemoryBank.TID;
+            BleMvxApplication._reader.rfid.Options.TagRanging.offset1 = 0;
+            BleMvxApplication._reader.rfid.Options.TagRanging.count1 = 4;
 
             BleMvxApplication._reader.rfid.StartOperation(CSLibrary.Constants.Operation.TAG_PRERANGING);
         }
@@ -437,15 +439,14 @@ namespace BLE.Client.ViewModels
 
             lock (TagInfoList)
             {
-                //string EPC = info.epc.ToString().Substring(0, 16);
                 string EPC = info.epc.ToString();
+                string TID = CSLibrary.Tools.Hex.ToString(info.Bank1Data);
 
                 for (cnt = 0; cnt < TagInfoList.Count; cnt++)
                 {
-                    if (TagInfoList[cnt].EPC.Substring(0, 16) == EPC.Substring(0, 16))
+                    if (TagInfoList[cnt].TID == TID)
                     {
                         found = true;
-                        TagInfoList[cnt].EPC = EPC;
                         TagInfoList[cnt].RSSI = info.rssi.ToString("#");
                         break;
                     }
@@ -453,10 +454,10 @@ namespace BLE.Client.ViewModels
 
                 if (!found)
                 {
-                    var sensorValue = info.epc.ToUshorts();
                     FM13DT160TagInfoViewModel item = new FM13DT160TagInfoViewModel();
 
                     item.EPC = EPC;
+                    item.TID = TID;
                     item.RSSI = info.rssi.ToString("#");
                     TagInfoList.Insert(0, item);
                 }
