@@ -25,12 +25,16 @@ using System.Windows.Input;
 using Xamarin.Forms;
 
 using Plugin.BLE.Abstractions.Contracts;
+using MvvmCross.Navigation;
+using MvvmCross.ViewModels;
+using MvvmCross;
 
 namespace BLE.Client.ViewModels
 {
     public class ViewModelSpecialFunctionsMenu : BaseViewModel
     {
         private readonly IUserDialogs _userDialogs;
+        private readonly IMvxNavigationService _navigation;
 
         public ICommand OnMultiBankInventoryButtonCommand { protected set; get; }
         public ICommand OnPhaseChannelInventoryButtonCommand { protected set; get; }
@@ -47,14 +51,16 @@ namespace BLE.Client.ViewModels
         public ICommand OnEM4152ButtonCommand { protected set; get; }
         public ICommand OnFM13DT160ButtonCommand { protected set; get; }
         public ICommand OnSmartracThermologgerButtonCommand { protected set; get; }
-        
+        public ICommand OnWriteAnyEPCButtonCommand { protected set; get; }
+        public ICommand OnPerformanceTestButtonCommand { protected set; get; }
+        public ICommand OnMonza4QTButtonCommand { protected set; get; }
+        public ICommand OnMagnusS3withGPSforTabletButtonCommand { protected set; get; }
 
 
-
-
-        public ViewModelSpecialFunctionsMenu (IAdapter adapter, IUserDialogs userDialogs) : base(adapter)
+        public ViewModelSpecialFunctionsMenu (IAdapter adapter, IUserDialogs userDialogs, IMvxNavigationService navigation) : base(adapter)
         {
             _userDialogs = userDialogs;
+            _navigation = navigation;
 
             OnMultiBankInventoryButtonCommand = new Command(OnMultiBankInventoryButtonClicked);
             OnPhaseChannelInventoryButtonCommand = new Command(OnPhaseChannelInventoryButtonClicked);
@@ -71,6 +77,11 @@ namespace BLE.Client.ViewModels
             OnEM4152ButtonCommand = new Command(OnEM4152ButtonClicked);
             OnFM13DT160ButtonCommand = new Command(OnFM13DT160ButtonClicked);
             OnSmartracThermologgerButtonCommand = new Command(OnSmartracThermologgerButtonClicked);
+            OnWriteAnyEPCButtonCommand = new Command(OnWriteAnyEPCButtonClicked);
+            OnPerformanceTestButtonCommand = new Command(OnPerformanceTestButtonClicked);
+            OnMonza4QTButtonCommand = new Command(OnMonza4QTButtonClicked);
+            OnMagnusS3withGPSforTabletButtonCommand = new Command(OnMagnusS3withGPSforTabletButtonClicked);
+
         }
 
         public override void ViewAppearing()
@@ -83,77 +94,116 @@ namespace BLE.Client.ViewModels
         void OnMultiBankInventoryButtonClicked()
         {
             //ShowViewModel<ViewModelMultiBankInventorySetting>(new MvxBundle());
+            _navigation.Navigate<ViewModelMultiBankInventorySetting>(new MvxBundle());
         }
 
         void OnPhaseChannelInventoryButtonClicked()
         {
             //ShowViewModel<ViewModelPhaseChannelInventory>(new MvxBundle());
+            _navigation.Navigate<ViewModelPhaseChannelInventory>(new MvxBundle());
         }
 
         void OnPeriodicReadButtonClicked()
         {
             //ShowViewModel<ViewModelPeriodicRead>(new MvxBundle());
+            _navigation.Navigate<ViewModelPeriodicRead>(new MvxBundle());
         }
 
         void OnUCODEDNAButtonClicked()
         {
             //ShowViewModel<ViewModelUCODEDNA>(new MvxBundle());
+            _navigation.Navigate<ViewModelUCODEDNA>(new MvxBundle());
         }
 
         void OnRFMicroButtonClicked()
         {
             //ShowViewModel<ViewModelRFMicroSetting>(new MvxBundle());
+            _navigation.Navigate<ViewModelRFMicroSetting>(new MvxBundle());
         }
 
         void OnXerxesButtonClicked()
         {
             //ShowViewModel<ViewModelAxzonSetting>(new MvxBundle());
+            _navigation.Navigate<ViewModelAxzonSetting>(new MvxBundle());
         }
 
         void OnBlockWriteButtonClicked()
         {
             //ShowViewModel<ViewModelBlockWrite>(new MvxBundle());
+            _navigation.Navigate<ViewModelBlockWrite>(new MvxBundle());
         }
 
         void OnReadButtonClicked()
         {
             //ShowViewModel<ViewModelRead>(new MvxBundle());
+            _navigation.Navigate<ViewModelRead>(new MvxBundle());
         }
 
         void OnCS83045ButtonClicked()
         {
             //ShowViewModel<ViewModelCS83045Setting>(new MvxBundle());
+            _navigation.Navigate<ViewModelCS83045Setting>(new MvxBundle());
         }
 
         void OnCS9010ButtonClicked()
         {
             //ShowViewModel<ViewModelCS9010Inventory>(new MvxBundle());
+            _navigation.Navigate<ViewModelCS9010Inventory>(new MvxBundle());
         }
 
         void OnTagFocusandFastIDButtonClicked()
         {
             //ShowViewModel<ViewModelFocusandFastIDSetting>(new MvxBundle());
+            _navigation.Navigate<ViewModelFocusandFastIDSetting>(new MvxBundle());
         }
 
         void OnCTESIUSTempButtonClicked()
         {
             //ShowViewModel< ViewModelCTESIUSTempInventory>(new MvxBundle());
+            _navigation.Navigate<ViewModelCTESIUSTempInventory>(new MvxBundle());
         }
 
         void OnEM4152ButtonClicked()
         {
             //ShowViewModel<ViewModelEM4152Inventory>(new MvxBundle());
+            _navigation.Navigate<ViewModelEM4152Inventory>(new MvxBundle());
         }
 
         void OnFM13DT160ButtonClicked()
         {
             //ShowViewModel<ViewModelFM13DT160Inventory>(new MvxBundle());
+            _navigation.Navigate<ViewModelFM13DT160Inventory>(new MvxBundle());
+
         }
 
         void OnSmartracThermologgerButtonClicked ()
         {
             //ShowViewModel<ViewModelSmartracThermologgerInventory>(new MvxBundle());
+            _navigation.Navigate<ViewModelSmartracThermologgerInventory>(new MvxBundle());
         }
 
+        void OnWriteAnyEPCButtonClicked()
+        {
+            //ShowViewModel<ViewModelWriteAnyEPC>(new MvxBundle());
+            _navigation.Navigate<ViewModelWriteAnyEPC>(new MvxBundle());
+        }
+
+        void OnPerformanceTestButtonClicked()
+        {
+            //ShowViewModel<ViewModelPerformanceTest>(new MvxBundle());
+            _navigation.Navigate<ViewModelPerformanceTest>(new MvxBundle());
+        }
+
+        void OnMonza4QTButtonClicked()
+        {
+            //ShowViewModel<ViewModelQTInventorySlectionMenu>(new MvxBundle());
+            _navigation.Navigate<ViewModelQTInventorySlectionMenu>(new MvxBundle());
+        }
+
+        void OnMagnusS3withGPSforTabletButtonClicked()
+        {
+            //ShowViewModel<ViewModelTempGPSSetting>(new MvxBundle());
+            _navigation.Navigate<ViewModelTempGPSSetting>(new MvxBundle());
+        }
     }
 }

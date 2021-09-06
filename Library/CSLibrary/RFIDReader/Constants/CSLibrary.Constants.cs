@@ -1328,6 +1328,23 @@ ISO/IEC 24730 (WhereNet)	48	0000 0000	0000 0000	xxxx xxxx xxxx xxxx xxxx xxxx xx
         UNKNOWN = 0xff
     }
 
+    public enum FM13DTAccess
+    {
+        READMEMORY,
+        WRITEMEMORY,
+        READREGISTER,
+        WRITEREGISTER,
+        AUTH,
+        GETTEMP,
+        STARTLOG,
+        STOPLOG,
+        DEEPSLEEP,
+        OPMODECHK,
+        INITIALREGFILE,
+        LEDCTRL,
+        UNKNOWN
+    }
+
     /// <summary>
     /// Machine Type
     /// </summary>

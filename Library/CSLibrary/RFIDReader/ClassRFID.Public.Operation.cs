@@ -239,6 +239,10 @@ namespace CSLibrary
                     FM13DTLedCtrlThreadProc();
                     break;
 
+                case Operation.QT_COMMAND:
+                    QT_CommandProc();
+                    break;
+
                 default:
                     return Result.NOT_SUPPORTED;
             }

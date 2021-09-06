@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage x:TypeArguments="viewModels:ViewModelFM13DT160Inventory"
+		      xmlns="http://xamarin.com/schemas/2014/forms"
+			xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+			xmlns:viewModels="clr-namespace:BLE.Client.ViewModels;assembly=BLE.Client"
+             x:Class="BLE.Client.Pages.PageFM13DT160Inventory"
+                Title="FM13DT160 Inventory">
+
+    <StackLayout>
+
+		<ListView x:Name="liewViewTagData" ItemsSource="{Binding TagInfoList}" ItemSelected="OnItemSelected" >
+            <ListView.Header>
+                <StackLayout BackgroundColor="#cccccc">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="0.85*" />
+							<ColumnDefinition Width="0.15*" />
+						</Grid.ColumnDefinitions>
+						<Label Text="EPC" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="Small" VerticalOptions="CenterAndExpand" />
+						<Label Grid.Column="1" Text="RSSI" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="Small" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" LineBreakMode="WordWrap"/>
+					</Grid>
+                </StackLayout>
+            </ListView.Header>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+						<StackLayout Orientation="Vertical">
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="0.85*" />
+									<ColumnDefinition Width="0.15*" />
+								</Grid.ColumnDefinitions>
+								<Label Text="{Binding EPC}" VerticalTextAlignment="Start" FontSize="Small" />
+								<Label Grid.Column="1" Text="{Binding RSSI}" VerticalTextAlignment="Start" HorizontalTextAlignment="Center"  TextColor="{Binding RSSIColor}"/>
+							</Grid>
+							<Label Text="{Binding TID}" VerticalTextAlignment="Start" FontSize="Small" />
+						</StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+		<ScrollView>
+			<StackLayout Orientation="Vertical" >
+				<Button Text= "{Binding startInventoryButtonText}" Font="Large" Command="{Binding OnStartInventoryButtonCommand}" />
+				<Button Text="Clear" Font="Large" Command="{Binding OnClearButtonCommand}" HorizontalOptions="CenterAndExpand" />
+
+				<Button Text="Initial Regfile" Command="{Binding OnInitialRegfileButtonCommand}" Font="Large" HorizontalOptions="FillAndExpand" BackgroundColor="#C3C3C3" TextColor="Black" />
+				<Button Text="Get Temperature" Command="{Binding OnGetTemperatureButtonCommand}" Font="Large" BackgroundColor="#C3C3C3" TextColor="Black" />
+				<Button Text="Start/Stop/Get Logging" Command="{Binding OnLoggingButtonCommand}" Font="Large" BackgroundColor="#C3C3C3" TextColor="Black" />
+				<Button Text="Read/Write Memory" Command="{Binding OnReadWriteMemoryButtonCommand}" Font="Large" HorizontalOptions="FillAndExpand" BackgroundColor="#C3C3C3" TextColor="Black" />
+				<Button Text="Read/Write Reg" Command="{Binding OnReadWriteRegButtonCommand}" Font="Large" HorizontalOptions="FillAndExpand" BackgroundColor="#C3C3C3" TextColor="Black" />
+				<Button Text="Auth" Command="{Binding OnAuthButtonCommand}" Font="Large" BackgroundColor="#C3C3C3" TextColor="Black" />
+				<Button Text="Deep Sleep" Command="{Binding OnDeepSleepButtonCommand}" Font="Large" BackgroundColor="#C3C3C3" TextColor="Black" />
+				<Button Text="Op Mode Check" Command="{Binding OnOpModeCheckButtonCommand}" Font="Large" HorizontalOptions="FillAndExpand" BackgroundColor="#C3C3C3" TextColor="Black" />
+				<Button Text="Led Ctrl" Command="{Binding OnLedCtrlButtonCommand}" Font="Large" HorizontalOptions="FillAndExpand" BackgroundColor="#C3C3C3" TextColor="Black" />
+			</StackLayout>
+		</ScrollView>
+
+		<StackLayout Orientation="Horizontal">
+            <Label Text="{Binding currentPower}" Font="Small" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" />
+            <Label Text="{Binding InventoryTime}" Font="Small" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="{Binding numberOfTagsText}" Font="Small" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+            <Label Text="{Binding labelVoltage}" Font="Small" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+            <Label Text="{Binding tagPerSecondText}" Font="Small" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" />
+        </StackLayout>
+
+    </StackLayout>
+</views:MvxContentPage>

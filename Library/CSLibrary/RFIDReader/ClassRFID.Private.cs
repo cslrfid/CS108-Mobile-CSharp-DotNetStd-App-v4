@@ -509,6 +509,11 @@ namespace CSLibrary
                 }
             }
         }
+
+
+
+
+
         #endregion
 
         void Start18K6CRequest(uint tagStopCount, SelectFlags flags)
@@ -963,9 +968,6 @@ namespace CSLibrary
             if (m_rdr_opt_parms.FM13DTReadMemory.offset > 0xffff)
                 return false;
 
-            if (m_rdr_opt_parms.FM13DTReadMemory.count > 4)
-                return false;
-
             FM13DT160_ReadMemory(m_rdr_opt_parms.FM13DTReadMemory.offset, m_rdr_opt_parms.FM13DTReadMemory.count);
             return true;
         }
@@ -975,19 +977,13 @@ namespace CSLibrary
             if (m_rdr_opt_parms.FM13DTWriteMemory.offset > 0xffff)
                 return false;
 
-            if (m_rdr_opt_parms.FM13DTWriteMemory.count > 4)
-                return false;
-
-            FM13DT160_WriteMemory(m_rdr_opt_parms.FM13DTWriteMemory.offset, m_rdr_opt_parms.FM13DTWriteMemory.count, m_rdr_opt_parms.FM13DTWriteMemory.data);
+            FM13DT160_WriteMemory(m_rdr_opt_parms.FM13DTWriteMemory.offset, m_rdr_opt_parms.FM13DTWriteMemory.data);
             return true;
         }
 
         private bool FM13DTReadRegThreadProc()
         {
             if (m_rdr_opt_parms.FM13DTReadMemory.offset > 0xffff)
-                return false;
-
-            if (m_rdr_opt_parms.FM13DTReadMemory.count > 4)
                 return false;
 
             FM13DT160_ReadMemory(m_rdr_opt_parms.FM13DTReadMemory.offset, m_rdr_opt_parms.FM13DTReadMemory.count);
@@ -999,16 +995,13 @@ namespace CSLibrary
             if (m_rdr_opt_parms.FM13DTWriteMemory.offset > 0xffff)
                 return false;
 
-            if (m_rdr_opt_parms.FM13DTWriteMemory.count > 4)
-                return false;
-
-            FM13DT160_WriteMemory(m_rdr_opt_parms.FM13DTWriteMemory.offset, m_rdr_opt_parms.FM13DTWriteMemory.count, m_rdr_opt_parms.FM13DTWriteMemory.data);
+            FM13DT160_WriteMemory(m_rdr_opt_parms.FM13DTWriteMemory.offset, m_rdr_opt_parms.FM13DTWriteMemory.data);
             return true;
         }
 
         private bool FM13DTAuthThreadProc()
         {
-            FM13DT160_Auth(m_rdr_opt_parms.FM13DTWriteMemory.offset, m_rdr_opt_parms.FM13DTWriteMemory.count);
+//            FM13DT160_Auth(m_rdr_opt_parms.FM FM13DTWriteMemory.offset, m_rdr_opt_parms.FM13DTWriteMemory.count);
             return true;
         }
 
@@ -1029,7 +1022,7 @@ namespace CSLibrary
         }
         private bool FM13DTDeepSleepThreadProc()
         {
-            FM13DT160_DeepSleep(m_rdr_opt_parms.FM13DTDeepSleep.enable);
+            FM13DT160_DeepSleep(true);
             return true;
         }
         private bool FM13DTOpModeChkThreadProc()

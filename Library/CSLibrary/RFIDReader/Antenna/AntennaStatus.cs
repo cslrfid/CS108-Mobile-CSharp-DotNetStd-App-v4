@@ -10,7 +10,6 @@ namespace CSLibrary
     /// <summary>
     /// Antenna Status
     /// </summary>
-    [Serializable]
     class AntennaStatus
         :
         Object

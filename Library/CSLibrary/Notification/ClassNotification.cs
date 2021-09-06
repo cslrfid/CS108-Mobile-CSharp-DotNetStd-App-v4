@@ -118,36 +118,50 @@ namespace CSLibrary
             switch (value)
             {
                 case 0: // button on
-                    if (!_receiveOffWithin1s)
-                    {
-                        OnKeyEvent(_deviceHandler, new Notification.HotKeyEventArgs(Key.BUTTON, true));
-                    }
-                    else
-                    {
-                        _receiveOnWithinOffcycle = true;
-                    }
+                    OnKeyEvent(_deviceHandler, new Notification.HotKeyEventArgs(Key.BUTTON, true));
                     break;
 
                 case 1: // button off
-                    if (!_receiveOffWithin1s)
-                    {
-                        _receiveOffWithin1s = true;
-                        OnKeyEvent(_deviceHandler, new Notification.HotKeyEventArgs(Key.BUTTON, false));
-
-                        System.Threading.Tasks.Task.Run(async () =>
-                        {
-                            await System.Threading.Tasks.Task.Delay(1000);
-                            _receiveOffWithin1s = false;
-                            if (_receiveOnWithinOffcycle)
-                            {
-                                OnKeyEvent(_deviceHandler, new Notification.HotKeyEventArgs(Key.BUTTON, true));
-                                _receiveOnWithinOffcycle = false;
-                            }
-                        });
-
-                    }
+                    OnKeyEvent(_deviceHandler, new Notification.HotKeyEventArgs(Key.BUTTON, false));
                     break;
             }
+
+            /*
+                        switch (value)
+                        {
+                            case 0: // button on
+                                if (!_receiveOffWithin1s)
+                                {
+                                    OnKeyEvent(_deviceHandler, new Notification.HotKeyEventArgs(Key.BUTTON, true));
+                                }
+                                else
+                                {
+                                    _receiveOnWithinOffcycle = true;
+                                }
+                                break;
+
+                            case 1: // button off
+                                if (!_receiveOffWithin1s)
+                                {
+                                    _receiveOffWithin1s = true;
+                                    OnKeyEvent(_deviceHandler, new Notification.HotKeyEventArgs(Key.BUTTON, false));
+
+                                    System.Threading.Tasks.Task.Run(async () =>
+                                    {
+                                        await System.Threading.Tasks.Task.Delay(1000);
+                                        _receiveOffWithin1s = false;
+                                        if (_receiveOnWithinOffcycle)
+                                        {
+                                            OnKeyEvent(_deviceHandler, new Notification.HotKeyEventArgs(Key.BUTTON, true));
+                                            _receiveOnWithinOffcycle = false;
+                                        }
+                                    });
+
+                                }
+                                break;
+                        }
+            */
+
         }
 
         public uint GetCurrentBatteryLevel()

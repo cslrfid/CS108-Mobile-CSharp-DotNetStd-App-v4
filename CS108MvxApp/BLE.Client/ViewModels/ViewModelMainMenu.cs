@@ -60,19 +60,13 @@ namespace BLE.Client.ViewModels
         // MUST be geant location permission
         private async void GetLocationPermission()
         {
-            //if (await _permissions.CheckPermissionStatusAsync(Permission.Location) != PermissionStatus.Granted)
-            //    await _permissions.RequestPermissionsAsync(Permission.Location);
-            var status = await _permissions.CheckPermissionStatusAsync<Plugin.Permissions.LocationPermission>();
-            if (status != PermissionStatus.Granted)
+            if (await _permissions.CheckPermissionStatusAsync(Permission.Location) != PermissionStatus.Granted)
             {
-                var permissionResult = await _permissions.RequestPermissionAsync<Plugin.Permissions.LocationPermission>();
+                if (Device.RuntimePlatform == Device.Android)
+                    await _userDialogs.AlertAsync("This app collects location data in the background.  In terms of the features using this location data in the background, this App collects location data when it is reading temperature RFID tag in the “Magnus S3 with GPS for Advantech” page.  The purpose of this is to correlate the RFID tag with the actual GNSS location of the tag.  In other words, this is to track the physical location of the logistics item tagged with the RFID tag.");
+                //                await _userDialogs.AlertAsync("This app collects location data to enable temperature RFID tag inventory with GNSS location mapped to each tag data when the app is open and in the foreground.  This location data collection is not carried out when the app is closed or not in use.   Specifically, this App collects location data when it is reading temperature RFID tag in the “Magnus S3 with GPS for Advantech” page.");
 
-                if (permissionResult != PermissionStatus.Granted)
-                {
-                    await _userDialogs.AlertAsync("Please allow permission for location");
-                    _permissions.OpenAppSettings();
-                    return;
-                }
+                await _permissions.RequestPermissionsAsync(Permission.Location);
             }
         }
 
@@ -111,6 +105,9 @@ namespace BLE.Client.ViewModels
                 BleMvxApplication._reader.rfid.CancelAllSelectCriteria();
             BleMvxApplication._reader.rfid.Options.TagRanging.focus = false;
             BleMvxApplication._reader.rfid.Options.TagRanging.fastid = false;
+
+
+            BleMvxApplication._reader.rfid.SetToStandbyMode(); // for power saving
         }
 
         public override void ViewDisappearing()
@@ -199,6 +196,8 @@ namespace BLE.Client.ViewModels
 
                 ClassBattery.SetBatteryMode(ClassBattery.BATTERYMODE.IDLE);
                 BleMvxApplication._reader.battery.SetPollingTime(BleMvxApplication._config.RFID_BatteryPollingTime);
+
+                BleMvxApplication._reader.rfid.SetToStandbyMode(); // for power saving
             }
         }
 

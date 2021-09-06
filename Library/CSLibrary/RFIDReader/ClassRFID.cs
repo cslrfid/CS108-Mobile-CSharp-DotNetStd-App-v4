@@ -95,6 +95,7 @@ namespace CSLibrary
             OnStateChanged = null;
             OnAsyncCallback = null;
             OnAccessCompleted = null;
+            OnFM13DTAccessCompleted = null;
         }
 
         public ChipSetID OEMChipSetID
@@ -652,6 +653,10 @@ namespace CSLibrary
                 case 0xd5: // Authenticate
                     break;
 
+                case 0xe0: // FM13DT160
+                    FM13DT160_TagAccessProc(RealCurrentOperation, recvData); 
+                    break;
+
                 default:
                     return false;
             }
@@ -775,7 +780,7 @@ namespace CSLibrary
                             _dataBuffer.DataDel(8);
                             LastMacErrorCode = 0x0000;
                             FireStateChangedEvent(CSLibrary.Constants.RFState.IDLE);
-                            _deviceHandler.rfid.SetToStandbyMode();
+//                            _deviceHandler.rfid.SetToStandbyMode();
                         }
                         break;
 
@@ -1048,26 +1053,30 @@ namespace CSLibrary
                                                 }
                                                 break;
 
+                                            default:
+                                                FM13DT160_CommandEnd (RealCurrentOperation, ((currentCommandResponse | result) & HighLevelInterface.BTWAITCOMMANDRESPONSETYPE.DATA1) != 0);
+                                                break;
 
-                                                /*
-                                                                                            case CSLibrary.Constants.Operation.TAG_UNTRACEABLE:
-                                                                                                {
-                                                                                                    CSLibrary.Debug.WriteLine("Tag untraceable end {0}", currentCommandResponse);
+                                            /*
+                                                                                        case CSLibrary.Constants.Operation.TAG_UNTRACEABLE:
+                                                                                            {
+                                                                                                CSLibrary.Debug.WriteLine("Tag untraceable end {0}", currentCommandResponse);
 
-                                                                                                    FireAccessCompletedEvent(
-                                                                                                        new OnAccessCompletedEventArgs(
-                                                                                                        (((currentCommandResponse | result) & HighLevelInterface.BTWAITCOMMANDRESPONSETYPE.DATA1) != 0),
-                                                                                                        Bank.UNTRACEABLE,
-                                                                                                        TagAccess.WRITE,
-                                                                                                        null));
-                                                                                                }
-                                                                                                break;
-                                                                                                */
+                                                                                                FireAccessCompletedEvent(
+                                                                                                    new OnAccessCompletedEventArgs(
+                                                                                                    (((currentCommandResponse | result) & HighLevelInterface.BTWAITCOMMANDRESPONSETYPE.DATA1) != 0),
+                                                                                                    Bank.UNTRACEABLE,
+                                                                                                    TagAccess.WRITE,
+                                                                                                    null));
+                                                                                            }
+                                                                                            break;
+                                                                                            */
+
                                         }
                                     }
 
                                     FireStateChangedEvent(CSLibrary.Constants.RFState.IDLE);
-                                    _deviceHandler.rfid.SetToStandbyMode();
+//                                    _deviceHandler.rfid.SetToStandbyMode();
 
                                     break;
 
@@ -1901,8 +1910,6 @@ namespace CSLibrary
 
 			return Constants.Result.OK;
 		}
-
-
 
 		/// <summary>
 		/// Sets the operation mode of RFID radio module.  By default, when 
