@@ -275,6 +275,9 @@ namespace CSLibrary
                             case 0x20937846:
                                 m_save_region_code = RegionCode.ZA;
                                 break;
+                            case 0x2A2A5347:
+                                m_save_region_code = RegionCode.SG;
+                                break;
                         }
                     }
                     m_save_fixed_channel = false;
@@ -349,6 +352,9 @@ namespace CSLibrary
                                 break;
                             case 0x20937846:
                                 SetHoppingChannels(RegionCode.ZA);
+                                break;
+                            case 0x2A2A5347:
+                                SetHoppingChannels(RegionCode.SG);
                                 break;
                         }
                     }
