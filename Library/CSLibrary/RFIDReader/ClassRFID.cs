@@ -155,6 +155,9 @@ namespace CSLibrary
                             case 0x20937846: 
                                 country += " ZA";
                                 break;
+                            case 0x2A2A5347:
+                                country += " SG";
+                                break;
                         }
                     }
                     break;
