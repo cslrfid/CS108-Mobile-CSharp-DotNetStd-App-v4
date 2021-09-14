@@ -109,6 +109,9 @@ namespace CSLibrary
         private BluetoothIC _handleBluetoothIC = null;
         internal Battery _handleBattery = null;
 
+        // Special Function
+        public ClassEM4325 _handleEM4325 = null;
+
         public SiliconLabIC siliconlabIC
         {
             get { return _handleSiliconLabIC; }
@@ -160,6 +163,7 @@ namespace CSLibrary
 
         public HighLevelInterface()
         {
+            // Basic Module
             _handleSiliconLabIC = new SiliconLabIC(this);
             _handlerRFIDReader = new RFIDReader(this);
             _handleBarCodeReader = new BarcodeReader(this);

@@ -656,9 +656,14 @@ namespace CSLibrary
                 case 0xd5: // Authenticate
                     break;
 
-                case 0xe0: // FM13DT160
-                    FM13DT160_TagAccessProc(RealCurrentOperation, recvData); 
-                    break;
+                case 0xe0: // FM13DT160 & EM4325
+                    if (FM13DT160_TagAccessProc(RealCurrentOperation, recvData))
+                        break;
+
+                    if (_deviceHandler.rfid.EM4325.TagAccessProc(RealCurrentOperation, recvData))            
+                        break;
+
+                    return false;
 
                 default:
                     return false;
@@ -1057,23 +1062,28 @@ namespace CSLibrary
                                                 break;
 
                                             default:
-                                                FM13DT160_CommandEnd (RealCurrentOperation, ((currentCommandResponse | result) & HighLevelInterface.BTWAITCOMMANDRESPONSETYPE.DATA1) != 0);
+                                                if (_deviceHandler.rfid.EM4325.CommandEndProc(RealCurrentOperation, ((currentCommandResponse | result) & HighLevelInterface.BTWAITCOMMANDRESPONSETYPE.DATA1) != 0) != 0)
+                                                    break;
+
+                                                if (FM13DT160_CommandEnd (RealCurrentOperation, ((currentCommandResponse | result) & HighLevelInterface.BTWAITCOMMANDRESPONSETYPE.DATA1) != 0) != 0)
+                                                    break;
+
                                                 break;
 
-                                            /*
-                                                                                        case CSLibrary.Constants.Operation.TAG_UNTRACEABLE:
-                                                                                            {
-                                                                                                CSLibrary.Debug.WriteLine("Tag untraceable end {0}", currentCommandResponse);
+                                                /*
+                                                                                            case CSLibrary.Constants.Operation.TAG_UNTRACEABLE:
+                                                                                                {
+                                                                                                    CSLibrary.Debug.WriteLine("Tag untraceable end {0}", currentCommandResponse);
 
-                                                                                                FireAccessCompletedEvent(
-                                                                                                    new OnAccessCompletedEventArgs(
-                                                                                                    (((currentCommandResponse | result) & HighLevelInterface.BTWAITCOMMANDRESPONSETYPE.DATA1) != 0),
-                                                                                                    Bank.UNTRACEABLE,
-                                                                                                    TagAccess.WRITE,
-                                                                                                    null));
-                                                                                            }
-                                                                                            break;
-                                                                                            */
+                                                                                                    FireAccessCompletedEvent(
+                                                                                                        new OnAccessCompletedEventArgs(
+                                                                                                        (((currentCommandResponse | result) & HighLevelInterface.BTWAITCOMMANDRESPONSETYPE.DATA1) != 0),
+                                                                                                        Bank.UNTRACEABLE,
+                                                                                                        TagAccess.WRITE,
+                                                                                                        null));
+                                                                                                }
+                                                                                                break;
+                                                                                                */
 
                                         }
                                     }
@@ -1785,12 +1795,17 @@ namespace CSLibrary
 
         #region Public Functions
 
+        public ClassEM4325 EM4325 = null;
+
         internal RFIDReader(HighLevelInterface deviceHandler)
 		{
 			_deviceHandler = deviceHandler;
-		}
 
-		~RFIDReader()
+            // Special Module
+            EM4325 = new ClassEM4325(deviceHandler);
+        }
+
+        ~RFIDReader()
 		{
 		}
 

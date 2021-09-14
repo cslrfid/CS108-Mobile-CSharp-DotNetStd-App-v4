@@ -7,6 +7,8 @@ namespace BLE.Client.Pages
 {
 	public partial class PageSettingAdministration : MvxContentPage
 	{
+        readonly string [] _ShareDataFormatOptions = new string[] { "JSON", "CSV", "Excel CSV" };
+
         bool entryReaderNameModified = false;
 
         public PageSettingAdministration()
@@ -47,7 +49,7 @@ namespace BLE.Client.Pages
             labelReaderModel.Text = "Reader Model : " + BleMvxApplication._reader.rfid.GetModelName() + BleMvxApplication._reader.rfid.GetCountryCode();
 
             switchNewTagLocation.IsToggled = BleMvxApplication._config.RFID_NewTagLocation;
-            switchShareDataFormat.IsToggled = (BleMvxApplication._config.RFID_ShareFormat == 0) ? false : true;
+            buttonShareDataFormat.Text = _ShareDataFormatOptions[BleMvxApplication._config.RFID_ShareFormat];
 
             switchRSSIDBm.IsToggled = BleMvxApplication._config.RFID_DBm;
             //switchSavetoFile.IsToggled = BleMvxApplication._config.RFID_SavetoFile;
@@ -106,7 +108,7 @@ namespace BLE.Client.Pages
             BleMvxApplication._config.RFID_IPAddress = entryServerIP.Text;
 
             BleMvxApplication._config.RFID_NewTagLocation = switchNewTagLocation.IsToggled;
-            BleMvxApplication._config.RFID_ShareFormat = switchShareDataFormat.IsToggled ? 1 : 0;
+            BleMvxApplication._config.RFID_ShareFormat = Array.IndexOf(_ShareDataFormatOptions, buttonShareDataFormat.Text);
 
             //BleMvxApplication._config.RFID_TagDelayTime = int.Parse(entryTagDelay.Text);
             //BleMvxApplication._config.RFID_InventoryDuration = UInt32.Parse(entryInventoryDuration.Text);
@@ -134,6 +136,14 @@ namespace BLE.Client.Pages
 
             if (answer != null && answer !="Cancel")
                 buttonBatteryLevelFormat.Text = answer;
+        }
+
+        public async void buttonShareDataFormatClicked(object sender, EventArgs e)
+        {
+            var answer = await DisplayActionSheet("Share Data Format", null, null, _ShareDataFormatOptions);
+
+            if (answer != null)
+                buttonShareDataFormat.Text = answer;
         }
 
         public void btnBarcodeResetClicked(object sender, EventArgs e)

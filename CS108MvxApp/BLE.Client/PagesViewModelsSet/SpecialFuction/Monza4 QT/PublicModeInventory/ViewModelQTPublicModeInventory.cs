@@ -86,7 +86,7 @@ namespace BLE.Client.ViewModels
             OnChangetoPrivateModeReducesRangeButtonCommand = new Command(ChangetoPrivateModeReducesRangeClick);
         }
 
-    ~ViewModelQTPublicModeInventory()
+        ~ViewModelQTPublicModeInventory()
         {
         }
 

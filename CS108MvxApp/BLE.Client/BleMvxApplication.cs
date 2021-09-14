@@ -88,7 +88,7 @@ namespace BLE.Client
         public uint[] RFID_PowerSequencing_DWell = new uint[16] { 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000 };
 
         public bool RFID_NewTagLocation = false;
-        public int RFID_ShareFormat = 0;  // 0 = JSON, 1 = CSV
+        public int RFID_ShareFormat = 0;  // 0 = JSON, 1 = CSV, 2 = Excel CSV
         public bool RFID_Focus = false;
 
         public uint RFID_BatteryPollingTime = 300;

@@ -53,6 +53,7 @@ namespace BLE.Client.ViewModels
         public ICommand OnSmartracThermologgerButtonCommand { protected set; get; }
         public ICommand OnWriteAnyEPCButtonCommand { protected set; get; }
         public ICommand OnPerformanceTestButtonCommand { protected set; get; }
+        public ICommand OnEM4325PassiveButtonCommand { protected set; get; }
         public ICommand OnMonza4QTButtonCommand { protected set; get; }
         public ICommand OnMagnusS3withGPSforTabletButtonCommand { protected set; get; }
 
@@ -79,6 +80,7 @@ namespace BLE.Client.ViewModels
             OnSmartracThermologgerButtonCommand = new Command(OnSmartracThermologgerButtonClicked);
             OnWriteAnyEPCButtonCommand = new Command(OnWriteAnyEPCButtonClicked);
             OnPerformanceTestButtonCommand = new Command(OnPerformanceTestButtonClicked);
+            OnEM4325PassiveButtonCommand = new Command(OnEM4325PassiveButtonClicked);
             OnMonza4QTButtonCommand = new Command(OnMonza4QTButtonClicked);
             OnMagnusS3withGPSforTabletButtonCommand = new Command(OnMagnusS3withGPSforTabletButtonClicked);
 
@@ -192,6 +194,11 @@ namespace BLE.Client.ViewModels
         {
             //ShowViewModel<ViewModelPerformanceTest>(new MvxBundle());
             _navigation.Navigate<ViewModelPerformanceTest>(new MvxBundle());
+        }
+
+        void OnEM4325PassiveButtonClicked()
+        {
+            _navigation.Navigate<ViewModelEM4325PassiveInventory>(new MvxBundle());
         }
 
         void OnMonza4QTButtonClicked()

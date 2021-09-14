@@ -31,7 +31,7 @@ namespace CSLibrary
     {
         UInt32[] _0000 = null;             // 0X0000~0X0002
         UInt32[] _0100 = null;              // 0x0100 ~ 0x010d
-        UInt32[] _0117 = null;
+        UInt32[] _0117 = null;              // 0x117 ~ 0x11f
         UInt32[] _0200 = null;
         UInt32[] _0300 = null;
         UInt32[] _0400 = null;
@@ -106,7 +106,7 @@ namespace CSLibrary
 
             _0000 = new UInt32[3];             // 0X0000~0X0002
             _0100 = new UInt32[14];             // 0x0100 ~ 0x010d
-            _0117 = new UInt32[8];              // 117 ~ 11e
+            _0117 = new UInt32[9];              // 117 ~ 11f
             _0200 = new UInt32[4];
             _0300 = new UInt32[0];
 
@@ -257,7 +257,7 @@ namespace CSLibrary
         /// </summary>
         /// <param name="add"></param>
         /// <param name="value"></param>
-        private void MacWriteRegister(MACREGISTER add, UInt32 value)
+        internal void MacWriteRegister(MACREGISTER add, UInt32 value)
         {
             CSLibrary.Debug.WriteLine("MAC Write {0:X}:{1:X}", add, value);
             WriteMacRegister((UInt16)add, value);
@@ -296,7 +296,7 @@ namespace CSLibrary
                         break;
 
                     case 0x0100:
-                        if (addressoffset >= 0x0017 && addressoffset  <= 0x001e)
+                        if (addressoffset >= 0x0017 && addressoffset  <= 0x001f)
                             return _0117[addressoffset - 0x17];
 
                         return _0100[addressoffset];
@@ -431,7 +431,7 @@ namespace CSLibrary
                         break;
 
                     case 0x0100:
-                        if (addressoffset >= 0x0017 && addressoffset <= 0x001e)
+                        if (addressoffset >= 0x0017 && addressoffset <= 0x001f)
                         {
                             int location = addressoffset - 0x17;
                             if (data != _0117[location])
