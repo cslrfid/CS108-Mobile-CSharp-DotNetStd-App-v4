@@ -214,7 +214,7 @@ namespace BLE.Client.ViewModels
                 BleMvxApplication._reader.rfid.Options.TagSelected.bank = CSLibrary.Constants.MemoryBank.TID;
                 BleMvxApplication._reader.rfid.Options.TagSelected.Mask = new byte[] { 0xE2, 0x80, 0xB0, 0x40 };
                 BleMvxApplication._reader.rfid.Options.TagSelected.MaskOffset = 0;
-                BleMvxApplication._reader.rfid.Options.TagSelected.MaskLength = 32;
+                BleMvxApplication._reader.rfid.Options.TagSelected.MaskLength = 24;
                 BleMvxApplication._reader.rfid.StartOperation(CSLibrary.Constants.Operation.TAG_PREFILTER);
 
                 BleMvxApplication._reader.rfid.Options.TagRanging.flags |= CSLibrary.Constants.SelectFlags.SELECT;
@@ -383,6 +383,7 @@ namespace BLE.Client.ViewModels
                 if (found)
                 {
                     TagInfoList[cnt].RSSI = Math.Round(info.rssi).ToString("");
+                    TagInfoList[cnt].BAP = ((info.Bank1Data[0] & 0x01) != 0) ? "Enable" : "Disable";
                 }
                 else
                 {

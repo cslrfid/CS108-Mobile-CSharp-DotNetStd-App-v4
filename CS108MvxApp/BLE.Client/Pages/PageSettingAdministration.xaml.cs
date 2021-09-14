@@ -123,6 +123,7 @@ namespace BLE.Client.Pages
             BleMvxApplication.SaveConfig();
 
             if (entryReaderNameModified)
+            //if (entryReaderName.Text != BleMvxApplication._reader.ReaderName)
             {
                 BleMvxApplication._reader.bluetoothIC.SetDeviceName (entryReaderName.Text);
                 entryReaderNameModified = false;

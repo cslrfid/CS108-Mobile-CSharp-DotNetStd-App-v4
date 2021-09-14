@@ -106,7 +106,14 @@ namespace CSLibrary
 			switch (mainOperation)
 			{
 				case CSLibrary.Constants.Operation.EM_GetSensorData:
-					Options.GetSensorData.temperatureC = (TagAccessPacket[32] << 0x08 | TagAccessPacket[33]) * 0.25;
+					{
+						var SensorDataMsw = (TagAccessPacket[32] << 0x08 | TagAccessPacket[33]);
+						var Temp = (SensorDataMsw & 0x00ff);
+						if ((SensorDataMsw & 0x0100) != 00)
+							Temp -= 256;
+
+						Options.GetSensorData.temperatureC = Temp * 0.25;
+					}
 					return true;
 			}
 

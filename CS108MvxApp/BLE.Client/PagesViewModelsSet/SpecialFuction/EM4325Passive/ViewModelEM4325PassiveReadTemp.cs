@@ -105,7 +105,7 @@ namespace BLE.Client.ViewModels
                     case CSLibrary.ClassEM4325.Operation.GETSENSORDATA:
                         if (e.success)
                         {
-                            labelResultText = BleMvxApplication._reader.rfid.EM4325.Options.GetSensorData.temperatureC.ToString();
+                            labelResultText = BleMvxApplication._reader.rfid.EM4325.Options.GetSensorData.temperatureC.ToString() + "ºC";
                         }
                         else
                         {
