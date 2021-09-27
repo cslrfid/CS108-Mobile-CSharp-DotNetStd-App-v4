@@ -16,6 +16,11 @@
 				<Entry Text="{ Binding entrySelectedTIDText, Mode=TwoWay }" HorizontalOptions="FillAndExpand" />
 			</StackLayout>
 
+			<StackLayout Orientation="Horizontal">
+				<Label Text="Result" WidthRequest="70" />
+				<Label Text="{ Binding labelResultText }" HorizontalOptions="FillAndExpand" />
+			</StackLayout>
+
 			<StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
 				<Button x:Name="buttonRead" Text="Init Reg File" Font="Large" BackgroundColor="#C3C3C3" Command="{Binding OnReadButtonCommand}" HorizontalOptions="FillAndExpand" />
             </StackLayout>

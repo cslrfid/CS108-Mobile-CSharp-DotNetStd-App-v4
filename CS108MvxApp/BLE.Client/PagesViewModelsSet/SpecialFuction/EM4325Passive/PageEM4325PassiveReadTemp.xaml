@@ -26,10 +26,10 @@
 				<Label Text="{ Binding labelResultText }" HorizontalOptions="FillAndExpand" />
 			</StackLayout>
 
-			<Label Text="" />
-
-			<Button x:Name="buttonReadTemp" Text="Read Temperature" Font="Large" BackgroundColor="#C3C3C3" Command="{Binding onChangeModeButtonCommand}" HorizontalOptions="FillAndExpand" />
-			<!--<Button x:Name="buttonDisableBAP" Text="Disable BAP" Font="Large" BackgroundColor="#C3C3C3" Command="{Binding onDisableBAPButtonCommand}" HorizontalOptions="FillAndExpand" />-->
+			<StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+				<Button x:Name="buttonReadTemp" Text="Read Temperature" Font="Large" BackgroundColor="#C3C3C3" Command="{Binding onChangeModeButtonCommand}" HorizontalOptions="FillAndExpand" />
+				<!--<Button x:Name="buttonDisableBAP" Text="Disable BAP" Font="Large" BackgroundColor="#C3C3C3" Command="{Binding onDisableBAPButtonCommand}" HorizontalOptions="FillAndExpand" />-->
+			</StackLayout>
 
 		</StackLayout>
 	</ScrollView>

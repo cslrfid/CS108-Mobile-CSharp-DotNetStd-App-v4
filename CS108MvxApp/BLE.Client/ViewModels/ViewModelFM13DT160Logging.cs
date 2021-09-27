@@ -14,7 +14,7 @@ using Plugin.BLE.Abstractions.Extensions;
 
 namespace BLE.Client.ViewModels
 {
-    public class ViewModelFM13DT160GetTemperature : BaseViewModel
+    public class ViewModelFM13DT160Logging : BaseViewModel
     {
         private readonly IUserDialogs _userDialogs;
 
@@ -24,11 +24,11 @@ namespace BLE.Client.ViewModels
         public string entryResultText { get; set; }
         public ICommand OnGetTempButtonCommand { protected set; get; }
 
-        public ViewModelFM13DT160GetTemperature(IAdapter adapter, IUserDialogs userDialogs) : base(adapter)
+        public ViewModelFM13DT160Logging(IAdapter adapter, IUserDialogs userDialogs) : base(adapter)
         {
             _userDialogs = userDialogs;
 
-            OnGetTempButtonCommand = new Command(OnGetTempButtonButtonClick);
+            //OnGetTempButtonCommand = new Command(OnGetTempButtonButtonClick);
         }
 
         public override void ViewAppearing()
@@ -101,7 +101,7 @@ namespace BLE.Client.ViewModels
             BleMvxApplication._reader.rfid.StartOperation(CSLibrary.Constants.Operation.TAG_SELECTED);
         }
 
-        void OnGetTempButtonButtonClick()
+        void OnStartLoggingButtonClick()
         {
             Xamarin.Forms.DependencyService.Get<ISystemSound>().SystemSound(1);
 
@@ -113,11 +113,34 @@ namespace BLE.Client.ViewModels
 
             TagSelected();
 
-            BleMvxApplication._reader.rfid.FM13DT160.Options.GetTemp.cmd_cfg = (UInt32)CSLibrary.ClassFM13DT160.GetTempParms.CMDCFG.TEMP;
-            BleMvxApplication._reader.rfid.FM13DT160.StartOperation(CSLibrary.ClassFM13DT160.Operation.GETTEMP);
+            proc = 0;
+            StartLoggingProc();
         }
 
-        void OnGetBatteryButtonButtonClick()
+        int proc = 0;
+        void StartLoggingProc()
+        {
+            switch (proc)
+            {
+                case 0:
+                    //write 1
+                    break;
+                case 1:
+                    //write 1
+                    break;
+                case 2:
+                    //write 1
+                    break;
+                case 3:
+                    //write 1
+                    break;
+                case 4:
+                    //write 1
+                    break;
+            }
+        }
+
+        void OnStopLoggingButtonClick()
         {
             Xamarin.Forms.DependencyService.Get<ISystemSound>().SystemSound(1);
 
@@ -129,8 +152,8 @@ namespace BLE.Client.ViewModels
 
             TagSelected();
 
-            BleMvxApplication._reader.rfid.FM13DT160.Options.GetTemp.cmd_cfg = (UInt32)CSLibrary.ClassFM13DT160.GetTempParms.CMDCFG.BATTERY;
-            BleMvxApplication._reader.rfid.FM13DT160.StartOperation(CSLibrary.ClassFM13DT160.Operation.GETTEMP);
+            BleMvxApplication._reader.rfid.FM13DT160.Options.StopLog.password = 0;
+            BleMvxApplication._reader.rfid.FM13DT160.StartOperation(CSLibrary.ClassFM13DT160.Operation.STOPLOG);
         }
 
         async void ShowDialog(string Msg)

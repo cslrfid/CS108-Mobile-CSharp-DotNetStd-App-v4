@@ -109,9 +109,6 @@ namespace CSLibrary
         private BluetoothIC _handleBluetoothIC = null;
         internal Battery _handleBattery = null;
 
-        // Special Function
-        public ClassEM4325 _handleEM4325 = null;
-
         public SiliconLabIC siliconlabIC
         {
             get { return _handleSiliconLabIC; }
@@ -230,7 +227,7 @@ namespace CSLibrary
         {
             byte [] data = (byte [])recData.Clone();
 
-            CSLibrary.Debug.WriteLine("Routine : ProcessAPIPacket");
+            //CSLibrary.Debug.WriteLine("Routine : ProcessAPIPacket");
 
             switch (data[3])
             {

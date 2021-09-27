@@ -106,11 +106,11 @@ namespace BLE.Client.ViewModels
             OnClearButtonCommand = new Command(ClearClick);
             OnInitialRegfileButtonCommand = new Command(OnInitialRegfileButtonClick);
             OnGetTemperatureButtonCommand = new Command(OnGetTemperatureButtonClick);
-            OnLoggingButtonCommand = new Command(OnSenseCalibrateButtonClick);
-            OnReadWriteMemoryButtonCommand = new Command(OnSystemConfigurationWord1ButtonClick);
-            OnReadWriteRegButtonCommand = new Command(OnTamperLockWordButtonClick);
-            OnAuthButtonCommand = new Command(OnSensorCalibrationWordButtonClick);
-            OnDeepSleepButtonCommand = new Command(OnSensorCalibrationWordButtonClick);
+            OnLoggingButtonCommand = new Command(OnLoggingButtonClick);
+            OnReadWriteMemoryButtonCommand = new Command(OnReadWriteMemoryButtonClick);
+            OnReadWriteRegButtonCommand = new Command(OnReadWriteRegButtonClick);
+            OnAuthButtonCommand = new Command(OnAuthButtonClick);
+            OnDeepSleepButtonCommand = new Command(OnDeepSleepButtonClick);
             OnOpModeCheckButtonCommand = new Command(OnOpModeCheckButtonClick);
             OnLedCtrlButtonCommand = new Command(OnLedCtrlButtonClick);
 
@@ -177,49 +177,46 @@ namespace BLE.Client.ViewModels
 
         private void OnInitialRegfileButtonClick()
         {
-            //ShowViewModel<ViewModelFM13DT160InitRegFile>(new MvxBundle());
             _navigation.Navigate<ViewModelFM13DT160InitRegFile>(new MvxBundle());
         }
 
         private void OnGetTemperatureButtonClick()
         {
-            //ShowViewModel<ViewModelFM13DT160GetTemperature>(new MvxBundle());
             _navigation.Navigate<ViewModelFM13DT160GetTemperature>(new MvxBundle());
         }
 
-        private void OnSenseCalibrateButtonClick()
+        private void OnLoggingButtonClick()
         {
-            //ShowViewModel<ViewModelFM13DT160GetTemperature>(new MvxBundle());
-            //_navigation.Navigate<ViewModelFM13DT160GetTemperature>(new MvxBundle());
+            _navigation.Navigate<ViewModelFM13DT160Logging>(new MvxBundle());
         }
 
-        private void OnSystemConfigurationWord1ButtonClick()
+        private void OnReadWriteMemoryButtonClick()
         {
-            //ShowViewModel<ViewModelEM4152SystemConfigurationWord1>(new MvxBundle());
-            _navigation.Navigate<ViewModelEM4152SystemConfigurationWord1>(new MvxBundle());
+            _navigation.Navigate<ViewModelFM13DT160ReadWriteMemory>(new MvxBundle());
         }
 
-        private void OnTamperLockWordButtonClick()
+        private void OnReadWriteRegButtonClick()
         {
-            //ShowViewModel<ViewModelEM4152TamperLockWord>(new MvxBundle());
-            _navigation.Navigate<ViewModelEM4152TamperLockWord>(new MvxBundle());
+            _navigation.Navigate<ViewModelFM13DT160ReadWriteRegister>(new MvxBundle());
         }
 
-        private void OnSensorCalibrationWordButtonClick()
+        private void OnAuthButtonClick()
         {
-            //ShowViewModel< ViewModelEM4152SensorCalibrationWord>(new MvxBundle());
-            _navigation.Navigate<ViewModelEM4152SensorCalibrationWord>(new MvxBundle());
+            //_navigation.Navigate<ViewModelEM4152SensorCalibrationWord>(new MvxBundle());
+        }
+        
+        private void OnDeepSleepButtonClick()
+        {
+            //_navigation.Navigate<ViewModelEM4152SensorCalibrationWord>(new MvxBundle());
         }
 
         private void OnOpModeCheckButtonClick()
         {
-            //ShowViewModel <ViewModelFM13DT160OpModeCheck>(new MvxBundle());
             _navigation.Navigate<ViewModelFM13DT160OpModeCheck>(new MvxBundle());
         }
 
         private void OnLedCtrlButtonClick()
         {
-            //ShowViewModel<ViewModelFM13DT160LedCtrl>(new MvxBundle());
             _navigation.Navigate<ViewModelFM13DT160LedCtrl>(new MvxBundle());
         }
 
@@ -298,7 +295,7 @@ namespace BLE.Client.ViewModels
             BleMvxApplication._reader.rfid.Options.TagRanging.multibanks = 1;
             BleMvxApplication._reader.rfid.Options.TagRanging.bank1 = CSLibrary.Constants.MemoryBank.TID;
             BleMvxApplication._reader.rfid.Options.TagRanging.offset1 = 0;
-            BleMvxApplication._reader.rfid.Options.TagRanging.count1 = 4;
+            BleMvxApplication._reader.rfid.Options.TagRanging.count1 = 6;
 
             BleMvxApplication._reader.rfid.StartOperation(CSLibrary.Constants.Operation.TAG_PRERANGING);
         }

@@ -13,7 +13,7 @@
 
       <StackLayout Orientation="Horizontal">
         <Label Text="Reader Name" WidthRequest="100" />
-		    <Entry x:Name="entryReaderName" Completed="entryReaderNameCompleted" HorizontalOptions="FillAndExpand" />
+		    <Entry x:Name="entryReaderName" HorizontalOptions="FillAndExpand" />
       </StackLayout>
 
       <!--Label x:Name="labelSerialNumber" /-->

@@ -37,6 +37,8 @@
     <MtouchLink>None</MtouchLink>
     <MtouchArch>i386, x86_64</MtouchArch>
     <ConsolePause>false</ConsolePause>
+    <CodesignKey>Apple Development: Wallace Sit (JBBYRB3QK9)</CodesignKey>
+    <CodesignProvision>VS: WildCard Development</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>

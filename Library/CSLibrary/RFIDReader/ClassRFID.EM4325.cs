@@ -121,17 +121,17 @@ namespace CSLibrary
 		}
 
 		// call by Library core
-		internal int CommandEndProc(CSLibrary.Constants.Operation mainOperation, bool success)
+		internal bool CommandEndProc(CSLibrary.Constants.Operation mainOperation, bool success)
 		{
 			switch (mainOperation)
 			{
 				case CSLibrary.Constants.Operation.EM_GetSensorData:
 					if (OnAccessCompleted != null)
 						OnAccessCompleted(this, new OnAccessCompletedEventArgs(Operation.GETSENSORDATA, success));
-					return 1;
+					return true;
 			}
 
-			return 0;
+			return false;
 		}
 	}
 }

@@ -20,6 +20,7 @@ namespace BLE.Client.ViewModels
 
         public string entrySelectedEPCText { get; set; }
         public string entrySelectedPWDText { get; set; }
+        public string labelResultText { get; set; }
         public ICommand OnSetLedOnButtonCommand { protected set; get; }
         public ICommand OnSetLedOffButtonCommand { protected set; get; }
         public ICommand OnInitLedSettingButtonCommand { protected set; get; }
@@ -35,8 +36,6 @@ namespace BLE.Client.ViewModels
             OnSetLedOffButtonCommand = new Command(OnSetLedOffButtonClick);
             OnInitLedSettingButtonCommand = new Command(OnInitLedSettingButtonClick);
             OnDisableLedSettingButtonCommand = new Command(OnDisableLedSettingButtonClick);
-
-            SetEvent(true);
         }
 
         public override void ViewAppearing()
@@ -65,50 +64,54 @@ namespace BLE.Client.ViewModels
         private void SetEvent (bool enable)
         {
             // Cancel RFID event handler
-            BleMvxApplication._reader.rfid.ClearEventHandler();
+            BleMvxApplication._reader.rfid.FM13DT160.ClearEventHandler();
 
             if (enable)
             {
-                BleMvxApplication._reader.rfid.OnFM13DTAccessCompleted += new EventHandler<CSLibrary.Events.OnFM13DTAccessCompletedEventArgs>(TagCompletedEvent);
+                BleMvxApplication._reader.rfid.FM13DT160.OnAccessCompleted += new EventHandler<CSLibrary.ClassFM13DT160.OnAccessCompletedEventArgs>(TagCompletedEvent);
             }
         }
 
-        void TagCompletedEvent(object sender, CSLibrary.Events.OnFM13DTAccessCompletedEventArgs e)
+        void TagCompletedEvent(object sender, CSLibrary.ClassFM13DT160.OnAccessCompletedEventArgs e)
         {
             InvokeOnMainThread(() =>
             {
-                switch (e.access)
+                switch (e.operation)
                 {
-                    case CSLibrary.Constants.FM13DTAccess.LEDCTRL:
+                    case CSLibrary.ClassFM13DT160.Operation.LEDCTRL:
                         if (e.success)
                         {
+                            labelResultText = "Set LED OK";
                         }
                         else
                         {
-                            _userDialogs.ShowError("Read Error !!!");
+                            labelResultText = "Something Error !!!";
                         }
+                        RaisePropertyChanged(() => labelResultText);
                         break;
 
-                    case CSLibrary.Constants.FM13DTAccess.READMEMORY:
+                    case CSLibrary.ClassFM13DT160.Operation.READMEMORY:
                         if (e.success)
                         {
                             WriteLedSetting();
                         }
                         else
                         {
-                            _userDialogs.ShowError("Read Error !!!");
+                            labelResultText = "Read memory Error !!!";
                         }
+                        RaisePropertyChanged(() => labelResultText);
                         break;
 
-                    case CSLibrary.Constants.FM13DTAccess.WRITEMEMORY:
+                    case CSLibrary.ClassFM13DT160.Operation.WRITEMEMORY:
                         if (e.success)
                         {
 
                         }
                         else
                         {
-                            _userDialogs.ShowError("Read Error !!!");
+                            labelResultText = "Write memory Error !!!";
                         }
+                        RaisePropertyChanged(() => labelResultText);
                         break;
                 }
             });
@@ -126,11 +129,17 @@ namespace BLE.Client.ViewModels
 
         void OnSetLedOnButtonClick ()
         {
+            labelResultText = "Writing....";
+            RaisePropertyChanged(() => labelResultText);
+
             SetLed(true);
         }
 
         void OnSetLedOffButtonClick()
         {
+            labelResultText = "Writing....";
+            RaisePropertyChanged(() => labelResultText);
+
             SetLed(false);        
         }
 
@@ -146,18 +155,24 @@ namespace BLE.Client.ViewModels
 
             TagSelected();
 
-            BleMvxApplication._reader.rfid.Options.FM13DTLedCtrl.enable = enable;
-            BleMvxApplication._reader.rfid.StartOperation(CSLibrary.Constants.Operation.FM13DT_LEDCTRL);
+            BleMvxApplication._reader.rfid.FM13DT160.Options.LedCtrl.enable = enable;
+            BleMvxApplication._reader.rfid.FM13DT160.StartOperation(CSLibrary.ClassFM13DT160.Operation.LEDCTRL);
         }
 
         void OnInitLedSettingButtonClick ()
         {
+            labelResultText = "Writing....";
+            RaisePropertyChanged(() => labelResultText);
+
             EnableLedSetting = true;
             OnInitLedButtonButtonClick();
         }
 
         void OnDisableLedSettingButtonClick ()
         {
+            labelResultText = "Writing....";
+            RaisePropertyChanged(() => labelResultText);
+
             EnableLedSetting = false;
             OnInitLedButtonButtonClick();
         }
@@ -173,9 +188,10 @@ namespace BLE.Client.ViewModels
             }
 
             // Reader b040 ~ 0xb043 = 4D B2 29 D6
-            BleMvxApplication._reader.rfid.Options.FM13DTReadMemory.offset = 0xb040;
-            BleMvxApplication._reader.rfid.Options.FM13DTReadMemory.count = 4;
-            BleMvxApplication._reader.rfid.StartOperation(CSLibrary.Constants.Operation.FM13DT_READMEMORY);
+            // Reader b040 ~ 0xb043 = 04 FB 07 F8
+            BleMvxApplication._reader.rfid.FM13DT160.Options.ReadMemory.offset = 0xb040;
+            BleMvxApplication._reader.rfid.FM13DT160.Options.ReadMemory.count = 4;
+            BleMvxApplication._reader.rfid.FM13DT160.StartOperation(CSLibrary.ClassFM13DT160.Operation.READMEMORY);
         }
 
         void WriteLedSetting ()
@@ -188,9 +204,10 @@ namespace BLE.Client.ViewModels
                 paras[0] |= 0x01;
                 paras[1] = (byte)~paras[0];
             }
-            BleMvxApplication._reader.rfid.Options.FM13DTWriteMemory.offset = 0xb040;
-            BleMvxApplication._reader.rfid.Options.FM13DTWriteMemory.data = paras;
-            //BleMvxApplication._reader.rfid.StartOperation(CSLibrary.Constants.Operation.FM13DT_WRITEMEMORY);
+            BleMvxApplication._reader.rfid.FM13DT160.Options.WriteMemory.offset = 0xb040;
+            BleMvxApplication._reader.rfid.FM13DT160.Options.WriteMemory.count = 2;
+            BleMvxApplication._reader.rfid.FM13DT160.Options.WriteMemory.data = paras;
+            BleMvxApplication._reader.rfid.FM13DT160.StartOperation( CSLibrary.ClassFM13DT160.Operation.WRITEMEMORY);
         }
 
         async void ShowDialog(string Msg)

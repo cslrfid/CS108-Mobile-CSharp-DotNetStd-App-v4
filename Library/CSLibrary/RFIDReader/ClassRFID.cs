@@ -657,7 +657,11 @@ namespace CSLibrary
                     break;
 
                 case 0xe0: // FM13DT160 & EM4325
-                    if (FM13DT160_TagAccessProc(RealCurrentOperation, recvData))
+                    {
+                        var a = 10;
+					}
+
+                    if (_deviceHandler.rfid.FM13DT160.TagAccessProc(RealCurrentOperation, recvData))
                         break;
 
                     if (_deviceHandler.rfid.EM4325.TagAccessProc(RealCurrentOperation, recvData))            
@@ -1062,10 +1066,10 @@ namespace CSLibrary
                                                 break;
 
                                             default:
-                                                if (_deviceHandler.rfid.EM4325.CommandEndProc(RealCurrentOperation, ((currentCommandResponse | result) & HighLevelInterface.BTWAITCOMMANDRESPONSETYPE.DATA1) != 0) != 0)
+                                                if (_deviceHandler.rfid.EM4325.CommandEndProc(RealCurrentOperation, ((currentCommandResponse | result) & HighLevelInterface.BTWAITCOMMANDRESPONSETYPE.DATA1) != 0))
                                                     break;
 
-                                                if (FM13DT160_CommandEnd (RealCurrentOperation, ((currentCommandResponse | result) & HighLevelInterface.BTWAITCOMMANDRESPONSETYPE.DATA1) != 0) != 0)
+                                                if (_deviceHandler.rfid.FM13DT160.CommandEndPProc(RealCurrentOperation, ((currentCommandResponse | result) & HighLevelInterface.BTWAITCOMMANDRESPONSETYPE.DATA1) != 0))
                                                     break;
 
                                                 break;
@@ -1796,6 +1800,7 @@ namespace CSLibrary
         #region Public Functions
 
         public ClassEM4325 EM4325 = null;
+        public ClassFM13DT160 FM13DT160 = null;
 
         internal RFIDReader(HighLevelInterface deviceHandler)
 		{
@@ -1803,6 +1808,7 @@ namespace CSLibrary
 
             // Special Module
             EM4325 = new ClassEM4325(deviceHandler);
+            FM13DT160 = new ClassFM13DT160(deviceHandler);
         }
 
         ~RFIDReader()

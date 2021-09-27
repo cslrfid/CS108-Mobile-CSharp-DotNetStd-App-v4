@@ -9,8 +9,6 @@ namespace BLE.Client.Pages
 	{
         readonly string [] _ShareDataFormatOptions = new string[] { "JSON", "CSV", "Excel CSV" };
 
-        bool entryReaderNameModified = false;
-
         public PageSettingAdministration()
         {
             InitializeComponent();
@@ -122,11 +120,9 @@ namespace BLE.Client.Pages
 
             BleMvxApplication.SaveConfig();
 
-            if (entryReaderNameModified)
-            //if (entryReaderName.Text != BleMvxApplication._reader.ReaderName)
+            if (entryReaderName.Text != BleMvxApplication._reader.ReaderName)
             {
                 BleMvxApplication._reader.bluetoothIC.SetDeviceName (entryReaderName.Text);
-                entryReaderNameModified = false;
                 await DisplayAlert("New Reader Name effective after reset CS108", "", null, "OK");
             }
         }
@@ -192,11 +188,6 @@ namespace BLE.Client.Pages
 
             Button b = (Button)sender;
             b.Text = answer;
-        }
-
-        public async void entryReaderNameCompleted(object sender, EventArgs e)
-        {
-            entryReaderNameModified = true;
         }
 
         public async void btnCSLCloudClicked(object sender, EventArgs e)

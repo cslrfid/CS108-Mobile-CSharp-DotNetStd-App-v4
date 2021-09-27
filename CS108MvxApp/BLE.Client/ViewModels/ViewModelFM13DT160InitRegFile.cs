@@ -19,6 +19,7 @@ namespace BLE.Client.ViewModels
         private readonly IUserDialogs _userDialogs;
 
         public string entrySelectedTIDText { get; set; }
+        public string labelResultText { get; set; }
         public ICommand OnReadButtonCommand { protected set; get; }
 
         public ViewModelFM13DT160InitRegFile(IAdapter adapter, IUserDialogs userDialogs) : base(adapter)
@@ -69,12 +70,13 @@ namespace BLE.Client.ViewModels
                 {
                     if (e.success)
                     {
-                        _userDialogs.ShowError("Init RegFile Success!");
+                        labelResultText = "Init RegFile Success!";
                     }
                     else
                     {
-                        _userDialogs.ShowError ("Init RegFile Error !!!");
+                        labelResultText = "Init RegFile Error !!!";
 					}
+                    RaisePropertyChanged(() => labelResultText);
                 }
             });
         }
@@ -88,6 +90,9 @@ namespace BLE.Client.ViewModels
                 //MessageBox.Show("Reader is busy now, please try later.");
                 return;
             }
+
+            labelResultText = "initialization....";
+            RaisePropertyChanged(() => labelResultText);
 
             BleMvxApplication._reader.rfid.Options.TagSelected.flags = CSLibrary.Constants.SelectMaskFlags.ENABLE_TOGGLE;
             BleMvxApplication._reader.rfid.Options.TagSelected.bank = CSLibrary.Constants.MemoryBank.TID;

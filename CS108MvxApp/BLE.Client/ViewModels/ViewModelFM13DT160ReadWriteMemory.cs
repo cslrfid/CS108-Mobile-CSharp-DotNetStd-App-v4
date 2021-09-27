@@ -23,6 +23,7 @@ namespace BLE.Client.ViewModels
         public string entryOffsetText { get; set; }
         public string entrySizeText { get; set; }
         public string entryValueText { get; set; }
+        public string entryResultText { get; set; }
         public ICommand ButtonReadCommand { protected set; get; }
         public ICommand ButtonWriteCommand { protected set; get; }
 
@@ -34,7 +35,6 @@ namespace BLE.Client.ViewModels
             ButtonWriteCommand = new Command(ButtonWriteClick);
 
             BleMvxApplication._reader.rfid.CancelAllSelectCriteria();
-            SetEvent(true);
         }
 
         public override void ViewAppearing()
@@ -69,59 +69,50 @@ namespace BLE.Client.ViewModels
         private void SetEvent(bool enable)
         {
             // Cancel RFID event handler
-            BleMvxApplication._reader.rfid.ClearEventHandler();
+            BleMvxApplication._reader.rfid.FM13DT160.ClearEventHandler();
 
             if (enable)
             {
                 // RFID event handler
-                BleMvxApplication._reader.rfid.OnAccessCompleted += new EventHandler<CSLibrary.Events.OnAccessCompletedEventArgs>(TagCompletedEvent);
-            }
-        }
+                BleMvxApplication._reader.rfid.FM13DT160.OnAccessCompleted += new EventHandler<CSLibrary.ClassFM13DT160.OnAccessCompletedEventArgs>(TagCompletedEvent);
+			}
+		}
 
-        public async void TagCompletedEvent(object sender, CSLibrary.Events.OnAccessCompletedEventArgs e)
-        {
-            InvokeOnMainThread(() =>
-            {
-                if (e.access == CSLibrary.Constants.TagAccess.READ)
+		public async void TagCompletedEvent(object sender, CSLibrary.ClassFM13DT160.OnAccessCompletedEventArgs e)
+		{
+			InvokeOnMainThread(() =>
+			{
+			    switch  (e.operation)
                 {
-                    switch (e.bank)
-                    {
-                        case CSLibrary.Constants.Bank.USER:
-                            if (e.success)
-                            {
-                                entryValueText = CSLibrary.Tools.Hex.ToString(BleMvxApplication._reader.rfid.Options.FM13DTReadMemory.data);
-                                RaisePropertyChanged(() => entryValueText);
+                    case CSLibrary.ClassFM13DT160.Operation.READMEMORY:
+                        if (e.success)
+                        {
+                            entryValueText = CSLibrary.Tools.Hex.ToString(BleMvxApplication._reader.rfid.FM13DT160.Options.ReadMemory.data);
+                            RaisePropertyChanged(() => entryValueText);
+                            entryResultText = "Read Success";
+                        }
+                        else
+                        {
+                            entryResultText = "Read Fail!!!";
+                        }
+                        break;
 
-                                _userDialogs.ShowSuccess("Read Sucess");
-                            }
-                            else
-                            {
-                                _userDialogs.ShowError("Read Fail!!!");
-                            }
-                            break;
-                    }
+                    case CSLibrary.ClassFM13DT160.Operation.WRITEMEMORY:
+                        if (e.success)
+                        {
+                            entryResultText = "Write Success";
+                        }
+                        else
+                        {
+                            entryResultText = "Write Fail!!!";
+                        }
+                        break;
                 }
-
-                if (e.access == CSLibrary.Constants.TagAccess.WRITE)
-                {
-                    switch (e.bank)
-                    {
-                        case CSLibrary.Constants.Bank.USER:
-                            if (e.success)
-                            {
-                                _userDialogs.ShowSuccess("Write Sucess");
-                            }
-                            else
-                            {
-                                _userDialogs.ShowError("Write Fail!!!");
-                            }
-                            break;
-                    }
-                }
+                RaisePropertyChanged(() => entryResultText);
             });
         }
 
-        void TagSelected()
+	void TagSelected()
         {
             BleMvxApplication._reader.rfid.Options.TagSelected.flags = CSLibrary.Constants.SelectMaskFlags.ENABLE_TOGGLE;
             BleMvxApplication._reader.rfid.Options.TagSelected.bank = CSLibrary.Constants.MemoryBank.EPC;
@@ -133,7 +124,8 @@ namespace BLE.Client.ViewModels
 
         void ButtonReadClick()
         {
-            entryValueText = "";
+            entryResultText = "Reading...";
+            RaisePropertyChanged(() => entryResultText);
 
             RaisePropertyChanged(() => entrySelectedEPCText);
             RaisePropertyChanged(() => entrySelectedPWDText);
@@ -143,24 +135,30 @@ namespace BLE.Client.ViewModels
 
             TagSelected();
 
-            BleMvxApplication._reader.rfid.Options.FM13DTReadMemory.offset = uint.Parse(entryOffsetText);
-            BleMvxApplication._reader.rfid.Options.FM13DTReadMemory.count = uint.Parse(entrySizeText);
-            BleMvxApplication._reader.rfid.StartOperation(CSLibrary.Constants.Operation.FM13DT_READMEMORY);
+            BleMvxApplication._reader.rfid.FM13DT160.Options.ReadMemory.offset = CSLibrary.Tools.Hex.ToUInt16(entryOffsetText);
+            BleMvxApplication._reader.rfid.FM13DT160.Options.ReadMemory.count = CSLibrary.Tools.Hex.ToUInt32(entrySizeText);
+            BleMvxApplication._reader.rfid.FM13DT160.StartOperation(CSLibrary.ClassFM13DT160.Operation.READMEMORY);
         }
 
         void ButtonWriteClick(object ind)
         {
+            entryResultText = "Writeing...";
+            RaisePropertyChanged(() => entryResultText);
+
             RaisePropertyChanged(() => entrySelectedEPCText);
             RaisePropertyChanged(() => entrySelectedPWDText);
             RaisePropertyChanged(() => entryOffsetText);
             RaisePropertyChanged(() => entrySizeText);
             RaisePropertyChanged(() => entryValueText);
 
+            byte[] value = CSLibrary.Tools.Hex.ToBytes(entryValueText) ;
+
             TagSelected();
 
-            BleMvxApplication._reader.rfid.Options.FM13DTWriteMemory.offset = uint.Parse(entryOffsetText);
-            //BleMvxApplication._reader.rfid.Options.FM13DTWriteMemory.data = Convert.ToUInt16(entryValueText, 16);
-            BleMvxApplication._reader.rfid.StartOperation(CSLibrary.Constants.Operation.FM13DT_WRITEMEMORY);
+            BleMvxApplication._reader.rfid.FM13DT160.Options.WriteMemory.offset = CSLibrary.Tools.Hex.ToUInt16(entryOffsetText);
+            BleMvxApplication._reader.rfid.FM13DT160.Options.WriteMemory.count = CSLibrary.Tools.Hex.ToUInt32(entrySizeText);
+            BleMvxApplication._reader.rfid.FM13DT160.Options.WriteMemory.data = value;
+            BleMvxApplication._reader.rfid.FM13DT160.StartOperation(CSLibrary.ClassFM13DT160.Operation.WRITEMEMORY);
         }
     }
 }
