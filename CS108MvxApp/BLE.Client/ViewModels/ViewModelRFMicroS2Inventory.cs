@@ -445,6 +445,9 @@ namespace BLE.Client.ViewModels
             if (e.type != CSLibrary.Constants.CallbackType.TAG_RANGING)
                 return;
 
+            if (e.info.Bank1Data == null || e.info.Bank2Data == null)
+                return;
+
             InvokeOnMainThread(() =>
             {
                 _tagCountForAlert++;

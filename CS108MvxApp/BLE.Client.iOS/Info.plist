@@ -41,7 +41,7 @@
 	<key>NSCalendarsUsageDescription</key>
 	<string>$(PRODUCT_NAME) user your calendar.</string>
 	<key>CFBundleVersion</key>
-	<string>274</string>
+	<string>275</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Get tag location to server</string>
 	<key>XSAppIconAssets</key>

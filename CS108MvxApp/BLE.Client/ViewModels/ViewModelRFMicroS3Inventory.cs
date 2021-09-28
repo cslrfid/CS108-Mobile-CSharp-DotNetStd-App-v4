@@ -145,7 +145,6 @@ namespace BLE.Client.ViewModels
             RaisePropertyChanged(() => SensorValueTitle);
 
             SetPowerString();
-
         }
 
         ~ViewModelRFMicroS3Inventory()
@@ -447,6 +446,9 @@ namespace BLE.Client.ViewModels
         void TagInventoryEvent(object sender, CSLibrary.Events.OnAsyncCallbackEventArgs e)
         {
             if (e.type != CSLibrary.Constants.CallbackType.TAG_RANGING)
+                return;
+
+            if (e.info.Bank1Data == null || e.info.Bank2Data == null)
                 return;
 
             InvokeOnMainThread(() =>
