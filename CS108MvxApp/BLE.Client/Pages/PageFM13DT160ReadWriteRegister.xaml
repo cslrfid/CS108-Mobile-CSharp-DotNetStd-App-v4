@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<views:MvxContentPage x:TypeArguments="viewModels:ViewModelFM13DT160GetTemperature"
+<views:MvxContentPage x:TypeArguments="viewModels:ViewModelFM13DT160ReadWriteRegister"
 		      xmlns="http://xamarin.com/schemas/2014/forms"
 			xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 			xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
 			xmlns:viewModels="clr-namespace:BLE.Client.ViewModels;assembly=BLE.Client"
-                x:Class="BLE.Client.Pages.PageFM13DT160GetTemperature"
-                Title="Get Temperature">
+                x:Class="BLE.Client.Pages.PageFM13DT160ReadWriteRegister"
+                Title="Read/Write Register">
 
   
     <ScrollView>
         <StackLayout Padding="5, 3, 5, 0">
 
 			<StackLayout Orientation="Vertical">
-				<Label Text="Selected TID"/>
+				<Label Text="Selected EPC"/>
 				<Entry Text="{ Binding entrySelectedEPCText, Mode=TwoWay }" HorizontalOptions="FillAndExpand" />
 			</StackLayout>
 
@@ -21,19 +21,30 @@
 				<Entry Text="{ Binding entrySelectedPWDText, Mode=TwoWay }" HorizontalOptions="FillAndExpand" />
 			</StackLayout>
 
+			<Label Text = "" />
+
+			<Label Text = "(C000~C0FF)" TextColor="Red"/>
 			<StackLayout Orientation="Horizontal">
-				<Label Text="Temp" WidthRequest="70" />
-				<Entry Text="{ Binding entryTempText }" HorizontalOptions="FillAndExpand" />
-			</StackLayout> 
+				<Label Text="Address" WidthRequest="100"  TextColor="Red"/>
+				<Entry Text="{ Binding entryAddressText, Mode=TwoWay }" HorizontalOptions="FillAndExpand" />
+			</StackLayout>
+
+			<Label Text = "" />
 
 			<StackLayout Orientation="Horizontal">
-				<Label Text="Result" WidthRequest="70" />
+				<Label Text="Value" WidthRequest="100" />
+				<Entry Text="{ Binding entryValueText, Mode=TwoWay }" HorizontalOptions="FillAndExpand" />
+			</StackLayout>
+
+			<StackLayout Orientation="Horizontal">
+				<Label Text="Result" WidthRequest="100" />
 				<Entry Text="{ Binding entryResultText }" HorizontalOptions="FillAndExpand" />
-			</StackLayout> 
+			</StackLayout>
 
 			<StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
-				<Button x:Name="buttonGetTemp" Text="Get Temperature" Font="Large" BackgroundColor="#C3C3C3" Command="{Binding OnGetTempButtonCommand}" HorizontalOptions="FillAndExpand" />
-            </StackLayout>
+				<Button x:Name="buttonRead" Text="Read" Font="Large" BackgroundColor="#C3C3C3" Command="{Binding ButtonReadCommand}"/>
+				<Button x:Name="buttonWrite" Text="Write" Font="Large" BackgroundColor="#C3C3C3" Command="{Binding ButtonWriteCommand}"/>
+			</StackLayout>
 
 		</StackLayout>
 	</ScrollView>

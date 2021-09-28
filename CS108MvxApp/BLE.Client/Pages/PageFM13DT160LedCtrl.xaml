@@ -21,9 +21,15 @@
 				<Entry Text="{ Binding entrySelectedPWDText, Mode=TwoWay }" HorizontalOptions="FillAndExpand" />
 			</StackLayout>
 
+			<StackLayout Orientation="Horizontal">
+				<Label Text="Result" WidthRequest="70" />
+				<Label Text="{ Binding labelResultText }" HorizontalOptions="FillAndExpand" />
+			</StackLayout>
+
 			<StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
 				<Button x:Name="buttonSetLedOn" Text="Set LED ON" Font="Large" BackgroundColor="#C3C3C3" Command="{Binding OnSetLedOnButtonCommand}" HorizontalOptions="FillAndExpand" />
 				<Button x:Name="buttonSetLedOff" Text="Set LED OFF" Font="Large" BackgroundColor="#C3C3C3" Command="{Binding OnSetLedOffButtonCommand}" HorizontalOptions="FillAndExpand" />
+				<Label Text = "" />
 				<Label Text = "" />
 				<Button x:Name="buttonInitLedSetting" Text="Init LED Setting" Font="Large" BackgroundColor="#C3C3C3" Command="{Binding OnInitLedSettingButtonCommand}" HorizontalOptions="FillAndExpand" />
 				<Button x:Name="buttonDisableLedSetting" Text="Disable LED Setting" Font="Large" BackgroundColor="#C3C3C3" Command="{Binding OnDisableLedSettingButtonCommand}" HorizontalOptions="FillAndExpand" />

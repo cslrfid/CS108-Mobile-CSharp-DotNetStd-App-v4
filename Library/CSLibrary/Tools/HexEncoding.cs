@@ -620,6 +620,18 @@ namespace CSLibrary.Tools
         */
 
         /// <summary>
+        /// Convert string to one uint16
+        /// </summary>
+        /// <param name="hexString"></param>
+        /// <returns></returns>
+        public static UInt16 ToUInt16(string hexString)
+        {
+            if (hexString == null || hexString.Length == 0)
+                return 0;
+            return UInt16.Parse(hexString, System.Globalization.NumberStyles.HexNumber);
+        }
+
+        /// <summary>
         /// Convert string to one uint32
         /// </summary>
         /// <param name="hexString"></param>
@@ -630,6 +642,7 @@ namespace CSLibrary.Tools
                 return 0;
             return UInt32.Parse(hexString, System.Globalization.NumberStyles.HexNumber);
         }
+
         /*
         /// <summary>
         /// Convert 4 bytes to long

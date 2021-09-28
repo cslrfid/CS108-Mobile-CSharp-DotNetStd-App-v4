@@ -13,7 +13,7 @@
 
       <StackLayout Orientation="Horizontal">
         <Label Text="Reader Name" WidthRequest="100" />
-		    <Entry x:Name="entryReaderName" Completed="entryReaderNameCompleted" HorizontalOptions="FillAndExpand" />
+		    <Entry x:Name="entryReaderName" HorizontalOptions="FillAndExpand" />
       </StackLayout>
 
       <!--Label x:Name="labelSerialNumber" /-->
@@ -24,19 +24,17 @@
       </StackLayout>
 
 			<StackLayout Orientation="Horizontal">
+				<Label Text="Share Data Format" WidthRequest="100" VerticalOptions="Center" />
+				<Button x:Name="buttonShareDataFormat" HorizontalOptions="FillAndExpand" BorderWidth ="1" Clicked="buttonShareDataFormatClicked" />
+			</StackLayout>
+
+			<StackLayout Orientation="Horizontal">
 				<Label Text="New Tag Location" WidthRequest="100" VerticalOptions="Center" />
 				<Label Text="Last" VerticalOptions="Center" />
 				<Switch x:Name="switchNewTagLocation"/>
 				<Label Text="Head" VerticalOptions="Center" />
 			</StackLayout>
 
-			<StackLayout Orientation="Horizontal">
-				<Label Text="Share Data Format" WidthRequest="100" VerticalOptions="Center" />
-				<Label Text="JSON" VerticalOptions="Center" />
-				<Switch x:Name="switchShareDataFormat"/>
-				<Label Text="CSV" VerticalOptions="Center" />
-			</StackLayout>
-			
             <StackLayout Orientation="Horizontal">
 				<Label Text="Inventory Alert Sound" WidthRequest="100" VerticalOptions="Center" />
 				<Label Text="Off" VerticalOptions="Center" />

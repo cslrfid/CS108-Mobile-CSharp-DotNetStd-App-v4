@@ -51,7 +51,7 @@
 				<Button Text="Get Temperature" Command="{Binding OnGetTemperatureButtonCommand}" Font="Large" BackgroundColor="#C3C3C3" TextColor="Black" />
 				<Button Text="Start/Stop/Get Logging" Command="{Binding OnLoggingButtonCommand}" Font="Large" BackgroundColor="#C3C3C3" TextColor="Black" />
 				<Button Text="Read/Write Memory" Command="{Binding OnReadWriteMemoryButtonCommand}" Font="Large" HorizontalOptions="FillAndExpand" BackgroundColor="#C3C3C3" TextColor="Black" />
-				<Button Text="Read/Write Reg" Command="{Binding OnReadWriteRegButtonCommand}" Font="Large" HorizontalOptions="FillAndExpand" BackgroundColor="#C3C3C3" TextColor="Black" />
+				<Button Text="Read/Write Register" Command="{Binding OnReadWriteRegButtonCommand}" Font="Large" HorizontalOptions="FillAndExpand" BackgroundColor="#C3C3C3" TextColor="Black" />
 				<Button Text="Auth" Command="{Binding OnAuthButtonCommand}" Font="Large" BackgroundColor="#C3C3C3" TextColor="Black" />
 				<Button Text="Deep Sleep" Command="{Binding OnDeepSleepButtonCommand}" Font="Large" BackgroundColor="#C3C3C3" TextColor="Black" />
 				<Button Text="Op Mode Check" Command="{Binding OnOpModeCheckButtonCommand}" Font="Large" HorizontalOptions="FillAndExpand" BackgroundColor="#C3C3C3" TextColor="Black" />

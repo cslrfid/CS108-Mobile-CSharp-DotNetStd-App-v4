@@ -160,6 +160,7 @@ namespace CSLibrary
 
         public HighLevelInterface()
         {
+            // Basic Module
             _handleSiliconLabIC = new SiliconLabIC(this);
             _handlerRFIDReader = new RFIDReader(this);
             _handleBarCodeReader = new BarcodeReader(this);
@@ -226,7 +227,7 @@ namespace CSLibrary
         {
             byte [] data = (byte [])recData.Clone();
 
-            CSLibrary.Debug.WriteLine("Routine : ProcessAPIPacket");
+            //CSLibrary.Debug.WriteLine("Routine : ProcessAPIPacket");
 
             switch (data[3])
             {
