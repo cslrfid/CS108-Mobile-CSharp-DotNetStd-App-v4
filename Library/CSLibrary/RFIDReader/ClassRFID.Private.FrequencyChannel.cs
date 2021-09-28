@@ -713,7 +713,7 @@ namespace CSLibrary
         private const uint HK_CHN_CNT = 8;
         private readonly uint[] hkFreqSortedIdx = new uint[]{
             0, 3, 7, 1,
-            3, 5, 6, 2,
+            4, 5, 6, 2,
         };
         #endregion
 

@@ -46,7 +46,7 @@ namespace CSLibrary
         }
 
         // RFID event code
-        private class DOWNLINKCMD
+        internal class DOWNLINKCMD
         {
             public static readonly byte[] RFIDPOWERON = { 0x80, 0x00 };
             public static readonly byte[] RFIDPOWEROFF = { 0x80, 0x01 };
@@ -78,6 +78,8 @@ namespace CSLibrary
             FM13DT160_STARTADDRPAR = 0x11c,
             FM13DT160_READWRITELENPAR = 0x11d,
             FM13DT160_DATAPAR = 0x11e,
+
+            EM4325_CFG = 0x11f,
 
             HST_PWRMGMT = 0x0200,
             HST_CMNDIAGS = 0x0201,
@@ -367,7 +369,7 @@ namespace CSLibrary
             HST_CMD = 0xF000
         }
 
-        private enum HST_CMD : uint
+        internal enum HST_CMD : uint
         {
             NV_MEM_UPDATE = 0x00000001, // Enter NV MEMORY UPDATE mode
             WROEM = 0x00000002, // Write OEM Configuration Area
@@ -420,7 +422,7 @@ namespace CSLibrary
             CUSTOMSLACCESSFIFO,
             CUSTOMEM4324GETUID,
             CUSTOMEM4325GETUID,
-            CUSTOMEMGETSENSORDATA,
+            CUSTOMEMGETSENSORDATA = 0x3B,
             CUSTOMEMRESETALARMS,
             CUSTOMEMSENDSPI,
             AUTHENTICATE = 0x50,
@@ -467,7 +469,7 @@ namespace CSLibrary
 
         private Result CurrentOperationResult;
 
-        private CSLibraryOperationParms m_rdr_opt_parms = new CSLibraryOperationParms();
+        internal CSLibraryOperationParms m_rdr_opt_parms = new CSLibraryOperationParms();
 
         #region ====================== Fire Event ======================
         private void FireStateChangedEvent(RFState e)
@@ -1049,7 +1051,7 @@ namespace CSLibrary
         /// <param name="add"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        byte[] PacketData(UInt16 add, UInt32? value = null)
+        internal byte[] PacketData(UInt16 add, UInt32? value = null)
         {
             byte[] CMDBuf = new byte[8];
 

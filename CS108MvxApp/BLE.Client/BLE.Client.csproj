@@ -45,4 +45,21 @@
     <ProjectReference Include="..\..\Library\BTWrapper\MvvmCross.Plugins.BLE\MvvmCross.Plugins.BLE.csproj" />
     <ProjectReference Include="..\..\Library\BTWrapper\Plugin.BLE.Abstractions\Plugin.BLE.Abstractions.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Update="PagesViewModelsSet\SpecialFuction\EM4325Passive\PageEM4325PassiveReadTemp.xaml.cs">
+      <DependentUpon>PageEM4325PassiveReadTemp.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="PagesViewModelsSet\SpecialFuction\EM4325Passive\PageEM4325PassiveInventory.xaml.cs">
+      <DependentUpon>PageEM4325PassiveInventory.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="PagesViewModelsSet\SpecialFuction\UCODE8\PageUCODE8Inventory.xaml.cs">
+      <DependentUpon>PageUCODE8Inventory.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\PageFM13DT160Logging.xaml.cs">
+      <DependentUpon>PageFM13DT160Logging.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\PageFM13DT160ReadWriteRegister.xaml.cs">
+      <DependentUpon>PageFM13DT160ReadWriteRegister.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>

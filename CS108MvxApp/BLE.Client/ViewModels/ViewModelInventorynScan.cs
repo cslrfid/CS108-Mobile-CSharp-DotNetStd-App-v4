@@ -1200,6 +1200,29 @@ namespace BLE.Client.ViewModels
             }
         }
 
+        string GetExcelCSVData()
+        {
+            try
+            {
+                string CSVdata = "";
+
+                foreach (var tagitem in _TagInfoList)
+                {
+                    CSVdata += "=\"" + tagitem.PC.ToString("X4") + "\",";
+                    CSVdata += "=\"" + tagitem.EPC.ToString() + "\",";
+                    CSVdata += tagitem.timeOfRead.ToString("yyyy/MM/dd HH:mm:ss") + ",";
+                    CSVdata += tagitem.timeOfRead.ToString("zzz");
+                    CSVdata += System.Environment.NewLine;
+                }
+
+                return CSVdata;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         async System.Threading.Tasks.Task<bool> ShareData()
         {
             bool r = false;
@@ -1222,6 +1245,13 @@ namespace BLE.Client.ViewModels
                     });
                     break;
 
+                case 2:
+                    r = await CrossShare.Current.Share(new Plugin.Share.Abstractions.ShareMessage
+                    {
+                        Text = GetExcelCSVData(),
+                        Title = "CS108 tags list.csv"
+                    });
+                    break;
             }
 
             return r;

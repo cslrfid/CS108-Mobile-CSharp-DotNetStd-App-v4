@@ -23,31 +23,34 @@
 
 			<Label Text = "" />
 
-			<StackLayout Orientation="Vertical">
-				<Label Text="Offset ()" WidthRequest="500" />
+			<StackLayout Orientation="Horizontal">
+				<Label Text="Offset" WidthRequest="100" />
 				<Entry Text="{ Binding entryOffsetText, Mode=TwoWay }" HorizontalOptions="FillAndExpand" />
 			</StackLayout>
 
 			<Label Text = "" />
-
-			<StackLayout Orientation="Vertical">
-				<Label Text="Size (byte)" WidthRequest="500" />
+			<Label Text = "(for Read, divide by 4 and max 12)" TextColor="Red" />
+			<Label Text = "(for Write, only accept 2 or 4)" TextColor="Red"/>
+			<StackLayout Orientation="Horizontal">
+				<Label Text="Size (byte)" WidthRequest="100" TextColor="Red"/>
 				<Entry Text="{ Binding entrySizeText, Mode=TwoWay }" HorizontalOptions="FillAndExpand" />
 			</StackLayout>
 
 			<Label Text = "" />
 
-			<StackLayout Orientation="Vertical">
-				<Label Text="MemoryValue" WidthRequest="500" />
+			<StackLayout Orientation="Horizontal">
+				<Label Text="Memory Data" WidthRequest="100" />
 				<Entry Text="{ Binding entryValueText, Mode=TwoWay }" HorizontalOptions="FillAndExpand" />
 			</StackLayout>
 
-			<StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
-				<Button x:Name="buttonRead" Text="Read" Font="Large" BackgroundColor="#C3C3C3" Command="{Binding ButtonReadCommand}"/>
-            </StackLayout>
+			<StackLayout Orientation="Horizontal">
+				<Label Text="Result" WidthRequest="100" />
+				<Entry Text="{ Binding entryResultText }" HorizontalOptions="FillAndExpand" />
+			</StackLayout>
 
-			<StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
-				<Button x:Name="buttonWrite" Text="Write" Font="Large" BackgroundColor="#C3C3C3" Clicked="ButtonWriteClicked" />
+			<StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+				<Button x:Name="buttonRead" Text="Read" Font="Large" BackgroundColor="#C3C3C3" Command="{Binding ButtonReadCommand}"/>
+				<Button x:Name="buttonWrite" Text="Write" Font="Large" BackgroundColor="#C3C3C3" Command="{Binding ButtonWriteCommand}"/>
 			</StackLayout>
 
 		</StackLayout>

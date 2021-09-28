@@ -146,7 +146,7 @@ namespace CSLibrary
 		/// </summary>
 		/// <param name="TagAccessPacket"></param>
 		/// <returns></returns>
-		int FM13DT160_TagAccessProc (CSLibrary.Constants.Operation operation, byte[] TagAccessPacket)
+		bool FM13DT160_TagAccessProc (CSLibrary.Constants.Operation operation, byte[] TagAccessPacket)
 		{
 			switch (operation)
 			{
@@ -167,13 +167,13 @@ namespace CSLibrary
 								break;
 
 							case 0xfffa: // 场能量足够
-								return 1;
+								return true;
 
 							case 0xfff5: // 场能量不足
-								return 1;
+								return true;
 
 							case 0xfff0: // 未启动场能量检测
-								return 1;
+								return true;
 						}
 					}
 					break;
@@ -184,14 +184,14 @@ namespace CSLibrary
 						if (TagAccessPacket[TagAccessPacket.Length - 4] != 00 || TagAccessPacket[TagAccessPacket.Length - 3] != 00)
 							break;
 					}
-					return 1;
+					return true;
 					break;
 
 				case CSLibrary.Constants.Operation.FM13DT_LEDCTRL:
 					{
 						var returnvalue = TagAccessPacket[TagAccessPacket.Length - 4];
 					}
-					return 1;
+					return true;
 					break;
 
 				case CSLibrary.Constants.Operation.FM13DT_OPMODECHK:
@@ -216,7 +216,7 @@ namespace CSLibrary
 						m_rdr_opt_parms.FM13DTOpModeChk.light_chk_flag = (returnvalue >> 1 & 0x01) != 0;
 						m_rdr_opt_parms.FM13DTOpModeChk.vbat_pwr_flag = (returnvalue & 0x01) != 0;
 					}
-					return 1;
+					return true;
 					break;
 
 				case CSLibrary.Constants.Operation.FM13DT_READMEMORY:
@@ -227,7 +227,7 @@ namespace CSLibrary
 						m_rdr_opt_parms.FM13DTReadMemory.data = new byte[m_rdr_opt_parms.FM13DTReadMemory.count];
 						Buffer.BlockCopy(TagAccessPacket, 20, m_rdr_opt_parms.FM13DTReadMemory.data, 0, (int)(m_rdr_opt_parms.FM13DTReadMemory.count));
 					}
-					return 1;
+					return true;
 					break;
 
 				case CSLibrary.Constants.Operation.FM13DT_READREGISTER:
@@ -246,69 +246,81 @@ namespace CSLibrary
 					break;
 			}
 
-			return -1;
+			return false;
 		}
 
 		int FM13DT160_CommandEnd(CSLibrary.Constants.Operation operation, bool success)
 		{
-			if (OnFM13DTAccessCompleted == null)
-				return 0;
+			//if (OnFM13DTAccessCompleted == null)
+			//	return 0;
 
 			switch (operation)
 			{
 				case CSLibrary.Constants.Operation.FM13DT_AUTH:
+					if (OnFM13DTAccessCompleted != null)
 					OnFM13DTAccessCompleted(this, new OnFM13DTAccessCompletedEventArgs(FM13DTAccess.AUTH, success));
 					break;
 
 				case CSLibrary.Constants.Operation.FM13DT_DEEPSLEEP:
-					OnFM13DTAccessCompleted(this, new OnFM13DTAccessCompletedEventArgs(FM13DTAccess.DEEPSLEEP, success));
+					if (OnFM13DTAccessCompleted != null)
+						OnFM13DTAccessCompleted(this, new OnFM13DTAccessCompletedEventArgs(FM13DTAccess.DEEPSLEEP, success));
 					break;
 
 				case CSLibrary.Constants.Operation.FM13DT_GETTEMP:
-					OnFM13DTAccessCompleted(this, new OnFM13DTAccessCompletedEventArgs(FM13DTAccess.GETTEMP, success));
+					if (OnFM13DTAccessCompleted != null)
+						OnFM13DTAccessCompleted(this, new OnFM13DTAccessCompletedEventArgs(FM13DTAccess.GETTEMP, success));
 					break;
 
 				case CSLibrary.Constants.Operation.FM13DT_INITIALREGFILE:
-					OnFM13DTAccessCompleted(this, new OnFM13DTAccessCompletedEventArgs(FM13DTAccess.INITIALREGFILE, success));
+					if (OnFM13DTAccessCompleted != null)
+						OnFM13DTAccessCompleted(this, new OnFM13DTAccessCompletedEventArgs(FM13DTAccess.INITIALREGFILE, success));
 					break;
 
 				case CSLibrary.Constants.Operation.FM13DT_LEDCTRL:
-					OnFM13DTAccessCompleted(this, new OnFM13DTAccessCompletedEventArgs(FM13DTAccess.LEDCTRL, success));
+					if (OnFM13DTAccessCompleted != null)
+						OnFM13DTAccessCompleted(this, new OnFM13DTAccessCompletedEventArgs(FM13DTAccess.LEDCTRL, success));
 					break;
 
 				case CSLibrary.Constants.Operation.FM13DT_OPMODECHK:
-					OnFM13DTAccessCompleted(this, new OnFM13DTAccessCompletedEventArgs(FM13DTAccess.OPMODECHK, success));
+					if (OnFM13DTAccessCompleted != null)
+						OnFM13DTAccessCompleted(this, new OnFM13DTAccessCompletedEventArgs(FM13DTAccess.OPMODECHK, success));
 					break;
 
 				case CSLibrary.Constants.Operation.FM13DT_READMEMORY:
-					OnFM13DTAccessCompleted(this, new OnFM13DTAccessCompletedEventArgs(FM13DTAccess.READMEMORY, success));
+					if (OnFM13DTAccessCompleted != null)
+						OnFM13DTAccessCompleted(this, new OnFM13DTAccessCompletedEventArgs(FM13DTAccess.READMEMORY, success));
 					break;
 
 				case CSLibrary.Constants.Operation.FM13DT_READREGISTER:
-					OnFM13DTAccessCompleted(this, new OnFM13DTAccessCompletedEventArgs(FM13DTAccess.READREGISTER, success));
+					if (OnFM13DTAccessCompleted != null)
+						OnFM13DTAccessCompleted(this, new OnFM13DTAccessCompletedEventArgs(FM13DTAccess.READREGISTER, success));
 					break;
 
 				case CSLibrary.Constants.Operation.FM13DT_STARTLOG:
-					OnFM13DTAccessCompleted(this, new OnFM13DTAccessCompletedEventArgs(FM13DTAccess.STARTLOG, success));
+					if (OnFM13DTAccessCompleted != null)
+						OnFM13DTAccessCompleted(this, new OnFM13DTAccessCompletedEventArgs(FM13DTAccess.STARTLOG, success));
 					break;
 
 				case CSLibrary.Constants.Operation.FM13DT_STOPLOG:
-					OnFM13DTAccessCompleted(this, new OnFM13DTAccessCompletedEventArgs(FM13DTAccess.STOPLOG, success));
+					if (OnFM13DTAccessCompleted != null)
+						OnFM13DTAccessCompleted(this, new OnFM13DTAccessCompletedEventArgs(FM13DTAccess.STOPLOG, success));
 					break;
 
 				case CSLibrary.Constants.Operation.FM13DT_WRITEMEMORY:
-					OnFM13DTAccessCompleted(this, new OnFM13DTAccessCompletedEventArgs(FM13DTAccess.WRITEMEMORY, success));
+					if (OnFM13DTAccessCompleted != null)
+						OnFM13DTAccessCompleted(this, new OnFM13DTAccessCompletedEventArgs(FM13DTAccess.WRITEMEMORY, success));
 					break;
 
 				case CSLibrary.Constants.Operation.FM13DT_WRITEREGISTER:
-					OnFM13DTAccessCompleted(this, new OnFM13DTAccessCompletedEventArgs(FM13DTAccess.WRITEREGISTER, success));
+					if (OnFM13DTAccessCompleted != null)
+						OnFM13DTAccessCompleted(this, new OnFM13DTAccessCompletedEventArgs(FM13DTAccess.WRITEREGISTER, success));
 					break;
 
 				default:
-					return -1;
+					return 0;
 			}
 
-			return 0;
+			return 1;
 
 
 
