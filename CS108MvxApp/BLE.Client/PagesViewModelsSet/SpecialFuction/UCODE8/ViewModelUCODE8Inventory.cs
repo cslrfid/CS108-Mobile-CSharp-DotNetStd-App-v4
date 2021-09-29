@@ -217,6 +217,7 @@ namespace BLE.Client.ViewModels
                 BleMvxApplication._reader.rfid.Options.TagRanging.flags |= CSLibrary.Constants.SelectFlags.SELECT;
             }
 
+            BleMvxApplication._reader.rfid.Options.TagRanging.multibanks = 0;
             BleMvxApplication._reader.rfid.Options.TagRanging.compactmode = false;
             BleMvxApplication._reader.rfid.StartOperation(CSLibrary.Constants.Operation.TAG_PRERANGING);
         }
@@ -304,18 +305,6 @@ namespace BLE.Client.ViewModels
         {
             if (e.type != CSLibrary.Constants.CallbackType.TAG_RANGING)
                 return;
-
-            if (BleMvxApplication._reader.rfid.Options.TagRanging.multibanks >= 1)
-            {
-                if (e.info.Bank1Data.Length != BleMvxApplication._reader.rfid.Options.TagRanging.count1)
-                    return;
-            }
-
-            if (BleMvxApplication._reader.rfid.Options.TagRanging.multibanks >= 2)
-            {
-                if (e.info.Bank2Data.Length != BleMvxApplication._reader.rfid.Options.TagRanging.count2)
-                    return;
-            }
 
             InvokeOnMainThread(() =>
             {
