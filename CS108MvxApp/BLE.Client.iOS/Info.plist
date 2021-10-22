@@ -19,7 +19,7 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>7.0</string>
+	<string>11.0</string>
 	<key>CFBundleDisplayName</key>
 	<string>CS108 RFID Reader</string>
 	<key>CFBundleIdentifier</key>
@@ -29,7 +29,7 @@
 	<key>CFBundleName</key>
 	<string>BLE.Client</string>
 	<key>CFBundleShortVersionString</key>
-	<string>4.0.1</string>
+	<string>4.0.2</string>
 	<key>UIMainStoryboardFile</key>
 	<string>LaunchScreen</string>
 	<key>NSLocationAlwaysUsageDescription</key>
@@ -41,7 +41,7 @@
 	<key>NSCalendarsUsageDescription</key>
 	<string>$(PRODUCT_NAME) user your calendar.</string>
 	<key>CFBundleVersion</key>
-	<string>276</string>
+	<string>279</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Get tag location to server</string>
 	<key>XSAppIconAssets</key>
@@ -49,6 +49,10 @@
 	<key>XSLaunchImageAssets</key>
 	<string>Media.xcassets/LaunchImages.launchimage</string>
 	<key>UIRequiresFullScreen</key>
+	<true/>
+	<key>LSSupportsOpeningDocumentsInPlace</key>
+	<true/>
+	<key>UIFileSharingEnabled</key>
 	<true/>
 </dict>
 </plist>

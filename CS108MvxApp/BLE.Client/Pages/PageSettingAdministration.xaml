@@ -24,7 +24,7 @@
       </StackLayout>
 
 			<StackLayout Orientation="Horizontal">
-				<Label Text="Share Data Format" WidthRequest="100" VerticalOptions="Center" />
+				<Label Text="Share/Save Data Format" WidthRequest="100" VerticalOptions="Center" />
 				<Button x:Name="buttonShareDataFormat" HorizontalOptions="FillAndExpand" BorderWidth ="1" Clicked="buttonShareDataFormatClicked" />
 			</StackLayout>
 
