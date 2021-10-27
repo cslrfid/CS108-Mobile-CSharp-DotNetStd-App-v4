@@ -434,7 +434,7 @@ namespace BLE.Client.ViewModels
 
             //ShowViewModel<ViewModelSecurity>(new MvxBundle());
             var navigation = Mvx.IoCProvider.Resolve<IMvxNavigationService>();
-            navigation.Navigate<ViewModelSecurity>(new MvxBundle());
+            navigation.Navigate<ViewModelSecurityKill>(new MvxBundle());
         }
 
 		public ICommand OnFilterButtonCommand { protected set; get; }

@@ -46,6 +46,15 @@
     <ProjectReference Include="..\..\Library\BTWrapper\Plugin.BLE.Abstractions\Plugin.BLE.Abstractions.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="PagesViewModelsSet\SecurityKill\PageKill.xaml.cs">
+      <DependentUpon>PageKill.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="PagesViewModelsSet\SecurityKill\PageSecurityKill.xaml.cs">
+      <DependentUpon>PageSecurityKill.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="PagesViewModelsSet\SecurityKill\PageSecurity.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
     <Compile Update="PagesViewModelsSet\SpecialFuction\EM4325Passive\PageEM4325PassiveReadTemp.xaml.cs">
       <DependentUpon>PageEM4325PassiveReadTemp.xaml</DependentUpon>
     </Compile>
