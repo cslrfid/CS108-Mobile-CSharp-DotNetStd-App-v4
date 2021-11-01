@@ -39,26 +39,26 @@ namespace BLE.Client.Pages
             pageView = false;
         }
 
-/*
- * public async void OnButtonShareClicked(object sender, EventArgs e)
-        {
-            string answer;
+        /*
+         * public async void OnButtonShareClicked(object sender, EventArgs e)
+                {
+                    string answer;
 
-            answer = await DisplayActionSheet("Data Format", "Cancel", null, new string[] { "JSON", "CVS" });
+                    answer = await DisplayActionSheet("Data Format", "Cancel", null, new string[] { "JSON", "CVS" });
 
-            if (answer == "Cancel")
-                return;
+                    if (answer == "Cancel")
+                        return;
 
-            if (answer == "JSON")
-                BleMvxApplication._config.RFID_ShareFormat = 0;
-            else
-                BleMvxApplication._config.RFID_ShareFormat = 1;
+                    if (answer == "JSON")
+                        BleMvxApplication._config.RFID_ShareFormat = 0;
+                    else
+                        BleMvxApplication._config.RFID_ShareFormat = 1;
 
-            buttonShare.SetBinding(Button.CommandProperty, new Binding("OnShareDataCommand"));
-            buttonShare.Command.Execute(1);
-            buttonShare.RemoveBinding(Button.CommandProperty);
-        }
-*/
+                    buttonShare.SetBinding(Button.CommandProperty, new Binding("OnShareDataCommand"));
+                    buttonShare.Command.Execute(1);
+                    buttonShare.RemoveBinding(Button.CommandProperty);
+                }
+        */
 
     }
 }

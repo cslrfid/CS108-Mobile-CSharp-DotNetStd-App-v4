@@ -861,7 +861,7 @@ namespace CSLibrary
             //m_pMac->WriteRegister(HST_TAGACC_DESC_CFG, HST_TAGACC_DESC_CFG_RETRY(7));
 
             // Issue the kill command
-            _deviceHandler.SendAsync(0, 0, DOWNLINKCMD.RFIDCMD, PacketData(0xf000, (UInt32)HST_CMD.KILL), HighLevelInterface.BTWAITCOMMANDRESPONSETYPE.WAIT_BTAPIRESPONSE_COMMANDENDRESPONSE);
+            _deviceHandler.SendAsync(0, 0, DOWNLINKCMD.RFIDCMD, PacketData(0xf000, (UInt32)HST_CMD.KILL), HighLevelInterface.BTWAITCOMMANDRESPONSETYPE.WAIT_BTAPIRESPONSE_COMMANDENDRESPONSE, (uint)CSLibrary.Constants.Operation.TAG_KILL);
             //if (COMM_HostCommand(HST_CMD.KILL) != Result.OK || CurrentOperationResult != Result.OK)
             //	return false;
 
@@ -872,6 +872,9 @@ namespace CSLibrary
         {
             ushort[] tmp = new ushort[1];
 
+            RFID_18K6CTagKill();
+
+#if oldcode
             if (RFID_18K6CTagKill())
             {
                 if (CUST_18K6CTagRead(
@@ -890,6 +893,7 @@ namespace CSLibrary
             }
             //FireAccessCompletedEvent(new OnAccessCompletedEventArgs(m_Result == Result.OK, Bank.UNKNOWN, TagAccess.KILL, null));
             //FireStateChangedEvent(RFState.IDLE);
+#endif
         }
 
         private void TagAuthenticateThreadProc()
