@@ -1065,6 +1065,19 @@ namespace CSLibrary
                                                 }
                                                 break;
 
+                                            case CSLibrary.Constants.Operation.TAG_KILL:
+                                                {
+                                                    CSLibrary.Debug.WriteLine("Tag Kill end {0}", currentCommandResponse);
+
+                                                    FireAccessCompletedEvent(
+                                                        new OnAccessCompletedEventArgs(
+                                                        (((currentCommandResponse | result) & HighLevelInterface.BTWAITCOMMANDRESPONSETYPE.DATA1) != 0),
+                                                        Bank.UNKNOWN,
+                                                        TagAccess.KILL,
+                                                        null));
+                                                }
+                                                break;
+
                                             default:
                                                 if (_deviceHandler.rfid.EM4325.CommandEndProc(RealCurrentOperation, ((currentCommandResponse | result) & HighLevelInterface.BTWAITCOMMANDRESPONSETYPE.DATA1) != 0))
                                                     break;
