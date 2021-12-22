@@ -1177,6 +1177,7 @@ namespace CSLibrary
         /// </summary>
         private double[] TWTableOfFreq = new double[]
         {
+#if oldtwfreq
             922.25,
             922.75,
             923.25,
@@ -1189,11 +1190,25 @@ namespace CSLibrary
             926.75,
             927.25,
             927.75,
+#endif
+            922.875,
+            923.250,
+            923.625,
+            924.000,
+            924.375,
+            924.750,
+            925.125,
+            925.500,
+            925.875,
+            926.250,
+            926.625,
+            927.000
         };
 
         /*Not same as CS101*/
         private uint[] twFreqTable = new uint[]
         {
+#if oldtwfreq
             0x00180E7D, /*927.25MHz   10*/
             0x00180E73, /*924.75MHz   5*/
             0x00180E6B, /*922.75MHz   1*/
@@ -1206,7 +1221,21 @@ namespace CSLibrary
             0x00180E69, /*922.25MHz   0*/
             0x00180E77, /*925.75MHz   7*/
             0x00180E6F, /*923.75MHz   3*/
+#endif
+            0x001009a7, /* 926.625 10 */
+            0x001009a2, /* 924.750 5 */
+            0x0010099e, /* 923.250 1 */
+            0x001009a3, /* 925.125 6 */
+            0x001009a8, /* 927.000 11 */
+            0x001009a1, /* 924.375 4 */
+            0x001009a5, /* 925.875 8 */
+            0x0010099f, /* 923.625 2 */
+            0x001009a6, /* 926.250 9 */
+            0x0010099d, /* 922.875 0 */
+            0x001009a4, /* 925.500 7 */
+            0x001009a0, /* 924.000 3 */
         };
+
         /// <summary>
         /// Taiwan Frequency Channel number
         /// </summary>
@@ -2100,9 +2129,9 @@ namespace CSLibrary
             8, 4, 2, 7, 3
         };
 
-        #endregion
+#endregion
 
-        #region BA
+#region BA
 
         private readonly double[] BATableOfFreq = new double[]
         {
@@ -2128,11 +2157,11 @@ namespace CSLibrary
             0, 1, 2, 3
         };
 
-        #endregion
+#endregion
         
-        #endregion
+#endregion
 
-        #endregion
+#endregion
 
 
         /// <summary>
