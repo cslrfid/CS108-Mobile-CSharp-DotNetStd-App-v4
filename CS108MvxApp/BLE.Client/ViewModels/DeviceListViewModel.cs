@@ -181,7 +181,8 @@ namespace BLE.Client.ViewModels
                 switch (Xamarin.Forms.Device.RuntimePlatform)
                 {
                     case Xamarin.Forms.Device.UWP:
-                        if (args.Device.AdvertisementRecords.Count == 0)
+                        //if (args.Device.AdvertisementRecords.Count == 0)
+                        if (!args.Device.Name.StartsWith("Bluetooth"))
                             CS108Service = true;
                         break;
 
