@@ -224,6 +224,9 @@
     <PackageReference Include="MvvmCross.Forms">
       <Version>7.1.2</Version>
     </PackageReference>
+    <PackageReference Include="MvvmCross.Plugin.BLE">
+      <Version>2.1.2</Version>
+    </PackageReference>
     <PackageReference Include="Plugin.Permissions">
       <Version>6.0.1</Version>
     </PackageReference>
@@ -250,16 +253,6 @@
     <ProjectReference Include="..\BLE.Client\BLE.Client.csproj">
       <Project>{47E1BEC1-4717-46F5-9E71-6F4CCB7B0EAF}</Project>
       <Name>BLE.Client</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Library\BTWrapper\MvvmCross.Plugins.BLE\MvvmCross.Plugins.BLE.csproj">
-      <Project>{D4662C4F-FFD1-4D7C-BC89-D5AAF7ED79E4}</Project>
-      <Name>MvvmCross.Plugins.BLE</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Library\BTWrapper\MvvmCross.Plugins.BLE.iOS\MvvmCross.Plugins.BLE.iOS.csproj">
-      <Project>{CB52CFF4-F804-41A0-8408-A31365F4BA91}</Project>
-      <Name>MvvmCross.Plugins.BLE.iOS</Name>
-      <IsAppExtension>false</IsAppExtension>
-      <IsWatchApp>false</IsWatchApp>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

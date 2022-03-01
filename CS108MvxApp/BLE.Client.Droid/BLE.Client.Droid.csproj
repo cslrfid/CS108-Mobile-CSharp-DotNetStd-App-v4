@@ -125,6 +125,9 @@
     <PackageReference Include="MvvmCross.Forms">
       <Version>7.1.2</Version>
     </PackageReference>
+    <PackageReference Include="MvvmCross.Plugin.BLE">
+      <Version>2.1.2</Version>
+    </PackageReference>
     <PackageReference Include="Plugin.Permissions">
       <Version>6.0.1</Version>
     </PackageReference>
@@ -221,14 +224,6 @@
     <ProjectReference Include="..\BLE.Client\BLE.Client.csproj">
       <Project>{47E1BEC1-4717-46F5-9E71-6F4CCB7B0EAF}</Project>
       <Name>BLE.Client</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Library\BTWrapper\MvvmCross.Plugins.BLE\MvvmCross.Plugins.BLE.csproj">
-      <Project>{D4662C4F-FFD1-4D7C-BC89-D5AAF7ED79E4}</Project>
-      <Name>MvvmCross.Plugins.BLE</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Library\BTWrapper\MvvmCross.Plugins.BLE.Droid\MvvmCross.Plugins.BLE.Droid.csproj">
-      <Project>{6CF7D1D9-FDD9-4158-9E0F-F102027291F0}</Project>
-      <Name>MvvmCross.Plugins.BLE.Droid</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
