@@ -103,7 +103,7 @@ namespace BLE.Client
         {
             int port = 16;
 
-            RFID_TagPopulation = 30;
+            RFID_TagPopulation = 60;
             RFID_TagDelayTime = 0;
 
             RFID_AntennaEnable = new bool[port];
@@ -135,14 +135,14 @@ namespace BLE.Client
 
             RFID_DynamicQParms = new CSLibrary.Structures.DynamicQParms();
             RFID_DynamicQParms.minQValue = 0;
-            RFID_DynamicQParms.startQValue = 6;
+            RFID_DynamicQParms.startQValue = 7;
             RFID_DynamicQParms.maxQValue = 15;
             RFID_DynamicQParms.toggleTarget = 1;
             RFID_DynamicQParms.thresholdMultiplier = 4;
             RFID_DynamicQParms.retryCount = 0;
 
             RFID_FixedQParms = new CSLibrary.Structures.FixedQParms();
-            RFID_FixedQParms.qValue = 6;
+            RFID_FixedQParms.qValue = 7;
             RFID_FixedQParms.retryCount = 0;
             RFID_FixedQParms.toggleTarget = 1;
             RFID_FixedQParms.repeatUntilNoTags = 0;
@@ -218,6 +218,11 @@ namespace BLE.Client
         public static uint _POSTFILTER_MASK_Offset = 0;
         public static bool _POSTFILTER_MASK_MatchNot = false;
         public static bool _POSTFILTER_MASK_Enable = false;
+
+        // for RSSI Filter
+        public static CSLibrary.Constants.RSSIFILTERTYPE _RSSIFILTER_Type = CSLibrary.Constants.RSSIFILTERTYPE.DISABLE ;
+        public static CSLibrary.Constants.RSSIFILTEROPTION _RSSIFILTER_Option = CSLibrary.Constants.RSSIFILTEROPTION.GREATEROREQUAL;
+        public static double _RSSIFILTER_Threshold_dBV = 0;
 
         public static int _inventoryEntryPoint = 0;
         public static bool _settingPage1TagPopulationChanged = false;

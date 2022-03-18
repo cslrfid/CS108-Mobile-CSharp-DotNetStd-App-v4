@@ -38,7 +38,7 @@ namespace BLE.Client.ViewModels
 
         public bool _startInventory = true;
 
-        public string FilterIndicator { get { return (BleMvxApplication._PREFILTER_Enable | BleMvxApplication._POSTFILTER_MASK_Enable) ? "Filter On" : ""; } }
+        public string FilterIndicator { get { return (BleMvxApplication._PREFILTER_Enable | BleMvxApplication._POSTFILTER_MASK_Enable | BleMvxApplication._RSSIFILTER_Type != CSLibrary.Constants.RSSIFILTERTYPE.DISABLE) ? "Please turn filter Off" : ""; } }
 
         private string _startInventoryButtonText = "Start Inventory";
         public string startInventoryButtonText { get { return _startInventoryButtonText; } }

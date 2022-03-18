@@ -155,7 +155,7 @@ namespace BLE.Client.ViewModels
 
         public bool _InventoryScanning = false;
 
-        public string FilterIndicator { get { return (BleMvxApplication._PREFILTER_Enable | BleMvxApplication._POSTFILTER_MASK_Enable) ? "Filter On" : ""; } }
+        public string FilterIndicator { get { return (BleMvxApplication._PREFILTER_Enable | BleMvxApplication._POSTFILTER_MASK_Enable | BleMvxApplication._RSSIFILTER_Type != CSLibrary.Constants.RSSIFILTERTYPE.DISABLE) ? "Filter On" : ""; } }
 
         private string _startInventoryButtonText = "Start Inventory";
         public string startInventoryButtonText { get { return _startInventoryButtonText; } }
@@ -420,6 +420,8 @@ namespace BLE.Client.ViewModels
                 BleMvxApplication._reader.rfid.SetPostMatchCriteria(sel);
                 BleMvxApplication._reader.rfid.Options.TagRanging.flags |= CSLibrary.Constants.SelectFlags.POSTMATCH;
             }
+
+            BleMvxApplication._reader.rfid.SetRSSIFilter(BleMvxApplication._RSSIFILTER_Type, BleMvxApplication._RSSIFILTER_Option, BleMvxApplication._RSSIFILTER_Threshold_dBV);
 
             // Multi bank inventory
             BleMvxApplication._reader.rfid.Options.TagRanging.multibanks = 0;

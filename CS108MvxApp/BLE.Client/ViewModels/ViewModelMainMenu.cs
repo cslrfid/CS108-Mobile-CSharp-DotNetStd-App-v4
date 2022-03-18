@@ -104,7 +104,10 @@ namespace BLE.Client.ViewModels
             CheckConnection();
 
             if (BleMvxApplication._reader.rfid.GetModel() != CSLibrary.Constants.Machine.UNKNOWN)
+            {
                 BleMvxApplication._reader.rfid.CancelAllSelectCriteria();
+                BleMvxApplication._reader.rfid.SetRSSIFilter(CSLibrary.Constants.RSSIFILTERTYPE.DISABLE);
+            }
             BleMvxApplication._reader.rfid.Options.TagRanging.focus = false;
             BleMvxApplication._reader.rfid.Options.TagRanging.fastid = false;
 
