@@ -18,6 +18,8 @@ namespace CSLibrary
             public static readonly byte[] GETTRIGGERSTATE = { 0xA0, 0x01 };
             public static readonly byte[] STARTAUTOREPORTING = { 0xA0, 0x02 };
             public static readonly byte[] STOPAUTOREPORTING = { 0xA0, 0x03 };
+            public static readonly byte[] STARTTRIGGERSTATEAUTOREPORTING = { 0xA0, 0x08 };
+            public static readonly byte[] STOPTRIGGERSTATEAUTOREPORTING = { 0xA0, 0x09 };
         }
 
         private HighLevelInterface _deviceHandler;
@@ -86,6 +88,27 @@ namespace CSLibrary
   //              if (_currentAutoReportStatus)
                 {
                     _deviceHandler.SendAsync(0, 2, DOWNLINKCMD.STOPAUTOREPORTING, null, HighLevelInterface.BTWAITCOMMANDRESPONSETYPE.WAIT_BTAPIRESPONSE);
+                    _currentAutoReportStatus = false;
+                }
+            }
+        }
+
+        
+        internal void SetTriggerStateAutoReporting(bool OnOff)
+        {
+            if (OnOff)
+            {
+                //                if (!_currentAutoReportStatus)
+                {
+                    _deviceHandler.SendAsync(0, 2, DOWNLINKCMD.STARTTRIGGERSTATEAUTOREPORTING, new byte [1]{1}, HighLevelInterface.BTWAITCOMMANDRESPONSETYPE.WAIT_BTAPIRESPONSE);
+                    _currentAutoReportStatus = true;
+                }
+            }
+            else
+            {
+                //              if (_currentAutoReportStatus)
+                {
+                    _deviceHandler.SendAsync(0, 2, DOWNLINKCMD.STOPTRIGGERSTATEAUTOREPORTING, null, HighLevelInterface.BTWAITCOMMANDRESPONSETYPE.WAIT_BTAPIRESPONSE);
                     _currentAutoReportStatus = false;
                 }
             }

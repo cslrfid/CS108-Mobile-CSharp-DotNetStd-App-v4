@@ -436,7 +436,7 @@ namespace BLE.Client.ViewModels
         {
             if (BleMvxApplication._reader.BLEBusy)
             {
-                _userDialogs.ShowSuccess("Configuring Reader, Please Wait", 1000);
+                //_userDialogs.ShowSuccess("Configuring Reader, Please Wait", 1000);
                 return;
             }
 
