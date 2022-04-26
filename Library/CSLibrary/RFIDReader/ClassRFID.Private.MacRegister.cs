@@ -45,6 +45,7 @@ namespace CSLibrary
         UInt32[] _0900 = null;             // 0X0900 ~ 0X0901
         UInt32[] _0902 = null;             // 0X0902
         UInt32[,] _0903_906 = null;     // 0X0903 ~ 0X0906
+        UInt32[] _0907_908 = null;        // 0X0907 ~ 0X0908
         UInt32[] _0910_921 = null;        // 0X0910 ~ 0X0921
         UInt32[] _0a00_a07 = null;            // 0X0a00 ~ 0x0a0f
         UInt32[] _0a08 = null;            // 0X0a08
@@ -141,6 +142,7 @@ namespace CSLibrary
             _0902 = new UInt32[2];              // Selector
             _0903_906 = new UInt32[4, 4];      // 0X0903 ~ 0X0906
 
+            _0907_908 = new UInt32[2];        // 0X0907 ~ 0X0908
             _0910_921 = new UInt32[12];        // 0X0910 ~ 0X0921
 
             _0a00_a07 = new UInt32[8];            // 0X0a00 ~ 0x0a07
@@ -349,6 +351,8 @@ namespace CSLibrary
                             return _0902[1];
                         else if (addressoffset >= 0x0003 && addressoffset <= 0x006)
                             return _0903_906[_0902[1], addressoffset - 3];
+                        else if (addressoffset >= 0x0007 && addressoffset <= 0x008)
+                            return _0907_908[addressoffset - 0x07];
                         else if (addressoffset >= 0x0010 && addressoffset <= 0x021)
                             return _0910_921[addressoffset - 0x10];
                         break;
@@ -586,6 +590,15 @@ namespace CSLibrary
                                 }
 
                                 _0903_906[_0902[1], addressoffset] = data;
+                                _deviceHandler.SendAsync(0, 0, DOWNLINKCMD.RFIDCMD, PacketData(address, data), HighLevelInterface.BTWAITCOMMANDRESPONSETYPE.BTAPIRESPONSE);
+                            }
+                        }
+                        else if (addressoffset >= 0x0007 && addressoffset <= 0x0008)
+                        {
+                            addressoffset -= 0x0007;
+                            if (data != _0907_908[addressoffset])
+                            {
+                                _0907_908[addressoffset] = data;
                                 _deviceHandler.SendAsync(0, 0, DOWNLINKCMD.RFIDCMD, PacketData(address, data), HighLevelInterface.BTWAITCOMMANDRESPONSETYPE.BTAPIRESPONSE);
                             }
                         }

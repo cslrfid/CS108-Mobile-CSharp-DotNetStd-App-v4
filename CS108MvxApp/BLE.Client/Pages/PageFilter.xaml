@@ -9,5 +9,6 @@
 
 	<local:PagePreFilter />
 	<local:PagePostFilter />
+    <local:PageRSSIFilter />
 
 </views:MvxTabbedPage>

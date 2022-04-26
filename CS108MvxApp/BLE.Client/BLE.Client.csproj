@@ -70,5 +70,8 @@
     <Compile Update="Pages\PageFM13DT160ReadWriteRegister.xaml.cs">
       <DependentUpon>PageFM13DT160ReadWriteRegister.xaml</DependentUpon>
     </Compile>
+    <Compile Update="PagesViewModelsSet\Setting\RSSIFilter\PageRSSIFilter.xaml.cs">
+      <DependentUpon>PageRSSIFilter.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

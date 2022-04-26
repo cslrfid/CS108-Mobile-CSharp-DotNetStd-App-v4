@@ -150,6 +150,8 @@ namespace BLE.Client.Pages
                 BleMvxApplication._reader.rfid.Options.TagRanging.flags |= CSLibrary.Constants.SelectFlags.POSTMATCH;
             }
 
+            BleMvxApplication._reader.rfid.SetRSSIFilter(BleMvxApplication._RSSIFILTER_Type, BleMvxApplication._RSSIFILTER_Option, BleMvxApplication._RSSIFILTER_Threshold_dBV);
+
             // Multi bank inventory
             BleMvxApplication._reader.rfid.Options.TagRanging.multibanks = 0;
             BleMvxApplication._reader.rfid.Options.TagRanging.compactmode = false;

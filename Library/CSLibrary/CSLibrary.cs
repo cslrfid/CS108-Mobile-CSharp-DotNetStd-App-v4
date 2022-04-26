@@ -58,6 +58,7 @@ namespace CSLibrary
             public static readonly byte[] GETTRIGGERSTATE = { 0xA0, 0x01 };
             public static readonly byte[] STARTAUTOREPORTING = { 0xA0, 0x02 };
             public static readonly byte[] STOPAUTOREPORTING = { 0xA0, 0x03 };
+            public static readonly byte[] STARTTRIGGERSTATEAUTOREPORTING = { 0xA0, 0x08 };
 
             // Silicon Lab IC event code
             public static readonly byte[] GETSILICONVER = { 0xB0, 0x00 };
@@ -197,6 +198,7 @@ namespace CSLibrary
             rfid.Connect();
 
             notification.SetAutoReport(true);
+            notification.SetTriggerStateAutoReporting(true);
             //rfid.ResetToDefaultPowerMode();
             //rfid.SetReaderPowerMode(false);
             //rfid.SetToStandbyMode();
