@@ -103,7 +103,8 @@ namespace BLE.Client.ViewModels
 
         private System.Collections.Generic.SortedDictionary<string, int> TagInfoListSpeedup = new SortedDictionary<string, int>();
 
-        public bool _InventoryScanning = false;
+        private bool _InventoryScanning = false;
+        private bool _KeyDown = false;
 
         private string _startInventoryButtonText = "Start Inventory";
         public string startInventoryButtonText { get { return _startInventoryButtonText; } }
@@ -360,7 +361,7 @@ namespace BLE.Client.ViewModels
         int _powerRunning = 0;
         void StartInventory()
         {
-            if (BleMvxApplication._reader.BLEBusy)
+            if (_InventoryScanning)
             {
                 _userDialogs.ShowSuccess("Configuring Reader, Please Wait", 1000);
                 return;
@@ -391,6 +392,9 @@ namespace BLE.Client.ViewModels
 
         async void StopInventory ()
         {
+            if (!_InventoryScanning)
+                return;
+
             BleMvxApplication._reader.rfid.StopOperation();
             if (BleMvxApplication._config.RFID_Vibration)
                 BleMvxApplication._reader.barcode.VibratorOff();
@@ -783,11 +787,15 @@ namespace BLE.Client.ViewModels
             {
                 if (e.KeyDown)
                 {
-                    StartInventory();
+                    if (!_KeyDown)
+                        StartInventory();
+                    _KeyDown = true;
                 }
                 else
                 {
-                    StopInventory();
+                    if (_KeyDown)
+                        StopInventory();
+                    _KeyDown = false;
                 }
             }
         }

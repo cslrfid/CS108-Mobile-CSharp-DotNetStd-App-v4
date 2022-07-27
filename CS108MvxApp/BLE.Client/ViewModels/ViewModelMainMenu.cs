@@ -190,13 +190,13 @@ namespace BLE.Client.ViewModels
                 }
 
                 if ((BleMvxApplication._reader.bluetoothIC.GetFirmwareVersion() & 0x0F0000) != 0x030000) // ignore CS463
-                if (BleMvxApplication._reader.rfid.GetFirmwareVersion() < 0x0002061D || BleMvxApplication._reader.siliconlabIC.GetFirmwareVersion() < 0x00010009 || BleMvxApplication._reader.bluetoothIC.GetFirmwareVersion() < 0x0001000E)
+                if (BleMvxApplication._reader.rfid.GetFirmwareVersion() < 0x0002061D || BleMvxApplication._reader.siliconlabIC.GetFirmwareVersion() < 0x00010010 || BleMvxApplication._reader.bluetoothIC.GetFirmwareVersion() < 0x00010011)
                 {
                     _userDialogs.AlertAsync("Firmware too old" + Environment.NewLine + 
                                             "Please upgrade firmware to at least :" + Environment.NewLine +
-                                            "RFID Processor firmware: V2.6.29" + Environment.NewLine +
-                                            "SiliconLab Firmware: V1.0.9" + Environment.NewLine +
-                                            "Bluetooth Firmware: V1.0.14");
+                                            "RFID Processor firmware: V2.6.44" + Environment.NewLine +
+                                            "SiliconLab Firmware: V1.0.16" + Environment.NewLine +
+                                            "Bluetooth Firmware: V1.0.17");
                 }
 
                 ClassBattery.SetBatteryMode(ClassBattery.BATTERYMODE.IDLE);
