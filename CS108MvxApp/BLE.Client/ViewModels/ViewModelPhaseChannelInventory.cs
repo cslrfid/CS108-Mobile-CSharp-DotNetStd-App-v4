@@ -343,8 +343,8 @@ namespace BLE.Client.ViewModels
 
         void StateChangedEvent(object sender, CSLibrary.Events.OnStateChangedEventArgs e)
         {
-            //InvokeOnMainThread(() =>
-            //{
+            InvokeOnMainThread(() =>
+            {
             switch (e.state)
             {
                 case CSLibrary.Constants.RFState.IDLE:
@@ -365,7 +365,7 @@ namespace BLE.Client.ViewModels
                     }
                     break;
             }
-            //});
+            });
         }
 
         private void AddOrUpdateTagData(CSLibrary.Structures.TagCallbackInfo info)
