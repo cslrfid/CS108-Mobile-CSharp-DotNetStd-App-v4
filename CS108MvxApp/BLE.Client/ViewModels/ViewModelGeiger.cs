@@ -39,7 +39,8 @@ namespace BLE.Client.ViewModels
 
         // end for test
 
-        bool _startInventory = false;
+        bool _InventoryScanning = false;
+        private bool _KeyDown = false;
         int _beepSoundCount = 0;
         int _noTagCount = 0;
 
@@ -140,11 +141,11 @@ namespace BLE.Client.ViewModels
 
         void StartGeiger ()
         {
-            if (_startInventory)
+            if (_InventoryScanning)
                 return;
 
             _startGeigerButtonText = "Stop";
-            _startInventory = true;
+            _InventoryScanning = true;
 
             RaisePropertyChanged(() => entryEPC);
             RaisePropertyChanged(() => power);
@@ -236,7 +237,7 @@ namespace BLE.Client.ViewModels
                     }
                 }
 
-                if (_startInventory)
+                if (_InventoryScanning)
                     return true;
 
                 // Stop all sound
@@ -247,7 +248,10 @@ namespace BLE.Client.ViewModels
 
         void StopGeiger ()
         {
-            _startInventory = false;
+            if (!_InventoryScanning)
+                return;
+
+            _InventoryScanning = false;
             _startGeigerButtonText = "Start";
             BleMvxApplication._reader.rfid.StopOperation();
             RaisePropertyChanged(() => startGeigerButtonText);
@@ -255,7 +259,7 @@ namespace BLE.Client.ViewModels
 
         void StartGeigerButtonClick()
         {
-            if (!_startInventory)
+            if (!_InventoryScanning)
             {
                 StartGeiger();
             }
@@ -353,11 +357,15 @@ namespace BLE.Client.ViewModels
             {
                 if (e.KeyDown)
                 {
-                    StartGeiger();
+                    if (!_KeyDown)
+                        StartGeiger();
+                    _KeyDown = true;
                 }
                 else
                 {
-                    StopGeiger();
+                    if (_KeyDown)
+                        StopGeiger();
+                    _KeyDown = false;
                 }
             }
         }

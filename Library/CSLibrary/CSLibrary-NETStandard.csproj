@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>CSLibrary</RootNamespace>
     <AssemblyName>CSLibrary</AssemblyName>
-    <Version>3.0.4</Version>
+    <Version>3.0.5</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

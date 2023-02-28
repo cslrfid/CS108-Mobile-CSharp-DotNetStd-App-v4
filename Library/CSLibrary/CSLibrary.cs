@@ -198,7 +198,8 @@ namespace CSLibrary
             rfid.Connect();
 
             notification.SetAutoReport(true);
-            notification.SetTriggerStateAutoReporting(true);
+            if (_handleSiliconLabIC.GetFirmwareVersion() >= 0x00010010)
+                notification.SetTriggerStateAutoReporting(true);
             //rfid.ResetToDefaultPowerMode();
             //rfid.SetReaderPowerMode(false);
             //rfid.SetToStandbyMode();

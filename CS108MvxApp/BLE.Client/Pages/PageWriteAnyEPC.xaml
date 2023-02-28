@@ -12,22 +12,22 @@
         <StackLayout Padding="5, 3, 5, 0">
 
             <StackLayout Orientation="Horizontal">
-                <Label Text="Number of Tags" WidthRequest="70" />
+                <Label Text="Number of Tags (dec)" WidthRequest="70" />
 				<Entry Text="{ Binding entryNumberofTagsText, Mode=TwoWay }" HorizontalOptions="FillAndExpand" />
             </StackLayout>
 
 			<StackLayout Orientation="Horizontal">
-				<Label Text="Init Value" WidthRequest="70" />
+				<Label Text="Init Value (dec)" WidthRequest="70" />
 				<Entry Text="{ Binding entryInitValueText, Mode=TwoWay }" HorizontalOptions="FillAndExpand" />
 			</StackLayout>
 
 			<StackLayout Orientation="Horizontal">
-				<Label Text="Mask" WidthRequest="70" />
+				<Label Text="Mask (hex)" WidthRequest="70" />
 				<Entry Text="{ Binding entryMaskText, Mode=TwoWay }" HorizontalOptions="FillAndExpand" />
 			</StackLayout>
 
 			<StackLayout Orientation="Horizontal">
-				<Label Text="Use Dec" WidthRequest="70" />
+				<Label Text="Write value format" WidthRequest="70" />
 				<Switch IsToggled="{ Binding switchuseHexIsToggled, Mode=TwoWay }"/>
 				<Label Text="Hex" WidthRequest="70" />
 			</StackLayout>

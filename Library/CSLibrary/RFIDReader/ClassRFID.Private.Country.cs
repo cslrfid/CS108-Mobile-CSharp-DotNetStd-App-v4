@@ -143,6 +143,9 @@ namespace CSLibrary
                             case 0x2A2A5347:
                                 m_save_country_list.Add(RegionCode.SG);
                                 break;
+                            case 0x2A2A5448:
+                                m_save_country_list.Add(RegionCode.TH);
+                                break;
                         }
                     }
                     break;
