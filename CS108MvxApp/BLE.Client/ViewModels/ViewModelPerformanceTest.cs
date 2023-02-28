@@ -36,6 +36,7 @@ namespace BLE.Client.ViewModels
         HashSet<string> TagList = new HashSet<string>();
 
         public bool _InventoryScanning = false;
+        private bool _KeyDown = false;
 
         public string FilterIndicator { get { return (BleMvxApplication._PREFILTER_Enable | BleMvxApplication._POSTFILTER_MASK_Enable | BleMvxApplication._RSSIFILTER_Type != CSLibrary.Constants.RSSIFILTERTYPE.DISABLE) ? "Filter On" : ""; } }
 
@@ -288,7 +289,7 @@ namespace BLE.Client.ViewModels
 
         void StartInventory()
         {
-            if (BleMvxApplication._reader.BLEBusy)
+            if (_InventoryScanning)
             {
                 _userDialogs.ShowSuccess("Configuring Reader, Please Wait", 1000);
                 return;
@@ -315,6 +316,9 @@ namespace BLE.Client.ViewModels
 
         async void StopInventory()
         {
+            if (_InventoryScanning == false)
+                return;
+
             BleMvxApplication._reader.rfid.StopOperation();
             if (BleMvxApplication._config.RFID_Vibration)
                 BleMvxApplication._reader.barcode.VibratorOff();
@@ -526,12 +530,15 @@ namespace BLE.Client.ViewModels
                 {
                     if (e.KeyDown)
                     {
-                        if (!_InventoryScanning)
+                        if (!_KeyDown)
                             StartInventory();
+                        _KeyDown = true;
                     }
                     else
                     {
-                        StopInventory();
+                        if (_KeyDown)
+                            StopInventory();
+                        _KeyDown = false;
                     }
                 }
 

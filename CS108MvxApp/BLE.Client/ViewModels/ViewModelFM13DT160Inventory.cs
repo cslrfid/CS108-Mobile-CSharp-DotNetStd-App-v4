@@ -82,6 +82,7 @@ namespace BLE.Client.ViewModels
         public int ListViewRowHeight { get { return _ListViewRowHeight; } set { _ListViewRowHeight = value; } }
 
         public bool _startInventory = true;
+        private bool _KeyDown = false;
 
         public int tagsCount = 0;
         int _tagCountForAlert = 0;
@@ -323,6 +324,8 @@ namespace BLE.Client.ViewModels
 
         void StopInventory()
         {
+            if (_startInventory)
+                return;
             _startInventory = true;
             _startInventoryButtonText = "Start Inventory";
 
@@ -516,11 +519,15 @@ namespace BLE.Client.ViewModels
             {
                 if (e.KeyDown)
                 {
-                    StartInventory();
+                    if (!_KeyDown)
+                        StartInventory();
+                    _KeyDown = true;
                 }
                 else
                 {
-                    StopInventory();
+                    if (_KeyDown)
+                        StopInventory();
+                    _KeyDown = false;
                 }
             }
         }

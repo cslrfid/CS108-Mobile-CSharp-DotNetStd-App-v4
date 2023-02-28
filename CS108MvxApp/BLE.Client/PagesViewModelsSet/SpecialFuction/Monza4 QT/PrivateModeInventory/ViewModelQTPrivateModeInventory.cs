@@ -231,6 +231,9 @@ namespace BLE.Client.ViewModels
 
         void StopInventory()
         {
+            if (_startInventory)
+                return;
+
             _startInventory = true;
             _startInventoryButtonText = "Start Inventory";
 

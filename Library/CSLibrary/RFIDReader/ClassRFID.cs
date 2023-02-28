@@ -158,6 +158,9 @@ namespace CSLibrary
                             case 0x2A2A5347:
                                 country += " SG";
                                 break;
+                            case 0x2A2A5448:
+                                country += " TH";
+                                break;
                         }
                     }
                     break;

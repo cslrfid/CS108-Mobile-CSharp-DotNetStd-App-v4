@@ -36,6 +36,7 @@ namespace BLE.Client.ViewModels
         bool _newTagFound = false;
 
         public bool _startInventory = true;
+        private bool _KeyDown = false;
 
         public string FilterIndicator { get { return (BleMvxApplication._PREFILTER_Enable | BleMvxApplication._POSTFILTER_MASK_Enable | BleMvxApplication._RSSIFILTER_Type != CSLibrary.Constants.RSSIFILTERTYPE.DISABLE) ? "Filter On" : ""; } }
 
@@ -257,6 +258,9 @@ namespace BLE.Client.ViewModels
 
         void StopInventory ()
         {
+            if (_startInventory)
+                return;
+
             _startInventory = true;
             _startInventoryButtonText = "Start Inventory";
 
@@ -339,8 +343,8 @@ namespace BLE.Client.ViewModels
 
         void StateChangedEvent(object sender, CSLibrary.Events.OnStateChangedEventArgs e)
         {
-            //InvokeOnMainThread(() =>
-            //{
+            InvokeOnMainThread(() =>
+            {
             switch (e.state)
             {
                 case CSLibrary.Constants.RFState.IDLE:
@@ -361,7 +365,7 @@ namespace BLE.Client.ViewModels
                     }
                     break;
             }
-            //});
+            });
         }
 
         private void AddOrUpdateTagData(CSLibrary.Structures.TagCallbackInfo info)
@@ -519,11 +523,15 @@ namespace BLE.Client.ViewModels
             {
                 if (e.KeyDown)
                 {
-                    StartInventory();
+                    if (!_KeyDown)
+                        StartInventory();
+                    _KeyDown = true;
                 }
                 else
                 {
-                    StopInventory();
+                    if (_KeyDown)
+                        StopInventory();
+                    _KeyDown = false;
                 }
             }
         }
