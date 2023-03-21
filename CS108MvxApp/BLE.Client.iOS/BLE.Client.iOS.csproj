@@ -224,6 +224,9 @@
     <PackageReference Include="MvvmCross.Forms">
       <Version>7.1.2</Version>
     </PackageReference>
+    <PackageReference Include="MvvmCross.Plugin.BLE">
+      <Version>2.1.3</Version>
+    </PackageReference>
     <PackageReference Include="Plugin.Permissions">
       <Version>6.0.1</Version>
     </PackageReference>
@@ -231,35 +234,25 @@
       <Version>4.1.0-beta</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms">
-      <Version>5.0.0.2083</Version>
+      <Version>5.0.0.2578</Version>
     </PackageReference>
     <PackageReference Include="Acr.UserDialogs">
       <Version>6.5.1</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
-      <Version>13.0.1</Version>
+      <Version>13.0.3</Version>
     </PackageReference>
     <PackageReference Include="PCLStorage">
       <Version>1.0.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Essentials">
-      <Version>1.7.0</Version>
+      <Version>1.7.5</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLE.Client\BLE.Client.csproj">
       <Project>{47E1BEC1-4717-46F5-9E71-6F4CCB7B0EAF}</Project>
       <Name>BLE.Client</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Library\BTWrapper\MvvmCross.Plugins.BLE\MvvmCross.Plugins.BLE.csproj">
-      <Project>{D4662C4F-FFD1-4D7C-BC89-D5AAF7ED79E4}</Project>
-      <Name>MvvmCross.Plugins.BLE</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Library\BTWrapper\MvvmCross.Plugins.BLE.iOS\MvvmCross.Plugins.BLE.iOS.csproj">
-      <Project>{CB52CFF4-F804-41A0-8408-A31365F4BA91}</Project>
-      <Name>MvvmCross.Plugins.BLE.iOS</Name>
-      <IsAppExtension>false</IsAppExtension>
-      <IsWatchApp>false</IsWatchApp>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
