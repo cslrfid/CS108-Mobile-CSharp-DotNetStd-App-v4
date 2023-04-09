@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
@@ -43,7 +43,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Library\CSLibrary\CSLibrary-NETStandard.csproj" />
+    <Reference Include="CSLibrary">
+      <HintPath>Library\Debug\netstandard2.0\CSLibrary.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Update="PagesViewModelsSet\SecurityKill\PageKill.xaml.cs">

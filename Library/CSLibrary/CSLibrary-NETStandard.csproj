@@ -5,6 +5,7 @@
     <RootNamespace>CSLibrary</RootNamespace>
     <AssemblyName>CSLibrary</AssemblyName>
     <Version>3.0.5</Version>
+    <BaseOutputPath>..\..\CS108MvxApp\BLE.Client\Library</BaseOutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
