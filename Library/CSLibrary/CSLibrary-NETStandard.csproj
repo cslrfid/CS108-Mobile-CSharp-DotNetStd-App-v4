@@ -13,12 +13,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="bin\**" />
     <Compile Remove="HAL\Acr.ble\**" />
     <Compile Remove="HAL\btframework\**" />
     <Compile Remove="HAL\UWP\**" />
+    <EmbeddedResource Remove="bin\**" />
     <EmbeddedResource Remove="HAL\Acr.ble\**" />
     <EmbeddedResource Remove="HAL\btframework\**" />
     <EmbeddedResource Remove="HAL\UWP\**" />
+    <None Remove="bin\**" />
     <None Remove="HAL\Acr.ble\**" />
     <None Remove="HAL\btframework\**" />
     <None Remove="HAL\UWP\**" />
