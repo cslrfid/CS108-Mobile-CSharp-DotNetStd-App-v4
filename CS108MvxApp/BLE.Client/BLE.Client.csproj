@@ -9,7 +9,6 @@
     <Folder Include="PagesViewModelsSet\SpecialFuction\Monza4 QT\ChangetoPrivateModeReducesRange\" />
     <Folder Include="PagesViewModelsSet\SpecialFuction\Monza4 QT\ChangetoPublicModeNormalRange\" />
     <Folder Include="PagesViewModelsSet\SpecialFuction\Monza4 QT\ChangetoPublicModeReducesRange\" />
-    <Folder Include="Properties\" />
   </ItemGroup>
 
   <ItemGroup>
