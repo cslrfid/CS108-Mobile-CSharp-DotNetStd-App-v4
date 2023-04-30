@@ -28,7 +28,7 @@ namespace BLE.Client.ViewModels
         public string labelVoltage { get; set; }
         public string labelVoltageTextColor { get { return BleMvxApplication._batteryLow ? "Red" : "Black"; } }
         public string connectedButtonTextColor { get; set; } = "Black";
-
+        public string labelAppVersion { get; set; }
 
         public ViewModelMainMenu(IBluetoothLE bluetoothLe, IAdapter adapter, IUserDialogs userDialogs, ISettings settings, IPermissions permissions) : base(adapter)
         {
@@ -50,6 +50,8 @@ namespace BLE.Client.ViewModels
             BleMvxApplication._reader.OnReaderStateChanged += new EventHandler<CSLibrary.Events.OnReaderStateChangedEventArgs>(ReaderStateCChangedEvent);
 
             GetPermission();
+
+            this.labelAppVersion = "Version\n" + DependencyService.Get<IAppVersion>().GetVersion();
         }
 
         ~ViewModelMainMenu()
@@ -76,13 +78,13 @@ namespace BLE.Client.ViewModels
         {
             if (BleMvxApplication._reader.Status != CSLibrary.HighLevelInterface.READERSTATE.DISCONNECT)
             {
-                connectedButton = "Connected to " + BleMvxApplication._reader.ReaderName + "/Select Another";
+                connectedButton = "Connected: " + BleMvxApplication._reader.ReaderName + "\nPress to Select Another";
                 connectedButtonTextColor = "Blue";
             }
             else
             {
                 connectedButton = "Press to Scan/Connect Reader";
-                connectedButtonTextColor = "Red";
+                connectedButtonTextColor = "Black";
             }
 
             RaisePropertyChanged(() => connectedButton);
