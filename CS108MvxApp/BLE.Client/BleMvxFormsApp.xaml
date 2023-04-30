@@ -6,6 +6,10 @@
     x:Class="BLE.Client.BleMvxFormsApp">
   <Application.Resources>
     <ResourceDictionary>
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="#4B77BE"/>
+                <Setter Property="BarTextColor" Value="White"/>
+            </Style>
             <Color x:Key="PrimaryColor">#4B77BE</Color>
             <Color x:Key="AccentColor">#1F1F1F</Color>
             <Color x:Key="CorporateGray">#808080</Color>

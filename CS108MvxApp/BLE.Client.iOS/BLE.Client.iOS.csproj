@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -216,6 +216,25 @@
     <ImageAsset Include="Resources\Media.xcassets\Logo.imageset\iTunesArtwork.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Media.xcassets\Contents.json" />
+    <ImageAsset Include="Media.xcassets\write.imageset\Contents.json" />
+    <ImageAsset Include="Media.xcassets\write.imageset\write.png" />
+    <ImageAsset Include="Media.xcassets\filter.imageset\filter.png" />
+    <ImageAsset Include="Media.xcassets\filter.imageset\Contents.json" />
+    <ImageAsset Include="Media.xcassets\main_logo.imageset\Contents.json" />
+    <ImageAsset Include="Media.xcassets\main_logo.imageset\main_logo.png" />
+    <ImageAsset Include="Media.xcassets\register.imageset\register.png" />
+    <ImageAsset Include="Media.xcassets\register.imageset\Contents.json" />
+    <ImageAsset Include="Media.xcassets\function.imageset\function.png" />
+    <ImageAsset Include="Media.xcassets\function.imageset\Contents.json" />
+    <ImageAsset Include="Media.xcassets\settings.imageset\settings.png" />
+    <ImageAsset Include="Media.xcassets\settings.imageset\Contents.json" />
+    <ImageAsset Include="Media.xcassets\search.imageset\search.png" />
+    <ImageAsset Include="Media.xcassets\search.imageset\Contents.json" />
+    <ImageAsset Include="Media.xcassets\inventory.imageset\inventory.png" />
+    <ImageAsset Include="Media.xcassets\inventory.imageset\Contents.json" />
+    <ImageAsset Include="Media.xcassets\security.imageset\Contents.json" />
+    <ImageAsset Include="Media.xcassets\security.imageset\security.png" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MvvmCross">
