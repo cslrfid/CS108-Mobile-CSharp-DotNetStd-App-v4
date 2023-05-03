@@ -1,8 +1,19 @@
 {
   "images" : [
     {
-      "filename" : "function.png",
-      "idiom" : "universal"
+      "filename" : "function_1x.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "function_2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "function_3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {

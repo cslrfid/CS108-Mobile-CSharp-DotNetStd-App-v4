@@ -1,8 +1,19 @@
 {
   "images" : [
     {
-      "filename" : "register.png",
-      "idiom" : "universal"
+      "filename" : "register_1x.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "register_2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "register_3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {

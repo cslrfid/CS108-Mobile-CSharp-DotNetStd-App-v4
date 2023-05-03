@@ -1,8 +1,19 @@
 {
   "images" : [
     {
-      "filename" : "write.png",
-      "idiom" : "universal"
+      "filename" : "write_1x.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "write_2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "write_3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {

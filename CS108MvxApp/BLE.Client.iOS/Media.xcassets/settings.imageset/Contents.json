@@ -1,8 +1,19 @@
 {
   "images" : [
     {
-      "filename" : "settings.png",
-      "idiom" : "universal"
+      "filename" : "settings_1x.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "settings_2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "settings_3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {

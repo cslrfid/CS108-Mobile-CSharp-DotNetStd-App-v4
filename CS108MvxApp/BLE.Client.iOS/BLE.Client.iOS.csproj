@@ -218,23 +218,39 @@
     </ImageAsset>
     <ImageAsset Include="Media.xcassets\Contents.json" />
     <ImageAsset Include="Media.xcassets\write.imageset\Contents.json" />
-    <ImageAsset Include="Media.xcassets\write.imageset\write.png" />
-    <ImageAsset Include="Media.xcassets\filter.imageset\filter.png" />
     <ImageAsset Include="Media.xcassets\filter.imageset\Contents.json" />
     <ImageAsset Include="Media.xcassets\main_logo.imageset\Contents.json" />
     <ImageAsset Include="Media.xcassets\main_logo.imageset\main_logo.png" />
-    <ImageAsset Include="Media.xcassets\register.imageset\register.png" />
     <ImageAsset Include="Media.xcassets\register.imageset\Contents.json" />
-    <ImageAsset Include="Media.xcassets\function.imageset\function.png" />
     <ImageAsset Include="Media.xcassets\function.imageset\Contents.json" />
-    <ImageAsset Include="Media.xcassets\settings.imageset\settings.png" />
     <ImageAsset Include="Media.xcassets\settings.imageset\Contents.json" />
-    <ImageAsset Include="Media.xcassets\search.imageset\search.png" />
     <ImageAsset Include="Media.xcassets\search.imageset\Contents.json" />
-    <ImageAsset Include="Media.xcassets\inventory.imageset\inventory.png" />
     <ImageAsset Include="Media.xcassets\inventory.imageset\Contents.json" />
     <ImageAsset Include="Media.xcassets\security.imageset\Contents.json" />
-    <ImageAsset Include="Media.xcassets\security.imageset\security.png" />
+    <ImageAsset Include="Media.xcassets\write.imageset\write_3x.png" />
+    <ImageAsset Include="Media.xcassets\write.imageset\write_2x.png" />
+    <ImageAsset Include="Media.xcassets\write.imageset\write_1x.png" />
+    <ImageAsset Include="Media.xcassets\filter.imageset\filter_2x.png" />
+    <ImageAsset Include="Media.xcassets\filter.imageset\filter_3x.png" />
+    <ImageAsset Include="Media.xcassets\filter.imageset\filter_1x.png" />
+    <ImageAsset Include="Media.xcassets\register.imageset\register_2x.png" />
+    <ImageAsset Include="Media.xcassets\register.imageset\register_3x.png" />
+    <ImageAsset Include="Media.xcassets\register.imageset\register_1x.png" />
+    <ImageAsset Include="Media.xcassets\function.imageset\function_1x.png" />
+    <ImageAsset Include="Media.xcassets\function.imageset\function_2x.png" />
+    <ImageAsset Include="Media.xcassets\function.imageset\function_3x.png" />
+    <ImageAsset Include="Media.xcassets\settings.imageset\settings_1x.png" />
+    <ImageAsset Include="Media.xcassets\settings.imageset\settings_3x.png" />
+    <ImageAsset Include="Media.xcassets\settings.imageset\settings_2x.png" />
+    <ImageAsset Include="Media.xcassets\search.imageset\search_3x.png" />
+    <ImageAsset Include="Media.xcassets\search.imageset\search_2x.png" />
+    <ImageAsset Include="Media.xcassets\search.imageset\search_1x.png" />
+    <ImageAsset Include="Media.xcassets\inventory.imageset\inventory_1x.png" />
+    <ImageAsset Include="Media.xcassets\inventory.imageset\inventory_3x.png" />
+    <ImageAsset Include="Media.xcassets\inventory.imageset\inventory_2x.png" />
+    <ImageAsset Include="Media.xcassets\security.imageset\security_1x.png" />
+    <ImageAsset Include="Media.xcassets\security.imageset\security_3x.png" />
+    <ImageAsset Include="Media.xcassets\security.imageset\security_2x.png" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MvvmCross">

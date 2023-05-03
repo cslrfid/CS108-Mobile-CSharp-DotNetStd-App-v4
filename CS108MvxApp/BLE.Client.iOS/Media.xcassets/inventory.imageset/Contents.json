@@ -1,8 +1,19 @@
 {
   "images" : [
     {
-      "filename" : "inventory.png",
-      "idiom" : "universal"
+      "filename" : "inventory_1x.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "inventory_2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "inventory_3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {
