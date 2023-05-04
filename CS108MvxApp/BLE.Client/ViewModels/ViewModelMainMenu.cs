@@ -115,6 +115,8 @@ namespace BLE.Client.ViewModels
 
 
             BleMvxApplication._reader.rfid.SetToStandbyMode(); // for power saving
+
+            Xamarin.Essentials.DeviceDisplay.KeepScreenOn = true;
         }
 
         public override void ViewDisappearing()
