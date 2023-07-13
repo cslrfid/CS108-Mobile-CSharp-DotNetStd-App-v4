@@ -18,7 +18,7 @@
 				<Button Text="Axzon Xerxes" Font="Large" Command="{Binding OnXerxesButtonCommand}" HorizontalOptions="FillAndExpand" BackgroundColor="#C3C3C3" TextColor="Black" />
 				<Button Text="Block Write" Font="Large" Command="{Binding OnBlockWriteButtonCommand}" HorizontalOptions="FillAndExpand" BackgroundColor="#C3C3C3" TextColor="Black" />
 				<Button Text="Read" Font="Large" Command="{Binding OnReadButtonCommand}" HorizontalOptions="FillAndExpand" BackgroundColor="#C3C3C3" TextColor="Black" />
-				<Button Text="ColdChain CS8304/5" Font="Large" Command="{Binding OnCS83045ButtonCommand}" HorizontalOptions="FillAndExpand" BackgroundColor="#C3C3C3" TextColor="Black" />
+				<!--<Button Text="ColdChain CS8304/5" Font="Large" Command="{Binding OnCS83045ButtonCommand}" HorizontalOptions="FillAndExpand" BackgroundColor="#C3C3C3" TextColor="Black" />-->
 				<Button Text="CS9010 BAP ID Card" Font="Large" Command="{Binding OnCS9010ButtonCommand}" HorizontalOptions="FillAndExpand" BackgroundColor="#C3C3C3" TextColor="Black" />
 				<Button Text="TagFocus and FastID" Font="Large" Command="{Binding OnTagFocusandFastIDButtonCommand}" HorizontalOptions="FillAndExpand" BackgroundColor="#C3C3C3" TextColor="Black" />
 				<Button Text="CTESIUS Temp" Font="Large" Command="{Binding OnCTESIUSTempButtonCommand}" HorizontalOptions="FillAndExpand" BackgroundColor="#C3C3C3" TextColor="Black" />

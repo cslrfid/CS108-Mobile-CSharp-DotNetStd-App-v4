@@ -157,6 +157,12 @@ namespace CSLibrary
             }
         }
 
+        internal string _MacAdd = "";
+        public string GetMacAddress()
+        {
+            return _MacAdd;
+        }
+
         #endregion
 
         public HighLevelInterface()

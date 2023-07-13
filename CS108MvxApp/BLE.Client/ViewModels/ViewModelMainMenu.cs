@@ -91,6 +91,10 @@ namespace BLE.Client.ViewModels
 
         public override void ViewAppearing()
         {
+            if (BleMvxApplication._reader.rfid.State == CSLibrary.Constants.RFState.BUSY)
+                BleMvxApplication._reader.rfid.StopOperation();
+            BleMvxApplication._reader.barcode.Stop();
+            
             base.ViewAppearing();
 
             BleMvxApplication._inventoryEntryPoint = 0;

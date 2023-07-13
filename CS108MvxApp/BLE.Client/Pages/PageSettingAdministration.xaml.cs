@@ -1,11 +1,11 @@
-﻿using System;
-using MvvmCross.Forms.Views;
+﻿using MvvmCross.Forms.Views;
+using System;
 using Xamarin.Forms;
 
 
 namespace BLE.Client.Pages
 {
-	public partial class PageSettingAdministration : MvxContentPage
+    public partial class PageSettingAdministration : MvxContentPage
 	{
         readonly string [] _ShareDataFormatOptions = new string[] { "JSON", "CSV", "Excel CSV" };
 
@@ -175,6 +175,14 @@ namespace BLE.Client.Pages
             }
 
             BleMvxApplication.SaveConfig();
+
+            string macadd = BleMvxApplication._reader.GetMacAddress();
+
+            if (macadd.Length >= 6)
+            {
+                BleMvxApplication._reader.bluetoothIC.SetDeviceName("CS108Reader" + macadd.Substring(macadd.Length - 6));
+                await DisplayAlert("New Reader Name effective after reset CS108", "", null, "OK");
+            }
         }
 
         public async void btnGetSerialNumber(object sender, EventArgs e)

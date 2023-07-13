@@ -11,7 +11,7 @@
 		<StackLayout Margin="0,50,0,0">
 			<StackLayout VerticalOptions="Center" HorizontalOptions="Center">
 				<Button Text="Public Mode Functions" Font="Large" Command="{Binding OnPublicModeInventoryButtonCommand}" HorizontalOptions="CenterAndExpand" BackgroundColor="#C3C3C3" TextColor="Black" />
-				<Button Text="Private Mode Inventory" Font="Large" Command="{Binding OnPrivateModeInventoryButtonCommand}" HorizontalOptions="CenterAndExpand" BackgroundColor="#C3C3C3" TextColor="Black" />
+				<!--<Button Text="Private Mode Inventory" Font="Large" Command="{Binding OnPrivateModeInventoryButtonCommand}" HorizontalOptions="CenterAndExpand" BackgroundColor="#C3C3C3" TextColor="Black" />-->
 			</StackLayout>
 		</StackLayout>
 	</ScrollView>
