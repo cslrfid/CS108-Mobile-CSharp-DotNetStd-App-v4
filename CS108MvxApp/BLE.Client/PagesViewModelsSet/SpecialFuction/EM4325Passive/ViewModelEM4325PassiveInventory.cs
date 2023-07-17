@@ -441,21 +441,28 @@ namespace BLE.Client.ViewModels
 
         #region Key_event
 
+        private bool _KeyDown = false;
+
         void HotKeys_OnKeyEvent(object sender, CSLibrary.Notification.HotKeyEventArgs e)
         {
             if (e.KeyCode == CSLibrary.Notification.Key.BUTTON)
             {
                 if (e.KeyDown)
                 {
-                    StartInventory();
+                    if (!_KeyDown)
+                        StartInventory();
+                    _KeyDown = true;
                 }
                 else
                 {
-                    StopInventory();
+                    if (_KeyDown)
+                        StopInventory();
+                    _KeyDown = false;
                 }
             }
         }
-#endregion
+
+        #endregion
         async void ShowDialog(string Msg)
         {
             var config = new ProgressDialogConfig()
