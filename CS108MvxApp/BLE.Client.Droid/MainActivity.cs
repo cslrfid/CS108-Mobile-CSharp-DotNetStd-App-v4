@@ -9,6 +9,7 @@ using Android.OS;
 using MvvmCross.Forms.Platforms.Android.Views;
 using MvvmCross;
 using Xamarin.Forms;
+using System.Collections.Generic;
 
 namespace BLE.Client.Droid
 {
@@ -36,6 +37,8 @@ namespace BLE.Client.Droid
                 this.RequestedOrientation = ScreenOrientation.Portrait;
             else
                 this.RequestedOrientation = ScreenOrientation.Landscape;
+
+            Xamarin.Essentials.Permissions.RequestAsync<BLEPermission>();
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -43,12 +46,23 @@ namespace BLE.Client.Droid
             Plugin.Permissions.PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-/*
-        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
-        {
-            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
-            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        public class BLEPermission : Xamarin.Essentials.Permissions.BasePlatformPermission
+        {
+            public override (string androidPermission, bool isRuntime)[] RequiredPermissions => new List<(string androidPermission, bool isRuntime)>
+            {
+                (Android.Manifest.Permission.BluetoothScan, true),
+                (Android.Manifest.Permission.BluetoothConnect, true)
+            }.ToArray();
         }
-*/    }
+
+        /*
+                public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
+                {
+                    Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+                    base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+                }
+        */
+    }
 }
