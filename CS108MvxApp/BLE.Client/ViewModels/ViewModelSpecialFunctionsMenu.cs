@@ -57,6 +57,7 @@ namespace BLE.Client.ViewModels
         public ICommand OnUCODE8ButtonCommand { protected set; get; }
         public ICommand OnMonza4QTButtonCommand { protected set; get; }
         public ICommand OnMagnusS3withGPSforTabletButtonCommand { protected set; get; }
+        public ICommand OnImpinjSpecialFeaturesButtonCommand { protected set; get; }
 
 
         public ViewModelSpecialFunctionsMenu (IAdapter adapter, IUserDialogs userDialogs, IMvxNavigationService navigation) : base(adapter)
@@ -85,6 +86,7 @@ namespace BLE.Client.ViewModels
             OnUCODE8ButtonCommand = new Command(OnUCODE8ButtonClicked);
             OnMonza4QTButtonCommand = new Command(OnMonza4QTButtonClicked);
             OnMagnusS3withGPSforTabletButtonCommand = new Command(OnMagnusS3withGPSforTabletButtonClicked);
+            OnImpinjSpecialFeaturesButtonCommand = new Command(OnImpinjSpecialFeaturesButtonClicked);
 
         }
 
@@ -218,6 +220,11 @@ namespace BLE.Client.ViewModels
         {
             //ShowViewModel<ViewModelTempGPSSetting>(new MvxBundle());
             _navigation.Navigate<ViewModelTempGPSSetting>(new MvxBundle());
+        }
+
+        void OnImpinjSpecialFeaturesButtonClicked()
+        {
+            _navigation.Navigate<ViewModelImpinjSpecialFeaturesInventory>(new MvxBundle());
         }
     }
 }

@@ -47,14 +47,12 @@ namespace BLE.Client.ViewModels
 			OnFilterButtonCommand = new Command(OnFilterButtonClicked);
             OnConnectButtonCommand = new Command(OnConnectButtonClicked);
 
-            BleMvxApplication._reader.OnReaderStateChanged += new EventHandler<CSLibrary.Events.OnReaderStateChangedEventArgs>(ReaderStateCChangedEvent);
-
             GetPermission();
         }
 
         ~ViewModelMainMenu()
         {
-            BleMvxApplication._reader.OnReaderStateChanged -= new EventHandler<CSLibrary.Events.OnReaderStateChangedEventArgs>(ReaderStateCChangedEvent);
+            BleMvxApplication._reader.rfid.ClearEventHandler();
         }
 
         // MUST be geant location permission
@@ -99,11 +97,14 @@ namespace BLE.Client.ViewModels
 
             BleMvxApplication._inventoryEntryPoint = 0;
 
+            BleMvxApplication._reader.rfid.ClearEventHandler();
+            BleMvxApplication._reader.OnReaderStateChanged += new EventHandler<CSLibrary.Events.OnReaderStateChangedEventArgs>(ReaderStateCChangedEvent);
             //BleMvxApplication._reader.OnReaderStateChanged += new EventHandler<CSLibrary.Events.OnReaderStateChangedEventArgs>(ReaderStateCChangedEvent);
+            BleMvxApplication._reader.rfid.OnStateChanged += new EventHandler<CSLibrary.Events.OnStateChangedEventArgs>(StateChangedEvent);
+
+            BleMvxApplication._reader.notification.ClearEventHandler();
             BleMvxApplication._reader.notification.OnVoltageEvent += new EventHandler<CSLibrary.Notification.VoltageEventArgs>(VoltageEvent);
             BleMvxApplication._reader.notification.OnKeyEvent += new EventHandler<CSLibrary.Notification.HotKeyEventArgs>(HotKeys_OnKeyEvent);
-
-            BleMvxApplication._reader.rfid.OnStateChanged += new EventHandler<CSLibrary.Events.OnStateChangedEventArgs>(StateChangedEvent);
 
             CheckConnection();
 
