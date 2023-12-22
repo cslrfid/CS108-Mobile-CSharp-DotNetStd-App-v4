@@ -9,6 +9,7 @@
     <Folder Include="PagesViewModelsSet\SpecialFuction\Monza4 QT\ChangetoPrivateModeReducesRange\" />
     <Folder Include="PagesViewModelsSet\SpecialFuction\Monza4 QT\ChangetoPublicModeNormalRange\" />
     <Folder Include="PagesViewModelsSet\SpecialFuction\Monza4 QT\ChangetoPublicModeReducesRange\" />
+    <Folder Include="PagesViewModelsSet\SpecialFuction\LEDTag\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,6 +17,7 @@
     <PackageReference Include="MvvmCross.Forms" Version="7.1.2" />
     <PackageReference Include="Plugin.BLE" Version="2.1.3" />
     <PackageReference Include="Plugin.Permissions" Version="6.0.1" />
+    <PackageReference Include="TagDataTranslation" Version="1.1.5" />
     <PackageReference Include="Xam.Plugins.Settings" Version="4.1.0-beta" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2578" />
     <PackageReference Include="Acr.UserDialogs" Version="6.5.1" />

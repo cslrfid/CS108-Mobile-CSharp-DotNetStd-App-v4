@@ -58,6 +58,8 @@ namespace BLE.Client.ViewModels
         public ICommand OnMonza4QTButtonCommand { protected set; get; }
         public ICommand OnMagnusS3withGPSforTabletButtonCommand { protected set; get; }
         public ICommand OnImpinjSpecialFeaturesButtonCommand { protected set; get; }
+        public ICommand OnKilowayKX2005XBLButtonCommand { protected set; get; }
+        public ICommand OnN2ESLButtonCommand { protected set; get; }
 
 
         public ViewModelSpecialFunctionsMenu (IAdapter adapter, IUserDialogs userDialogs, IMvxNavigationService navigation) : base(adapter)
@@ -87,7 +89,9 @@ namespace BLE.Client.ViewModels
             OnMonza4QTButtonCommand = new Command(OnMonza4QTButtonClicked);
             OnMagnusS3withGPSforTabletButtonCommand = new Command(OnMagnusS3withGPSforTabletButtonClicked);
             OnImpinjSpecialFeaturesButtonCommand = new Command(OnImpinjSpecialFeaturesButtonClicked);
-
+            OnImpinjSpecialFeaturesButtonCommand = new Command(OnImpinjSpecialFeaturesButtonClicked);
+            OnKilowayKX2005XBLButtonCommand = new Command(OnOnKilowayKX2005XBLButtonClicked);
+            OnN2ESLButtonCommand = new Command(OnN2ESLButtonClicked);
         }
 
         public override void ViewAppearing()
@@ -226,5 +230,17 @@ namespace BLE.Client.ViewModels
         {
             _navigation.Navigate<ViewModelImpinjSpecialFeaturesInventory>(new MvxBundle());
         }
+
+        void OnOnKilowayKX2005XBLButtonClicked()
+        {
+            _navigation.Navigate<ViewModelLEDTag>(new MvxBundle());
+        }
+
+
+        void OnN2ESLButtonClicked()
+        {
+            _navigation.Navigate<ViewModelLEDTag1>(new MvxBundle());
+        }
+
     }
 }

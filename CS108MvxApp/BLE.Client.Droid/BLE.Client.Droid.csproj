@@ -228,6 +228,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Library\CSLibrary\CSLibrary-NETStandard.csproj">
+      <Project>{807e6890-de59-4007-b814-102deb1f753f}</Project>
+      <Name>CSLibrary-NETStandard</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BLE.Client\BLE.Client.csproj">
       <Project>{47E1BEC1-4717-46F5-9E71-6F4CCB7B0EAF}</Project>
       <Name>BLE.Client</Name>
