@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>CSLibrary</RootNamespace>
+    <AssemblyName>CSLibrary</AssemblyName>
+    <Version>3.0.5</Version>
+    <BaseOutputPath>..\..\CS108MvxApp\BLE.Client\Library</BaseOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="bin\**" />
+    <Compile Remove="HAL\Acr.ble\**" />
+    <Compile Remove="HAL\btframework\**" />
+    <Compile Remove="HAL\UWP\**" />
+    <EmbeddedResource Remove="bin\**" />
+    <EmbeddedResource Remove="HAL\Acr.ble\**" />
+    <EmbeddedResource Remove="HAL\btframework\**" />
+    <EmbeddedResource Remove="HAL\UWP\**" />
+    <None Remove="bin\**" />
+    <None Remove="HAL\Acr.ble\**" />
+    <None Remove="HAL\btframework\**" />
+    <None Remove="HAL\UWP\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Properties\AssemblyInfo.cs" />
+    <Compile Remove="Properties\Resources.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Properties\Resources.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="CSLibrary-UWP.projitems" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+    <Folder Include="RFIDReader\Antenna\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Plugin.BLE" Version="2.1.3" />
+  </ItemGroup>
+</Project>
